@@ -1,0 +1,101 @@
+<view class='header'>
+  <view class="header-input">
+    <view class='search' bindtap='goSearch'>搜索商品</view>
+    <view class="shoppingCar" bindtap='toPay'>
+      <image src='../../assets/page/shoppingCar.png'></image>
+      <view class='bubble'>1</view>
+    </view>
+  </view>
+</view>
+<!-- 轮播组件 -->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" width="355" height="150" />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 促销信息 -->
+<view class='saleArea'>
+  <view class='title'>促销信息</view>
+  <!-- 商品信息 -->
+  <view class='productInfo'>
+    <view class='img'>
+      <image></image>
+    </view>
+    <view class='content'>
+      <view class='name'>{{name}}</view>
+      <view class='star'>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+      </view>
+      <view class='description'>金钟精品三鲜五花肉</view>
+      <view class='detail'>
+        <view class='price'>￥26.8</view>
+        <view class='subtract' bindtap="subtract">
+          <image src='../../assets/page/-.png'></image>
+        </view>
+        <view class='quantity'>1</view>
+        <view class='add' bindtap='add'>
+          <image src='../../assets/page/+.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class='productInfo'>
+    <view class='img'>
+      <image></image>
+    </view>
+    <view class='content'>
+      <view class='name'>{{name}}</view>
+      <view class='star'>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+      </view>
+      <view class='description'>金钟精品三鲜五花肉</view>
+      <view class='detail'>
+        <view class='price'>￥26.8</view>
+        <view class='subtract' bindtap="subtract">
+          <image src='../../assets/page/-.png'></image>
+        </view>
+        <view class='quantity'>10</view>
+        <view class='add' bindtap='add'>
+          <image src='../../assets/page/+.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 商品信息 -->
+  <view class='productInfo'>
+    <view class='img'>
+      <image></image>
+    </view>
+    <view class='content'>
+      <view class='name'>{{name}}</view>
+      <view class='star'>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+        <image src='../../assets/page/star.png'></image>
+      </view>
+      <view class='description'>金钟精品三鲜五花肉</view>
+      <view class='detail'>
+        <view class='price'>￥26.8</view>
+        <view class='subtract' bindtap="subtract">
+          <image src='../../assets/page/-.png'></image>
+        </view>
+        <view class='quantity'>12</view>
+        <view class='add' bindtap='add'>
+          <image src='../../assets/page/+.png'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

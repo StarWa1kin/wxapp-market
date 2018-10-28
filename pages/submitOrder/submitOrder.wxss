@@ -1,0 +1,152 @@
+page{
+ background: #f1f1f1;
+}
+.blacktext{
+  color: #333333;
+}
+.chooseAddress{
+  width: 100%;
+  height: 180rpx;
+  border-bottom: 4rpx solid #d3b65c;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+.color{
+  color: #888888;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+}
+.addressInfo{
+  width: 600rpx;
+  margin-left: 20rpx;
+}
+.icon{
+  width: 50rpx;
+  margin-right: 20rpx;
+  text-align: center;
+   
+}
+
+.goodsList{
+  margin-top:20rpx; 
+}
+/* 购物车列表 */
+.goodsDetail{
+  width: 100%;
+  height: 240rpx;
+  background: white;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  border-bottom:1px solid rgb(231, 231, 231)
+}
+
+.img{
+  width: 190rpx;
+  height:190rpx;
+  background-color: silver;
+  margin-left:20rpx; 
+}
+.img>image{
+  width: 100%;
+  height: 100%;
+}
+.content{
+  margin-left: 40rpx;
+  width:480rpx;
+  height:190rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.content view{
+  margin-bottom:12rpx; 
+  height: 36rpx;
+  /* background: silver; */
+}
+.desc{
+  font-size: 32rpx;
+  color: #888888;
+}
+.money{
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 合计板块 */
+.total{
+  width: 100%;
+  height: 140rpx;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.total view{
+  width: 60%;
+  height: 30rpx;
+  text-align: right;
+  margin-right: 20rpx;
+}
+.totalMoney{
+  font-size: 26rpx;
+}
+.acType{
+  font-size: 26rpx;
+}
+.big{
+  font-weight: bold;
+  font-size: 40rpx;
+  color:  #EE0F1F;
+}
+.payType{
+  height: 60rpx;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  line-height: 60rpx;
+  color: #777;
+}
+.remainingSum{
+  border-bottom:1px solid rgb(231, 231, 231)
+}
+.bg{
+  background: white;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #343434;
+}
+.bg view{
+  margin: 20rpx;
+}
+
+
+.payFixed{
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.payMoney{
+  margin: 20rpx;
+  font-size: 42rpx;
+  color: #EE0F1F;
+  font-weight: bold;
+}
+.submit{
+  width: 220rpx;
+  background: #EE0F1F;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+}

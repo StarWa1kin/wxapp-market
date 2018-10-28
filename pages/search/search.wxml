@@ -1,0 +1,4 @@
+<view class="header">
+<view><input placeholder='搜索商品'></input></view>
+<view class='cancel' bindtap='cancel'>取消</view>
+</view>

@@ -1,0 +1,77 @@
+<!-- 选择地址 -->
+<view class='chooseAddress'>
+  <view class='addressInfo'>
+    <view class='blacktext'>收货人:张三 17761295425</view>
+    <view class='color'>四川省成都市天府三街</view>
+  </view>
+  <view class='icon'>></view>
+</view>
+
+<!-- 已加入购物车商品列表 -->
+<view class='goodsList'>
+  <view class='goodsDetail'>
+    <view class='img'>
+      <image src=''></image>
+    </view>
+    <view class='content'>
+      <view class='goodsName'>警钟龙骨1kg/份</view>
+      <view class='desc'>默认切块</view>
+      <view class='money'>
+        <view>￥38.0x2</view>
+        <view class='littleSum'>￥26.8</view>
+      </view>
+    </view>
+  </view>
+
+  <view class='goodsDetail'>
+    <view class='img'>
+      <image src=''></image>
+    </view>
+    <view class='content'>
+      <view class='goodsName'>警钟龙骨1kg/份</view>
+      <view class='desc'>默认切块</view>
+      <view class='money'>
+        <view>￥38.0x2</view>
+        <view class='littleSum'>￥26.8</view>
+      </view>
+    </view>
+  </view>
+
+
+</view>
+<!-- 合计区域 -->
+<view class='total'>
+  <view class='totalMoney'>共5件商品 总计:
+    <text class='big'>￥146</text>
+  </view>
+  <view class='acType'>账户类型:现款后货</view>
+</view>
+
+<!-- 支付方式 -->
+<view class='payType'>支付方式</view>
+<view class="remainingSum bg">
+  <view>余额(剩余￥268.00)</view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio">
+        <radio value="余额" checked="{{radioChoose1}}" color="#d3b65c" />
+      </label>
+    </radio-group>
+  </view>
+</view>
+<view class='wechat bg'>
+  <view>微信支付</view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio">
+        <radio value="微信" checked="{{radioChoose2}}" color="#d3b65c" />
+      </label>
+    </radio-group>
+  </view>
+</view>
+
+<!-- 固定支付栏 -->
+<view class='payFixed'>
+  <view class='payMoney'>￥146</view>
+  <view class='submit'>提交订单</view>
+</view>

@@ -1,0 +1,51 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/home/home",
+    
+    
+    "pages/kind/kind",
+    "pages/submitOrder/submitOrder",
+    "pages/order/order",
+    "pages/mine/mine",
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/search/search"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d3b65c",
+    "navigationBarTitleText": "金忠食品",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#ce0919",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "./assets/tabar/home.png",
+        "selectedIconPath": "./assets/tabar/home1.png"
+      },
+      {
+        "pagePath": "pages/kind/kind",
+        "text": "商品",
+        "iconPath": "./assets/tabar/product.png",
+        "selectedIconPath": "./assets/tabar/product1.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "./assets/tabar/order.png",
+        "selectedIconPath": "./assets/tabar/order1.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "./assets/tabar/mine.png",
+        "selectedIconPath": "./assets/tabar/mine1.png"
+      }
+    ]
+  }
+}

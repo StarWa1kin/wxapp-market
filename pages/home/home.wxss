@@ -1,0 +1,148 @@
+.header {
+  width: 100%;
+  height: 104rpx;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  background-color: #d3b65c;
+}
+.header-input{
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+}
+.header-input view{
+  margin:0 20rpx;
+}
+/* 搜索 */
+.search {
+  width: 580rpx;
+  height: 70rpx;
+  line-height:70rpx;
+  background-color: rgba(255, 255, 255, 1);
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  color: rgba(153, 153, 153, 1);
+  text-align: center;
+  /* padding-left: 36rpx; */
+}
+/*购物车*/
+.shoppingCar{
+  width:50rpx; 
+  height:50rpx;
+  position: relative;
+}
+.bubble{
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  text-align: center;
+  background: #EE0F1F;
+  color: #fff;
+  position: absolute;
+  top:-10rpx;
+  left: 10rpx;
+}
+.shoppingCar>image{
+  width: 100%;
+  height: 100%;
+}
+/* 轮播 */
+swiper{
+  width: 100%;
+  height: 328rpx;
+}
+swiper image{
+  width: 100%;
+  height: 100%;
+}
+/* 促销版块 */
+.title{
+  height: 94rpx;
+  line-height: 94rpx;
+  padding-left: 20rpx;
+  font-size: 28rpx;
+  border-bottom: 1px solid rgb(231, 231, 231);
+}
+/* 商品信息 */
+.productInfo{
+  width: 100%;
+  height: 240rpx;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* background: #444; */
+  border-bottom:1px solid rgb(231, 231, 231)
+}
+.img{
+  width: 190rpx;
+  height:190rpx;
+  background-color: silver;
+  margin-left:20rpx; 
+}
+.img>image{
+  width: 100%;
+  height: 100%;
+}
+.content{
+  margin-left: 40rpx;
+  width:480rpx;
+  height:190rpx;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: center; */
+  /* background: red; */
+}
+.content view{
+  margin-bottom:12rpx; 
+  height: 36rpx;
+  /* background: silver; */
+}
+.name{
+  font-size: 36rpx;
+}
+.star>image{
+  width: 36rpx;
+  height: 36rpx;
+}
+.description{
+  font-size: 30rpx;
+  color: #888888;
+}
+.detail{
+  display: flex;
+  justify-content: space-between;
+  font-size: 40rpx;
+  height: 60rpx !important;
+}
+.price{
+  color: #EE0F1F;
+}
+.add{
+  width: 60rpx;
+  height: 100% !important;
+  /* background: red !important; */
+  /* border-radius: 50%;
+  color: #D4B568;
+  font-size: 40rpx;
+  border: 2px solid #D4B568;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  top: -10rpx; */
+}
+.add>image{
+  width: 100%;
+  height: 100%
+}
+.subtract{
+  width: 60rpx;
+  height: 100% !important;
+  margin-left: 140rpx;
+}
+.subtract>image{
+  width: 100%;
+  height: 100%
+}

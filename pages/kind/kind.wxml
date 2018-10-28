@@ -1,0 +1,235 @@
+<view class='header'>
+  <view class='search' bindtap='goSearch'>搜索商品</view>
+</view>
+
+<view class='section'>
+  <!-- 左边菜单栏 -->
+  <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 52}}px">
+    <view class='kind'>商品分类</view>
+    <view class='kindList active'>冷鲜肉</view>
+    <view class='kindList'>腌腊肉</view>
+    <view class='kindList'>酱卤肉</view>
+    <view class='kindList'>优质肉</view>
+    <view class='kindList'>精品肉</view>
+    <view class='kindList'>猪副产品</view>
+  </scroll-view>
+  <!-- 右边显示栏 -->
+  <scroll-view class='right' scroll-y="ture" style="height:{{winHeight - 102}}px">
+    <view class='isChoose'>冷鲜肉</view>
+    <!-- 商品展示栏 -->
+    <view class='productInfo'>
+      <view class='img'>
+        <image></image>
+      </view>
+      <view class='content'>
+        <view class='name'>精品五花肉1kg/份</view>
+        <view class='star'>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+        </view>
+        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='detail'>
+          <view class='price'>￥26.8</view>
+          <view class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>1</view>
+          <view class='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品展示栏 -->
+    <view class='productInfo'>
+      <view class='img'>
+        <image></image>
+      </view>
+      <view class='content'>
+        <view class='name'>精品五花肉1kg/份</view>
+        <view class='star'>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+        </view>
+        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='detail'>
+          <view class='price'>￥26.8</view>
+          <view class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 商品展示栏 -->
+    <view class='productInfo'>
+      <view class='img'>
+        <image></image>
+      </view>
+      <view class='content'>
+        <view class='name'>精品五花肉1kg/份</view>
+        <view class='star'>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+        </view>
+        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='detail'>
+          <view class='price'>￥26.8</view>
+          <view class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>100</view>
+          <view class='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 商品展示栏 -->
+    <view class='productInfo'>
+      <view class='img'>
+        <image></image>
+      </view>
+      <view class='content'>
+        <view class='name'>精品五花肉1kg/份</view>
+        <view class='star'>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+        </view>
+        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='detail'>
+          <view class='price'>￥26.8</view>
+          <view class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 商品展示栏 -->
+    <view class='productInfo'>
+      <view class='img'>
+        <image></image>
+      </view>
+      <view class='content'>
+        <view class='name'>精品五花肉1kg/份</view>
+        <view class='star'>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+          <image src='../../assets/page/star.png'></image>
+        </view>
+        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='detail'>
+          <view class='price'>￥26.8</view>
+          <view class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+
+<!-- 底部 -->
+<view class='fixedBar'>
+  <view class='totalM'>
+    <view class='icon' bindtap='openModal'>
+      <image src='../../assets/page/shoppingCar.png'></image>
+       <view class='bubble'>1</view>
+    </view>
+    <view class='money'>￥
+      <text class='bigger'>115.2</text> </view>
+  </view>
+  <view class='buyIt'>去结算</view>
+</view>
+
+
+<!-- 模态框 -->
+<view class='modal-shopingCar' wx:if="{{clickIcon}}">
+  <view class='clearAll'>清空购物车</view>
+  <scroll-view scroll-y="ture" style="height:400rpx">
+    <!-- 商品列表 -->
+    <view class='buyingList'>
+      <view class='img'>
+        <image src=''></image>
+      </view>
+      <view class='contentBox'>
+        <view>精品五花肉1kg/份</view>
+        <view class='modal-detail'>
+          <view class="price">￥26</view>
+          <view class='modal-subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='modal-add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+
+    <!-- 商品列表 -->
+    <view class='buyingList'>
+      <view class='img'>
+        <image src=''></image>
+      </view>
+      <view class='contentBox'>
+        <view>精品五花肉1kg/份</view>
+        <view class='modal-detail'>
+          <view class="price">￥26</view>
+          <view class='modal-subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='modal-add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 商品列表 -->
+    <view class='buyingList'>
+      <view class='img'>
+        <image src=''></image>
+      </view>
+      <view class='contentBox'>
+        <view>精品五花肉1kg/份</view>
+        <view class='modal-detail'>
+          <view class="price">￥26</view>
+          <view class='modal-subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='quantity'>12</view>
+          <view class='modal-add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+</view>

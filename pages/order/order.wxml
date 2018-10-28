@@ -1,0 +1,158 @@
+<!--index.wxml-->
+<view class="swiper-tab">
+  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待收货</view>
+  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+</view>
+
+<view style='height:108rpx'></view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+  <!-- currentTab1 -->
+  <swiper-item>
+    <scroll-view scroll-y="true" style="height:{{winHeight - 31}}px">
+      <view class='orderGroup'>
+      <view class='timeStatus'>
+        <view class='time'>2018/10/10 09:30</view>
+        <view class='status'>备货中</view>
+      </view>
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+
+      <!-- 操作区域 -->
+      <view class='operation'>
+        <view class='total'>共一件商品 1kg 实付:<text class='big'> ￥288</text></view>
+        <view class='button'>
+          <view class='buyAgain'>再来一单</view>
+          <view class='cancelOrder'>取消订单</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 第二组订单 -->
+    <view class='orderGroup'>
+      <view class='timeStatus'>
+        <view class='time'>2018/10/10 09:30</view>
+        <view class='status'>备货中</view>
+      </view>
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+
+      <!-- 操作区域 -->
+      <view class='operation'>
+        <view class='total'>共一件商品 1kg 实付:<text class='big'> ￥288</text></view>
+        <view class='button'>
+          <view class='buyAgain'>再来一单</view>
+          <view class='cancelOrder'>取消订单</view>
+        </view>
+      </view>
+    </view>
+    </scroll-view>
+  </swiper-item>
+  <!-- currentTab2 -->
+  <swiper-item>
+    <view class='orderGroup'>
+      <view class='timeStatus'>
+        <view class='time'>2018/10/10 09:30</view>
+        <view class='status'>待付款</view>
+      </view>
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!-- currentTab3 -->
+  <swiper-item>
+    <view class='orderGroup'>
+      <view class='timeStatus'>
+        <view class='time'>2018/10/10 09:30</view>
+        <view class='status'>待收货</view>
+      </view>
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+  <!-- currentTab4 -->
+  <swiper-item>
+    <view class='orderGroup'>
+      <view class='timeStatus'>
+        <view class='time'>2018/10/10 09:30</view>
+        <view class='status'>已完成</view>
+      </view>
+      <view class='goodsList'>
+        <view class='img'>
+          <image src=''></image>
+        </view>
+        <view class='content'>
+          <view class='goodsName'>警钟龙骨1kg/份</view>
+          <view class='desc'>默认切块</view>
+          <view class='money'>￥38.0x2</view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+</swiper>

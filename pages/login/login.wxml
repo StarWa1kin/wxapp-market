@@ -1,0 +1,20 @@
+<!-- logo部分 -->
+<view class="logo">
+  <image src='../../assets/page/logo.png'></image>
+</view>
+<!-- 输入框部分 -->
+<view class='form'>
+  <view class='account input'>
+    <view class='icon'></view>
+    <input type='number' maxlength="11" placeholder='手机号' bindinput="getNumber" ></input>
+  </view>
+  <view class='password input'>
+    <view class='icon'></view>
+    <input  type='number' bindinput="getCode" class='shortInput' placeholder='验证码'></input>
+    <button class='code' bindtap='sendCode' disabled='{{btnSwitch}}'>{{code}}</button>
+  </view>
+  <view class='btn'>
+    <view class='login size' bindtap='login'>登 陆</view>
+    <view class='wechatLogin size'>微信登陆</view>
+  </view>
+</view>

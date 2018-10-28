@@ -1,0 +1,80 @@
+.logo{
+  width: 100%;
+  height: 440rpx;
+  /* background: red; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo image{
+  width: 240rpx;
+  height: 240rpx;
+}
+
+.form{
+  margin:0 calc(50% - 300rpx);
+}
+.input{
+  width: 600rpx;
+  height: 100rpx;
+  /* background: pink; */
+  border-bottom: 1px solid #cacaca;
+  display: flex;
+  align-items: center;
+}
+.password{
+  margin-top: 20rpx;
+}
+.shortInput{
+  width: 280rpx;
+}
+/* 自定义按钮风格 */
+.code{
+  padding: 0;
+  width: 200rpx;
+  /* height: 70rpx; */
+  line-height: 70rpx;
+  border-radius: 16rpx;
+  text-align: center;
+  font-size: 28rpx;
+  background: #999;
+  color: #fff;
+}
+/* 去除按钮默认样式 */
+.code::after {
+  border: none;
+}
+/* icon共有属性 */
+.icon{
+  background: orange;
+  width: 70rpx;
+  height: 70rpx;
+  margin:0 20rpx;
+}
+/* 输入框共有属性 */
+input{
+  font-size: 32rpx;
+}
+
+.btn{
+  margin-top: 80rpx;
+}
+/* 按钮公共属性 */
+.size{
+  width: 600rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  border-radius: 50rpx;
+  /* background: red; */
+  text-align: center;
+  margin-top: 30rpx;
+}
+.login{
+  background: #EE0F1F;
+  color: white;
+}
+.wechatLogin{
+  color: #d3b65c;
+  border: 2rpx solid #d3b65c;
+  box-sizing: border-box;
+}
