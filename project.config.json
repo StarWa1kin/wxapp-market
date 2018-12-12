@@ -13,7 +13,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.3.0",
 	"appid": "wxa87b6d835e01bfc1",
-	"projectname": "market",
+	"projectname": "jz_wxapp",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
