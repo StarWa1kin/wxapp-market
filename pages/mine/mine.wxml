@@ -34,7 +34,7 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row'>
+  <view class='row' bindtap='enterAddress'>
     <view class='icon'>
       <image class="" src="../../assets/page/myAddress.png" mode="scaleToFill"></image>
     </view>
@@ -47,7 +47,7 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row'>
+  <view class='row' bindtap='enterContact'>
     <view class='icon'>
       <image class="" src="../../assets/page/customerService.png" mode="scaleToFill"></image>
     </view>
@@ -58,7 +58,7 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row'>
+  <view class='row' bindtap='enterFeedback'>
     <view class='icon'>
       <image class="" src="../../assets/page/feedback.png" mode="scaleToFill"></image>
     </view>
@@ -69,7 +69,7 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row'>
+  <view class='row' bindtap='enterSetting'>
     <view class='icon'>
       <image class="" src="../../assets/page/setting.png" mode="scaleToFill"></image>
     </view>

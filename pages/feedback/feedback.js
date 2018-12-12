@@ -1,11 +1,11 @@
-// pages/mine/mine.js
+// pages/feedback/feedback.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userFeedback:'',
   },
 
   /**
@@ -63,25 +63,22 @@ Page({
   onShareAppMessage: function () {
 
   },
-  /*自定义函数*/
-  enterAddress(){
-    wx.navigateTo({
-      url: '../addressManage/addressManage',
+  /**
+   * 自定义函数
+   */
+  getVal(e){
+    this.setData({
+      userFeedback: e.detail.value
     })
   },
-  enterContact(){
-    wx.navigateTo({
-      url: '',
-    })
+  submitFeedback(){
+    if(!this.data.userFeedback){
+      wx.showToast({
+        title: '反馈意见不能为空',
+        image:'../../assets/page/err.png'
+      })
+      return false
+    }
+
   },
-  enterFeedback(){
-    wx.navigateTo({
-      url: '../feedback/feedback',
-    })
-  },
-  enterSetting(){
-    wx.navigateTo({
-      url: '',
-    })
-  }
 })

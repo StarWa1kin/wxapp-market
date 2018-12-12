@@ -1,0 +1,8 @@
+<!-- 头部标题 -->
+<view class='title'>反馈信息</view>
+<!-- 反馈输入框 -->
+<view class='userFeedback'>
+  <textarea maxlength='-1' focus="true" placeholder='填写反馈信息' placeholder-class='textareaStyle' value='{{userFeedback}}' bindinput="getVal"></textarea>
+</view>
+<!-- 提交按钮 -->
+<view class='submitBtn' bindtap="submitFeedback">提 交</view>

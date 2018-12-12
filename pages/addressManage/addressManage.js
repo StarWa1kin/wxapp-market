@@ -1,4 +1,4 @@
-// pages/mine/mine.js
+// pages/addressManage/addressManage.js
 Page({
 
   /**
@@ -62,26 +62,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  /*自定义函数*/
-  enterAddress(){
-    wx.navigateTo({
-      url: '../addressManage/addressManage',
-    })
-  },
-  enterContact(){
-    wx.navigateTo({
-      url: '',
-    })
-  },
-  enterFeedback(){
-    wx.navigateTo({
-      url: '../feedback/feedback',
-    })
-  },
-  enterSetting(){
-    wx.navigateTo({
-      url: '',
-    })
   }
 })

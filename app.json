@@ -1,16 +1,16 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/home/home",
-    
-    
+    "pages/login/login",
     "pages/kind/kind",
     "pages/submitOrder/submitOrder",
     "pages/order/order",
     "pages/mine/mine",
     "pages/index/index",
     "pages/logs/logs",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/addressManage/addressManage",
+    "pages/feedback/feedback"
   ],
   "window": {
     "backgroundTextStyle": "light",
