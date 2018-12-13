@@ -1,0 +1,39 @@
+/* pages/newAddress/newAddress.wxss */
+
+page {
+  background: #f1f1f1;
+}
+.region {
+  margin-top: 20rpx;
+}
+.regionDetail{
+  width:520rpx;
+  color: black !important;
+}
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  color: #c1c1c1;
+  border-bottom: 1px solid #c1c1c1;
+  font-size: 32rpx;
+}
+.row view{
+  padding:0 20rpx;
+}
+.textColor{
+  color: #999999 !important;
+}
+input{
+  width:520rpx;
+  color: black !important;
+}
+.submitForm{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  border-radius: 0;
+}

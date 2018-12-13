@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/newAddress/newAddress",
     "pages/home/home",
     "pages/login/login",
     "pages/kind/kind",
@@ -11,6 +12,7 @@
     "pages/search/search",
     "pages/addressManage/addressManage",
     "pages/feedback/feedback"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

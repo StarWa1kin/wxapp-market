@@ -1,0 +1,29 @@
+<form bindsubmit="formSubmit">
+  <view class='region row'>
+    <view class='textColor'>所在地区:</view>
+    <picker bindchange="changeRegin" mode="region" value="{{region}}">
+      <view wx:if="{{region.length==0}}" class="regionDetail"> 请选择地区 </view>
+      <view wx:elif="{{region.length>0}}" class="regionDetail">{{region[0]}}-{{region[1]}}-{{region[2]}}</view>
+    </picker>
+  </view>
+  <view class='detailAddress row'>
+    <view class='textColor'>详细地址:</view>
+    <view>
+      <input name="address" placeholder='填写详细地址'></input>
+    </view>
+  </view>
+  <view class='name row'>
+    <view class='textColor'>收货人:</view>
+    <view>
+      <input name="name" placeholder='填写收获人姓名'></input>
+    </view>
+  </view>
+  <view class='telphone row'>
+    <view class='textColor'>联系电话:</view>
+    <view>
+      <input name="telphone" type="number" maxlength="11" placeholder='填写收货人电话'></input>
+    </view>
+  </view>
+
+  <button class='submitForm' type="warn" form-type="submit">保 存</button>
+</form>
