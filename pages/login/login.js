@@ -141,6 +141,9 @@ Page({
   },
   //微信登录
   wxlogin(e){
-    console.log(e.detail)
+    console.log(e.detail);
+    wx.switchTab({
+      url: '../home/home',
+    })
   }
 })
