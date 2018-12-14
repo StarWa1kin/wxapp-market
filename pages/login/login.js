@@ -6,9 +6,9 @@ Page({
    */
   data: {
     code: '获取验证码', //按钮文字
-    btnSwitch: false, //控制按钮的禁用情况
-    phone: '',
-    verificationC: '',
+    btnSwitch: false, //控制按钮(发送验证码)的禁用情况
+    phone: '', //输入框中的手机号
+    verificationC: '', //输入框中的验证码
   },
 
   /**
@@ -66,7 +66,9 @@ Page({
   onShareAppMessage: function() {
 
   },
-
+  /**
+   * 自定义函数
+   */
   //键盘输入获取手机号
   getNumber(e) {
     this.setData({
@@ -137,4 +139,8 @@ Page({
     }
 
   },
+  //微信登录
+  wxlogin(e){
+    console.log(e.detail)
+  }
 })

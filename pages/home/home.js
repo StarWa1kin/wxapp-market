@@ -92,6 +92,9 @@ Page({
   onShareAppMessage: function() {
 
   },
+  /**
+   * 自定义函数
+   */
   //跳转搜索页面
   goSearch(){
     wx.navigateTo({

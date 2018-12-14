@@ -15,6 +15,6 @@
   </view>
   <view class='btn'>
     <view class='login size' bindtap='login'>登 陆</view>
-    <view class='wechatLogin size'>微信登陆</view>
+    <button class='wechatLogin size' open-type='getUserInfo' bindgetuserinfo='wxlogin'>微信登陆</button>
   </view>
 </view>
