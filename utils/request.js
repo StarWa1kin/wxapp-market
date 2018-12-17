@@ -1,8 +1,19 @@
-const baseUrl = require('./request.js');;
+const ipConfig = require('./ipConfig.js');;
 
 
 const sendRequest = (config) => {
-  let token = wx.getStorageSync('token'); //先读取token
+  let apiHost = ipConfig.apiHost; //取出要访问的接口ip地址
+  let token;
+  try {
+    const value = wx.getStorageSync('token')
+    if (value) {
+      token = 'Bearer ' + JSON.parse(value).access_token
+    }
+  } catch (e) {
+    wx.showToast({
+      title: '无登陆信息',
+    })
+  }
   let deaufltConfig = {
     apiName: '', //接口名称,
     method: 'get', //请求的方法
@@ -33,8 +44,13 @@ const sendRequest = (config) => {
       data: deaufltConfig.data,
       method: deaufltConfig.method,
       success: res => {
-        console.log(res)
+        // console.log(res)
         /*取得响应后,与后台协商怎么样的状态码是成功,怎么的状态码是token失效。以及是否带有token请求后台？*/
+        if(res.data.code==0){
+          resolve(res.data.data)
+        }else if(res.data.code==1){
+          reject(res.data.message)
+        }
       },
       fail: err => {
         console.log(`请求错误!错误接口:${deaufltConfig.apiName};错误信息:${err}`)
@@ -53,5 +69,5 @@ const sendRequest = (config) => {
 
 module.exports = {
   request: sendRequest,
-  interface: baseUrl
+  interface: ipConfig
 }

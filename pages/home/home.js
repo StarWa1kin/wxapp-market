@@ -1,4 +1,4 @@
-// pages/home/home.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
@@ -6,9 +6,7 @@ Page({
    */
   data: {
     imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
+
     ],
     indicatorDots: true,
     autoplay: true,
@@ -16,14 +14,16 @@ Page({
     duration: 1000, //滑动时长
     circular: true, //无缝轮播
     // 促销信息
-    name: '精品五花肉1kg/份'
+    name: '精品五花肉1kg/份',
+    goodsList: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+    this.getList()
+
   },
 
   /**
@@ -37,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
   },
 
   /**
@@ -78,7 +78,7 @@ Page({
    * 自定义函数
    */
   //跳转搜索页面
-  goSearch(){
+  goSearch() {
     wx.navigateTo({
       url: '../search/search',
     })
@@ -90,5 +90,20 @@ Page({
       url: '../submitOrder/submitOrder',
     })
   },
-
+  //初始化取商品列表
+  getList() {
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data: {
+        page: 1
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      console.log(res)
+      this.setData({
+        goodsList: res
+      })
+    })
+  }
 })

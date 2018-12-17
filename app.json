@@ -1,17 +1,12 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/login/login",
     "pages/newAddress/newAddress",
-    
-    "pages/home/home",
-    
-    
     "pages/kind/kind",
     "pages/submitOrder/submitOrder",
     "pages/order/order",
     "pages/mine/mine",
-    
-    
     "pages/search/search",
     "pages/addressManage/addressManage",
     "pages/feedback/feedback"

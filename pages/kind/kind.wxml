@@ -6,12 +6,15 @@
   <!-- 左边菜单栏 -->
   <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 52}}px">
     <view class='kind'>商品分类</view>
-    <view class='kindList active'>冷鲜肉</view>
+    <block wx:for="{{menuList}}" wx:key="{{index}}">
+      <view class='kindList {{item.id==num ? "active":""}}' bindtap='chooseMenu' data-num='{{item.id}}'>{{item.name}}</view>
+    </block>
+    <!-- <view class='kindList active'>冷鲜肉</view>
     <view class='kindList'>腌腊肉</view>
     <view class='kindList'>酱卤肉</view>
     <view class='kindList'>优质肉</view>
     <view class='kindList'>精品肉</view>
-    <view class='kindList'>猪副产品</view>
+    <view class='kindList'>猪副产品</view> -->
   </scroll-view>
   <!-- 右边显示栏 -->
   <scroll-view class='right' scroll-y="ture" style="height:{{winHeight - 102}}px">
