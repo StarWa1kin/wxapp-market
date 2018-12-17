@@ -116,6 +116,27 @@ Page({
         })
       }
     }, 1000)
+
+    wx.request({
+      url: 'http://jz.tools001.net/v1/auth/sms',
+      method: 'POST',
+      data: {
+        "mobile": this.data.phone
+      },
+      dataType: 'json',
+      success(res) {
+        console.log(res)
+        if (res.code == 0) {
+          wx.showToast({
+            title: '发送成功',
+          })
+        } else {
+          wx.showToast({
+            title: '此平台只针对会员使用',
+          })
+        }
+      }
+    })
   },
   //键盘事件获取输入的验证码
   getCode(e) {
@@ -127,10 +148,31 @@ Page({
   login() {
     // console.log(this.data.verificationC)
     if (this.data.phone && this.data.verificationC) {
-      console.log("验证成功")
-      wx.switchTab({
-        url: '../home/home',
+      wx.request({
+        url: 'http://jz.tools001.net/v1/auth/sms/login',
+        method: 'POST',
+        data: {
+          mobile: this.data.phone,
+          code: this.data.verificationC
+        },
+        dataType: 'json',
+        success(res) {
+          console.log(res)
+          debugger
+          if (res.data.code == 0) {
+            wx.setStorage({
+              key: 'token',
+              data: JSON.stringify(res.data.data),
+            })
+            wx.switchTab({
+              url: '../home/home',
+            })
+          } else {
+
+          }
+        }
       })
+
     } else {
       wx.showToast({
         image: '../../assets/page/err.png',
@@ -140,7 +182,7 @@ Page({
 
   },
   //微信登录
-  wxlogin(e){
+  wxlogin(e) {
     console.log(e.detail);
     wx.switchTab({
       url: '../home/home',
