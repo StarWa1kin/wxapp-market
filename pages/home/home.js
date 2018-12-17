@@ -23,25 +23,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    wx.login({
-      success: res => {
-        console.log(res)
-        wx.getUserInfo({
-          success: res => {
-            console.log(res.rawData)
-          },
-          fail: err => {
-            console.log(err)
-          }
-        })
-      }
-    })
-    // wx.authorize({
-    //   scope: "scope.userInfo",
-    //   success:res=>{
-    //     console.log(res)
-    //   }
-    // })
+    
   },
 
   /**

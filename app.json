@@ -10,8 +10,8 @@
     "pages/submitOrder/submitOrder",
     "pages/order/order",
     "pages/mine/mine",
-    "pages/index/index",
-    "pages/logs/logs",
+    
+    
     "pages/search/search",
     "pages/addressManage/addressManage",
     "pages/feedback/feedback"

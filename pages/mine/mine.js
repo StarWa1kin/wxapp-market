@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    nickname:'2U',
+    avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erGh2JQt8g9L8EBowDpPMsLEwmg9bnRiayPyZwdfdHjiafdozKZhcwDJHLHRFXsWtyqkogjqUMlelNA/132"
   },
 
   /**
