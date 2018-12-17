@@ -74,7 +74,6 @@ Page({
     this.setData({
       phone: e.detail.value
     })
-    console.log(this.data.phone)
   },
   //点击发送验证码
   sendCode() {
@@ -121,18 +120,19 @@ Page({
       url: 'http://jz.tools001.net/v1/auth/sms',
       method: 'POST',
       data: {
-        "mobile": this.data.phone
+        mobile: this.data.phone
       },
       dataType: 'json',
       success(res) {
         console.log(res)
-        if (res.code == 0) {
+        if (res.data.code == 0) {
           wx.showToast({
             title: '发送成功',
           })
         } else {
           wx.showToast({
-            title: '此平台只针对会员使用',
+            title: '仅限会员登陆',
+            image: '../../assets/page/err,png'
           })
         }
       }
@@ -167,8 +167,16 @@ Page({
             wx.switchTab({
               url: '../home/home',
             })
+          } else if (res.data.code == 1) {
+            wx.showToast({
+              title: res.data.message,
+              image: '../../assets/page/err,png'
+            })
           } else {
-
+            wx.showToast({
+              title: '未知错误',
+              image: '../../assets/page/err,png'
+            })
           }
         }
       })
