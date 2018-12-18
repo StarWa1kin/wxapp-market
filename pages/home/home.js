@@ -115,7 +115,10 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      
+      var num=this.data.quantity
+      this.setData({
+        quantity:num+=1
+      })
     })
 
   },

@@ -24,7 +24,6 @@
   font-size: 28rpx;
   color: rgba(153, 153, 153, 1);
   text-align: center;
-  /* padding-left: 36rpx; */
 }
 /*购物车*/
 .shoppingCar{
@@ -73,7 +72,6 @@ swiper image{
   display: flex;
   justify-content: start;
   align-items: center;
-  /* background: #444; */
   border-bottom:1px solid rgb(231, 231, 231)
 }
 .img{
@@ -90,15 +88,11 @@ swiper image{
   margin-left: 40rpx;
   width:480rpx;
   height:190rpx;
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center; */
-  /* background: red; */
 }
 .content view{
   margin-bottom:12rpx; 
   height: 36rpx;
-  /* background: silver; */
+  
 }
 .name{
   font-size: 36rpx;
@@ -113,34 +107,35 @@ swiper image{
 }
 .detail{
   display: flex;
-  justify-content: space-between;
   font-size: 40rpx;
+  justify-content: space-between;
   height: 60rpx !important;
 }
 .price{
   color: #EE0F1F;
 }
+.operate{
+  width: 180rpx;
+  height: 60rpx;
+  display: flex;
+  justify-content: space-around;
+
+}
 .add{
   width: 60rpx;
-  height: 100% !important;
-  /* background: red !important; */
-  /* border-radius: 50%;
-  color: #D4B568;
-  font-size: 40rpx;
-  border: 2px solid #D4B568;
-  font-weight: bold;
-  text-align: center;
-  position: relative;
-  top: -10rpx; */
+  height: 60rpx !important;
 }
 .add>image{
   width: 100%;
   height: 100%
 }
+.blankView{
+   width: 60rpx;
+  height: 60rpx 
+}
 .subtract{
   width: 60rpx;
-  height: 100% !important;
-  margin-left: 140rpx;
+  height: 60rpx !important;
 }
 .subtract>image{
   width: 100%;

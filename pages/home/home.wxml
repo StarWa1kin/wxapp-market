@@ -29,7 +29,6 @@
         <block wx:for="{{item.star}}" wx:key="{{index}}">
           <image src='../../assets/page/star.png'></image>
         </block>
-        
         <!-- <image src='../../assets/page/star.png'></image>
         <image src='../../assets/page/star.png'></image>
         <image src='../../assets/page/star.png'></image>
@@ -38,12 +37,15 @@
       <view class='description'>{{item.describe}}</view>
       <view class='detail'>
         <view class='price'>￥{{item.price}}</view>
-        <view wx:if="{{quantity>0}}" class='subtract' bindtap="subtract">
-          <image src='../../assets/page/-.png'></image>
-        </view>
-        <view class='quantity'>{{index}}</view>
-        <view class='add' id="{{item.id}}" bindtap='add'>
-          <image src='../../assets/page/+.png'></image>
+        <view class='operate'>
+          <view wx:if="{{quantity!=0}}" class='subtract' bindtap="subtract">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view wx:if="{{quantity==0}}" class='blankView'></view>
+          <view class='quantity'>{{quantity}}</view>
+          <view class='add' id="{{item.id}}" bindtap='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
         </view>
       </view>
     </view>
