@@ -1,19 +1,18 @@
-// pages/mine/mine.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    nickname:'2U',
-    avatarUrl: "https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83erGh2JQt8g9L8EBowDpPMsLEwmg9bnRiayPyZwdfdHjiafdozKZhcwDJHLHRFXsWtyqkogjqUMlelNA/132"
+    userInfo:[],//用户所有信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.getUserInfo()
   },
 
   /**
@@ -83,6 +82,19 @@ Page({
   enterSetting(){
     wx.navigateTo({
       url: '',
+    })
+  },
+  //初始化取用户信息
+  getUserInfo(){
+    http.request({
+      apiName:'/users',
+      method:'GET',
+      isShowProgress: true,
+    }).then((res)=>{
+      console.log(res)
+      this.setData({
+        userInfo:res
+      })
     })
   }
 })

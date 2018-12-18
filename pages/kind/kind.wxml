@@ -17,7 +17,7 @@
     <view class='kindList'>猪副产品</view> -->
   </scroll-view>
   <!-- 右边显示栏 -->
-  <scroll-view class='right' scroll-y="ture" style="height:{{winHeight - 102}}px">
+  <scroll-view class='right' scroll-y="ture" style="height:{{winHeight - 102}}px" bindscrolltolower="botttom" bindscrolltoupper="top">
     <view class='isChoose'>冷鲜肉</view>
     <!-- 商品展示栏 -->
     <view class='productInfo'>
@@ -160,73 +160,32 @@
   <view class='totalM'>
     <view class='icon' bindtap='openModal'>
       <image src='../../assets/page/shoppingCar.png'></image>
-       <view class='bubble'>1</view>
+      <view class='bubble' wx:if="{{bubble>0}}">{{bubble}}</view>
     </view>
     <view class='money'>￥
-      <text class='bigger'>115.2</text> </view>
+      <text class='bigger'>{{total}}</text> </view>
   </view>
-  <view class='buyIt'>去结算</view>
+  <view class='buyIt' bindtap='enterSubmit'>去结算</view>
 </view>
 
 
 <!-- 模态框 -->
-<view class='modal-shopingCar' wx:if="{{clickIcon}}">
-  <view class='clearAll'>清空购物车</view>
+<view class='modal-shopingCar' wx:if="{{clickIcon}}" style='height:{{winHeight*0.5}}px'>
+  <view class='clearAll' bindtap='clearList'>清空购物车</view>
   <scroll-view scroll-y="ture" style="height:400rpx">
     <!-- 商品列表 -->
-    <view class='buyingList'>
+    <view class='buyingList' wx:for="{{shoppingList}}" wx:key="{{index}}">
       <view class='img'>
-        <image src=''></image>
+        <image src='{{item.product.img}}'></image>
       </view>
       <view class='contentBox'>
-        <view>精品五花肉1kg/份</view>
+        <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
         <view class='modal-detail'>
-          <view class="price">￥26</view>
+          <view class="price">￥{{item.product.price}}</view>
           <view class='modal-subtract' bindtap="subtract">
             <image src='../../assets/page/-.png'></image>
           </view>
-          <view class='quantity'>12</view>
-          <view class='modal-add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view>
-
-
-    <!-- 商品列表 -->
-    <view class='buyingList'>
-      <view class='img'>
-        <image src=''></image>
-      </view>
-      <view class='contentBox'>
-        <view>精品五花肉1kg/份</view>
-        <view class='modal-detail'>
-          <view class="price">￥26</view>
-          <view class='modal-subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>12</view>
-          <view class='modal-add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view>
-
-    <!-- 商品列表 -->
-    <view class='buyingList'>
-      <view class='img'>
-        <image src=''></image>
-      </view>
-      <view class='contentBox'>
-        <view>精品五花肉1kg/份</view>
-        <view class='modal-detail'>
-          <view class="price">￥26</view>
-          <view class='modal-subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>12</view>
+          <view class='quantity'>{{item.quantity}}</view>
           <view class='modal-add'>
             <image src='../../assets/page/+.png'></image>
           </view>
@@ -234,5 +193,7 @@
       </view>
     </view>
   </scroll-view>
-
 </view>
+
+<!-- 遮罩层* -->
+<view bindtap='openModal'  wx:if="{{clickIcon}}" class='mask' style='height:{{winHeight*0.5}}px' catchtouchmove="myCatchTouch"></view>

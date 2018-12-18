@@ -5,9 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    imgUrls: [
-
-    ],
     indicatorDots: true,
     autoplay: true,
     interval: 3000, //切换时间
@@ -15,7 +12,9 @@ Page({
     circular: true, //无缝轮播
     // 促销信息
     name: '精品五花肉1kg/份',
-    goodsList: []
+    goodsList: [],
+    quantity:0,
+    
   },
 
   /**
@@ -65,7 +64,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
   },
 
   /**
@@ -100,10 +98,32 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
       this.setData({
         goodsList: res
       })
+    })
+  },
+  //商品+1
+  add(e){
+    let productId=e.currentTarget.id; 
+    http.request({
+      apiName: '/carts',
+      method: 'POST',
+      data: {
+        "product_id": productId,
+        "quantity": 1,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      
+    })
+
+  },
+  //商品-1
+  subtract(){
+    var num = this.data.quantity;
+    this.setData({
+      quantity: num -= 1
     })
   }
 })

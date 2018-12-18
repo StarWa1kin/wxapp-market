@@ -24,7 +24,7 @@
       <image src='{{item.img}}'></image>
     </view>
     <view class='content'>
-      <view class='name'>{{item.name}}</view>
+      <view class='name'>{{item.name}}{{item.weight}}g/{{item.unit}}</view>
       <view class='star'>
         <block wx:for="{{item.star}}" wx:key="{{index}}">
           <image src='../../assets/page/star.png'></image>
@@ -38,11 +38,11 @@
       <view class='description'>{{item.describe}}</view>
       <view class='detail'>
         <view class='price'>￥{{item.price}}</view>
-        <view class='subtract' bindtap="subtract">
+        <view wx:if="{{quantity>0}}" class='subtract' bindtap="subtract">
           <image src='../../assets/page/-.png'></image>
         </view>
-        <view class='quantity'>1</view>
-        <view class='add' bindtap='add'>
+        <view class='quantity'>{{index}}</view>
+        <view class='add' id="{{item.id}}" bindtap='add'>
           <image src='../../assets/page/+.png'></image>
         </view>
       </view>

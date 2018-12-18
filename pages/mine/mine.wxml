@@ -1,11 +1,11 @@
 <view class="header">
   <view class='avatarBox'>
     <view class='avatar'>
-      <image src='{{avatarUrl}}'></image>
+      <image src='{{userInfo.avatar}}'></image>
     </view>
     <view class='nickname'>
-      <view class='name'>{{nickname}}</view>
-      <view class='moneyFirst'>先款后货</view>
+      <view class='name'>{{userInfo.name}}</view>
+      <view class='moneyFirst'>{{userInfo.type==0?'先款后货':'先货后款'}}</view>
     </view>
   </view>
 </view>
@@ -13,11 +13,11 @@
 <view class='money'>
   <view class='left'>
     <view class="smaller">账户余额</view>
-    <view class="bigger">￥26</view>
+    <view class="bigger">￥{{userInfo.balance}}</view>
   </view>
   <view class='rigth'>
     <view class="smaller">积分</view>
-    <view class="bigger">300</view>
+    <view class="bigger">{{userInfo.integral}}</view>
   </view>
 </view>
 

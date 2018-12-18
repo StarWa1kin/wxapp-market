@@ -164,6 +164,7 @@
   align-items: center;
   border-top: 1px solid rgb(231, 231, 231);
   box-sizing: border-box;
+  z-index: 100;
 }
 
 .totalM {
@@ -224,11 +225,23 @@
 .modal-shopingCar {
   width: 100%;
   position: fixed;
-  bottom: 100rpx;
+  bottom: 0;
   background: white;
+  z-index: 10
 
 }
-
+/*遮罩层*/
+.mask{
+  width:100%;
+  height:100%;
+  position:fixed;
+  background-color:#999;
+  z-index:9999;
+  top:0;
+  left:0;
+  opacity:0.5;
+  
+}
 .clearAll {
   height: 60rpx;
   line-height: 60rpx;

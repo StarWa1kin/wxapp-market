@@ -1,4 +1,4 @@
-// pages/submitOrder/submitOrder.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
@@ -6,14 +6,17 @@ Page({
    */
   data: {
     radioChoose1:true,
-    radioChoose2:false
+    radioChoose2:false,
+    shoppingList:[],//购物车列表
+    total:0,//购物车商品合计
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log("购物车页面")
+    this.getShoppingList();
   },
 
   /**
@@ -63,6 +66,38 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+  //初始化加载购物车列表
+  getShoppingList() {
+    http.request({
+      apiName: '/carts',
+      method: 'GET',
+      isShowProgress: true,
+    }).then((res) => {
+      console.log(res)
+      
+      //统计合计金额
+      var sum = 0;
+      if (res.length == 0) {
+        this.setData({
+          total: 0
+        })
+      } else {
+        for (let index in res) {
+          var price = res[index].product.price;
+          var quantity = res[index].quantity;
+          sum += (price * quantity)
+          res[index]["littleSum"] = (price * quantity).toFixed(2)
+        }
+        this.setData({
+          total: sum.toFixed(2)
+        })
+      }
+      this.setData({
+        shoppingList: res
+      })
+
+    })
   },
   //支付方式选择框
   radioChange: function(e) {

@@ -44,7 +44,7 @@ const sendRequest = (config) => {
       data: deaufltConfig.data,
       method: deaufltConfig.method,
       success: res => {
-        // console.log(res)
+        console.log(res.data.message)
         /*取得响应后,与后台协商怎么样的状态码是成功,怎么的状态码是token失效。以及是否带有token请求后台？*/
         if(res.data.code==0){
           resolve(res.data.data)
