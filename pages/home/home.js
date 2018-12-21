@@ -14,6 +14,7 @@ Page({
     name: '精品五花肉1kg/份',
     goodsList: [],
     quantity:0,
+    bubble:0,
     
   },
 
@@ -21,7 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getList()
+    this.getList();
 
   },
 
@@ -36,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.loadList()
   },
 
   /**
@@ -84,9 +85,16 @@ Page({
 
   // 跳转购物车页面
   toPay() {
-    wx.navigateTo({
-      url: '../submitOrder/submitOrder',
-    })
+    if(this.data.bubble>0){
+      wx.navigateTo({
+        url: '../submitOrder/submitOrder',
+      })
+    }else{
+      wx.showToast({
+        title: '购物车无商品',
+        image:'../../assets/page/err.png'
+      })
+    }
   },
   //初始化取商品列表
   getList() {
@@ -98,8 +106,53 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
+      for(var index in res){
+        res[index].reshowNum=0
+      }
       this.setData({
         goodsList: res
+      })
+    })
+  },
+  //加载购物车渲染bubble
+  loadList() {
+    http.request({
+      apiName: '/carts',
+      method: 'GET',
+      isShowProgress: true,
+    }).then((res) => {
+      console.log(res)
+      if(res.length==0){
+        console.log("购物车没有商品")
+        var copyList = this.data.goodsList
+        for (var item of copyList){
+          item.reshowNum=0
+        }
+        this.setData({
+          goodsList:copyList
+        })
+      }else{
+        let copyGoodList = this.data.goodsList;
+        for (var index in copyGoodList) {
+          // console.log(item.id)
+          for (var reshow of res) {
+            // console.log(reshow.product_id)
+            if (copyGoodList[index].id == reshow.product.id) {
+              // console.log(index)
+              copyGoodList[index].reshowNum = reshow.quantity;
+              // console.log('id:' + copyGoodList[index].id +" quantity"+reshow.quantity)
+              this.setData({
+                goodsList: copyGoodList
+              })
+            }
+          }
+        }
+      }
+      
+      
+      //气泡
+      this.setData({
+        bubble: res.length
       })
     })
   },
@@ -115,10 +168,7 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      var num=this.data.quantity
-      this.setData({
-        quantity:num+=1
-      })
+      this.loadList()
     })
 
   },

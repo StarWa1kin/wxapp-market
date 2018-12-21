@@ -69,12 +69,12 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row' bindtap='enterSetting'>
+  <view class='row' bindtap='exitLogin'>
     <view class='icon'>
       <image class="" src="../../assets/page/setting.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
-      <view>设置</view>
+      <view>退出登陆</view>
       <view class='text-icon'>></view>
     </view>
   </view>

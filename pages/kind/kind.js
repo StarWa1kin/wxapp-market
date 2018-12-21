@@ -86,9 +86,16 @@ Page({
   },
   //去结算
   enterSubmit() {
-    wx.navigateTo({
-      url: '../submitOrder/submitOrder',
-    })
+    if (this.data.bubble > 0) {
+      wx.navigateTo({
+        url: '../submitOrder/submitOrder',
+      })
+    } else {
+      wx.showToast({
+        title: '购物车无商品',
+        image: '../../assets/page/err.png'
+      })
+    }
   },
   // 控制购物车模态框显示与隐藏
   openModal() {
@@ -145,6 +152,22 @@ Page({
 
 
     })
+  },
+  //商品+1
+  add(e) {
+    let productId = e.currentTarget.id;
+    http.request({
+      apiName: '/carts',
+      method: 'POST',
+      data: {
+        "product_id": productId,
+        "quantity": 1,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.loadList()
+    })
+
   },
   //清空购物车
   clearList() {

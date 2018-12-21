@@ -3,7 +3,7 @@
     <view class='search' bindtap='goSearch'>搜索商品</view>
     <view class="shoppingCar" bindtap='toPay'>
       <image src='../../assets/page/shoppingCar.png'></image>
-      <view class='bubble'>1</view>
+      <view class='bubble' wx:if="{{bubble>0}}">{{bubble}}</view>
     </view>
   </view>
 </view>
@@ -38,12 +38,12 @@
       <view class='detail'>
         <view class='price'>￥{{item.price}}</view>
         <view class='operate'>
-          <view wx:if="{{quantity!=0}}" class='subtract' bindtap="subtract">
+          <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract">
             <image src='../../assets/page/-.png'></image>
           </view>
-          <view wx:if="{{quantity==0}}" class='blankView'></view>
-          <view class='quantity'>{{quantity}}</view>
-          <view class='add' id="{{item.id}}" bindtap='add'>
+          <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
+          <view class='quantity'>{{item.reshowNum}}</view>
+          <view class='add' id='{{item.id}}' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>

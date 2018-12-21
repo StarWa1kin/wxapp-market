@@ -118,7 +118,7 @@
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='quantity'>12</view>
-          <view class='add'>
+          <view class='add' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>
@@ -186,7 +186,7 @@
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='quantity'>{{item.quantity}}</view>
-          <view class='modal-add'>
+          <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>

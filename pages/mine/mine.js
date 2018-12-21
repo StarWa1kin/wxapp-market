@@ -64,24 +64,26 @@ Page({
 
   },
   /*自定义函数*/
+  //跳转地址管理页面
   enterAddress(){
     wx.navigateTo({
-      url: '../addressManage/addressManage',
+      url: '../newAddress/newAddress',
     })
   },
+  //联系客服
   enterContact(){
-    wx.navigateTo({
-      url: '',
-    })
+    
   },
+  //意见反馈
   enterFeedback(){
     wx.navigateTo({
       url: '../feedback/feedback',
     })
   },
-  enterSetting(){
+  exitLogin(){
+    //清除token,返回登陆页面
     wx.navigateTo({
-      url: '',
+      url: '../login/login',
     })
   },
   //初始化取用户信息
