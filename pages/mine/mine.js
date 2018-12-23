@@ -72,7 +72,19 @@ Page({
   },
   //联系客服
   enterContact(){
-    
+    let tel ='1776195425';
+    wx.makePhoneCall({
+      phoneNumber:tel,
+      success(){
+
+      },
+      fail(){
+        wx.showToast({
+          title: '请重试',
+          image:'../../assets/page/err.png'
+        })
+      },
+    })
   },
   //意见反馈
   enterFeedback(){
