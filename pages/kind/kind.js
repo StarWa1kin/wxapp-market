@@ -10,9 +10,11 @@ Page({
     clickIcon: false, //控制模态框的弹出
     menuList: [], //菜单列表
     num: 1, //菜单默认选中第一项,
+    productList:[],//一级菜单对应下的商品列表
     shoppingList: [], //购物车列表
     bubble: 0,
-    total: 0, //合计金额
+    total: 0, //合计金额,
+
   },
 
   /**
@@ -148,9 +150,6 @@ Page({
           total: sum.toFixed(2)
         })
       }
-      //本地存json{id:'',quanlity:''}
-
-
     })
   },
   //商品+1
@@ -168,6 +167,32 @@ Page({
       this.loadList()
     })
 
+  },
+  //商品-1
+  subtract(e) {
+    let id = e.currentTarget.dataset.id;
+    let nowQuantity=e.currentTarget.dataset.quantity-1
+    http.request({
+      apiName: '/carts/'+id,
+      method: 'PUT',
+      data: {
+        "quantity": nowQuantity,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.loadList()
+    }) 
+  },
+  //清除某一商品
+  deleteIt(e){
+    let id = e.currentTarget.dataset.id;
+    http.request({
+      apiName: '/carts/' + id,
+      method: 'DELETE',
+      isShowProgress: true,
+    }).then((res) => {
+      this.loadList()
+    }) 
   },
   //清空购物车
   clearList() {
@@ -202,17 +227,38 @@ Page({
       this.setData({
         menuList: res
       })
+      http.request({
+        apiName: '/products',
+        method: 'GET',
+        data: {
+          category_id: this.data.num
+        },
+        isShowProgress: false,
+      }).then((res) => {
+        this.setData({
+          productList: res
+        })
+      })
     })
   },
-  //点击菜单进行切换
+  //点击菜单进行渲染该分类下的商品
   chooseMenu(e) {
     this.setData({
       num: e.currentTarget.dataset.num
     })
-  },
-  //切换菜单后请求该菜单下的商品列表
-  goodList() {
-
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data:{
+        category_id: e.currentTarget.dataset.num
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      console.log(res)
+      this.setData({
+        productList:res
+      })
+    })
   },
   //右边view-scroll触顶事件
   top() {

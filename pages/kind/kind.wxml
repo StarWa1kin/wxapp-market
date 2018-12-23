@@ -20,22 +20,20 @@
   <scroll-view class='right' scroll-y="ture" style="height:{{winHeight - 102}}px" bindscrolltolower="botttom" bindscrolltoupper="top">
     <view class='isChoose'>冷鲜肉</view>
     <!-- 商品展示栏 -->
-    <view class='productInfo'>
+    <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">
       <view class='img'>
         <image></image>
       </view>
       <view class='content'>
-        <view class='name'>精品五花肉1kg/份</view>
+        <view class='name'>{{item.name}}{{item.weight}}/{{item.unit}}</view>
         <view class='star'>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
+          <block wx:for="{{item.star}}" wx:key="{{index}}">
+            <image src='../../assets/page/star.png'></image>
+          </block>
         </view>
-        <view class='description'>金钟精品三鲜五花肉</view>
+        <view class='description'>{{item.describe}}</view>
         <view class='detail'>
-          <view class='price'>￥26.8</view>
+          <view class='price'>￥{{item.price}}</view>
           <view class='subtract' bindtap="subtract">
             <image src='../../assets/page/-.png'></image>
           </view>
@@ -48,7 +46,7 @@
     </view>
 
     <!-- 商品展示栏 -->
-    <view class='productInfo'>
+    <!-- <view class='productInfo'>
       <view class='img'>
         <image></image>
       </view>
@@ -71,86 +69,8 @@
           </view>
         </view>
       </view>
-    </view>
-    <!-- 商品展示栏 -->
-    <view class='productInfo'>
-      <view class='img'>
-        <image></image>
-      </view>
-      <view class='content'>
-        <view class='name'>精品五花肉1kg/份</view>
-        <view class='star'>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-        </view>
-        <view class='description'>金钟精品三鲜五花肉</view>
-        <view class='detail'>
-          <view class='price'>￥26.8</view>
-          <view class='subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>100</view>
-          <view class='add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- 商品展示栏 -->
-    <view class='productInfo'>
-      <view class='img'>
-        <image></image>
-      </view>
-      <view class='content'>
-        <view class='name'>精品五花肉1kg/份</view>
-        <view class='star'>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-        </view>
-        <view class='description'>金钟精品三鲜五花肉</view>
-        <view class='detail'>
-          <view class='price'>￥26.8</view>
-          <view class='subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>12</view>
-          <view class='add' bindtap='add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view>
-    <!-- 商品展示栏 -->
-    <view class='productInfo'>
-      <view class='img'>
-        <image></image>
-      </view>
-      <view class='content'>
-        <view class='name'>精品五花肉1kg/份</view>
-        <view class='star'>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-        </view>
-        <view class='description'>金钟精品三鲜五花肉</view>
-        <view class='detail'>
-          <view class='price'>￥26.8</view>
-          <view class='subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>12</view>
-          <view class='add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view>
+    </view> -->
+    
   </scroll-view>
 </view>
 
@@ -179,10 +99,13 @@
         <image src='{{item.product.img}}'></image>
       </view>
       <view class='contentBox'>
-        <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
+        <view class='first-row'>
+          <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
+          <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>X</view>
+        </view>
         <view class='modal-detail'>
           <view class="price">￥{{item.product.price}}</view>
-          <view class='modal-subtract' bindtap="subtract">
+          <view class='modal-subtract' bindtap="subtract" data-id='{{item.id}}' data-quantity='{{item.quantity}}'>
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='quantity'>{{item.quantity}}</view>
@@ -196,4 +119,4 @@
 </view>
 
 <!-- 遮罩层* -->
-<view bindtap='openModal'  wx:if="{{clickIcon}}" class='mask' style='height:{{winHeight*0.5}}px' catchtouchmove="myCatchTouch"></view>
+<view bindtap='openModal' wx:if="{{clickIcon}}" class='mask' style='height:{{winHeight*0.5}}px' catchtouchmove="myCatchTouch"></view>

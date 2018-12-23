@@ -29,16 +29,12 @@
         <block wx:for="{{item.star}}" wx:key="{{index}}">
           <image src='../../assets/page/star.png'></image>
         </block>
-        <!-- <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image> -->
       </view>
       <view class='description'>{{item.describe}}</view>
       <view class='detail'>
         <view class='price'>￥{{item.price}}</view>
         <view class='operate'>
-          <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract">
+          <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract" data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
             <image src='../../assets/page/-.png'></image>
           </view>
           <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>

@@ -1,11 +1,13 @@
-// pages/search/search.js
+
+const http = require('../../utils/request.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    inputText:'',
+    searchList:[],//关键字搜索-->商品列表
   },
 
   /**
@@ -63,9 +65,41 @@ Page({
   onShareAppMessage: function () {
 
   },
+  /**自定义函数 */
+  //取消
   cancel(){
     wx.navigateBack({
       // delta: 1,
+    })
+  },
+  //键盘事件获取input text
+  getKeyword(e){
+    this.setData({
+      inputText: e.detail.value
+    })
+  },
+  //搜索
+  search(){
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data: {
+        name: this.data.inputText
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      console.log(res)
+      if(res.length==0){
+        wx.showToast({
+          title: '无此商品',
+          image:'../../assets/page/err.png'
+        })
+      }else{
+        this.setData({
+          searchList: res
+        })
+      }
+
     })
   }
 })

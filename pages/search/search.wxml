@@ -1,4 +1,38 @@
 <view class="header">
-<view><input placeholder='搜索商品'></input></view>
-<view class='cancel' bindtap='cancel'>取消</view>
+  <view>
+    <input placeholder='搜索商品' focus="true" bindconfirm="search" bindinput="getKeyword"></input>
+  </view>
+  <view class='cancel' bindtap='cancel'>取消</view>
+</view>
+<view class='serachContent' wx:if="{{searchList.length>0}}">
+  <scroll-view scroll-y="true">
+    <!-- 商品信息 -->
+    <view class='productInfo' wx:for="{{searchList}}" wx:key="{{index}}">
+      <view class='img'>
+        <image src='{{item.img}}'></image>
+      </view>
+      <view class='content'>
+        <view class='name'>{{item.name}}{{item.weight}}g/{{item.unit}}</view>
+        <view class='star'>
+          <block wx:for="{{item.star}}" wx:key="{{index}}">
+            <image src='../../assets/page/star.png'></image>
+          </block>
+        </view>
+        <view class='description'>{{item.describe}}</view>
+        <view class='detail'>
+          <view class='price'>￥{{item.price}}</view>
+          <view class='operate'>
+            <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract" id='{{item.id}}'>
+              <image src='../../assets/page/-.png'></image>
+            </view>
+            <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
+            <view class='quantity'>{{item.reshowNum}}</view>
+            <view class='add' id='{{item.id}}' bindtap='add'>
+              <image src='../../assets/page/+.png'></image>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
 </view>

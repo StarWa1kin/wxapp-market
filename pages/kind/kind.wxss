@@ -95,12 +95,17 @@
   width: 340rpx;
   height: 190rpx;
 }
-
 .content view {
   margin-bottom: 12rpx;
   height: 36rpx;
 }
-
+.first-row{
+  display: flex;
+  justify-content: space-between
+}
+.delete{
+  margin-right:20rpx; 
+}
 .star>image {
   width: 36rpx;
   height: 36rpx;

@@ -13,7 +13,6 @@ Page({
     // 促销信息
     name: '精品五花肉1kg/份',
     goodsList: [],
-    quantity:0,
     bubble:0,
     
   },
@@ -37,7 +36,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.loadList()
+    this.loadList();
   },
 
   /**
@@ -121,7 +120,6 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
       if(res.length==0){
         console.log("购物车没有商品")
         var copyList = this.data.goodsList
@@ -134,21 +132,18 @@ Page({
       }else{
         let copyGoodList = this.data.goodsList;
         for (var index in copyGoodList) {
-          // console.log(item.id)
+          copyGoodList[index].reshowNum=0;//制空reshowNum属性
           for (var reshow of res) {
-            // console.log(reshow.product_id)
             if (copyGoodList[index].id == reshow.product.id) {
-              // console.log(index)
-              copyGoodList[index].reshowNum = reshow.quantity;
-              // console.log('id:' + copyGoodList[index].id +" quantity"+reshow.quantity)
-              this.setData({
-                goodsList: copyGoodList
-              })
+              copyGoodList[index].reshowNum = reshow.quantity;//添加字段用来回显数量
+              copyGoodList[index].shoppingCarId=reshow.id;//添加字段控制减少购物车数量
             }
           }
         }
+        this.setData({
+          goodsList: copyGoodList
+        })
       }
-      
       
       //气泡
       this.setData({
@@ -170,13 +165,20 @@ Page({
     }).then((res) => {
       this.loadList()
     })
-
   },
   //商品-1
-  subtract(){
-    var num = this.data.quantity;
-    this.setData({
-      quantity: num -= 1
+  subtract(e) {
+    let id = e.currentTarget.dataset.id; 
+    let nowQuantity = e.currentTarget.dataset.quantity - 1;
+    http.request({
+      apiName: '/carts/' + id,
+      method: 'PUT',
+      data: {
+        "quantity": nowQuantity,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.loadList()
     })
   }
 })
