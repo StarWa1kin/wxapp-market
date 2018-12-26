@@ -34,43 +34,17 @@
         <view class='description'>{{item.describe}}</view>
         <view class='detail'>
           <view class='price'>￥{{item.price}}</view>
-          <view class='subtract' bindtap="subtract">
+          <view class='subtract' bindtap="subtract" wx:if="{{item.reshowNum>0}}" data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
             <image src='../../assets/page/-.png'></image>
           </view>
-          <view class='quantity'>1</view>
-          <view class='add'>
+          <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
+          <view class='quantity'>{{item.reshowNum}}</view>
+          <view class='add' bindtap='add' id='{{item.id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>
       </view>
     </view>
-
-    <!-- 商品展示栏 -->
-    <!-- <view class='productInfo'>
-      <view class='img'>
-        <image></image>
-      </view>
-      <view class='content'>
-        <view class='name'>精品五花肉1kg/份</view>
-        <view class='star'>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-          <image src='../../assets/page/star.png'></image>
-        </view>
-        <view class='description'>金钟精品三鲜五花肉</view>
-        <view class='detail'>
-          <view class='price'>￥26.8</view>
-          <view class='subtract' bindtap="subtract">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          <view class='quantity'>12</view>
-          <view class='add'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view> -->
-    
   </scroll-view>
 </view>
 
