@@ -38,6 +38,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    
     this.loadList();
   },
 
@@ -120,12 +121,15 @@ Page({
   },
   //加载购物车
   loadList() {
+    debugger
     http.request({
       apiName: '/carts',
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
       console.log(res)
+      
+
       //渲染数据
       this.setData({
         shoppingList: res
@@ -140,6 +144,7 @@ Page({
         this.setData({
           total: 0
         })
+        
       } else {
         for (let value of res) {
           var price = value.product.price;
@@ -149,21 +154,20 @@ Page({
         this.setData({
           total: sum.toFixed(2)
         })
-        //分类列表回显数量
-        let copyGoodList = this.data.productList;
-        for (let index in copyGoodList) {
-          copyGoodList[index].reshowNum = 0;//制空reshowNum属性
-          for (var reshow of res) {
-            if (copyGoodList[index].id == reshow.product.id) {
-              copyGoodList[index].reshowNum = reshow.quantity;//添加字段用来回显数量
-              copyGoodList[index].shoppingCarId = reshow.id;//添加字段控制减少购物车数量
-            }
-          }
-          this.setData({
-            productList: copyGoodList
-          })
       }
-      
+      //分类列表回显数量
+      let copyGoodList = this.data.productList;
+      for (let index in copyGoodList) {
+        copyGoodList[index].reshowNum = 0;//制空reshowNum属性
+        for (var reshow of res) {
+          if (copyGoodList[index].id == reshow.product.id) {
+            copyGoodList[index].reshowNum = reshow.quantity;//添加字段用来回显数量
+            copyGoodList[index].shoppingCarId = reshow.id;//添加字段控制减少购物车数量
+          }
+        }
+        this.setData({
+          productList: copyGoodList
+        })
       }
     })
   },
@@ -216,7 +220,7 @@ Page({
       method: 'DELETE',
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
+      debugger;
       this.loadList()
     })
 
@@ -228,7 +232,6 @@ Page({
         this.setData({
           winHeight: res.windowHeight
         });
-        // console.log(res)
       }
     })
   },
@@ -269,7 +272,6 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
       this.setData({
         productList: res
       })
@@ -293,7 +295,6 @@ Page({
   //右边view-scroll触底事件
   botttom() {
     var after = this.data.num + 1;
-    console.log(this.data.menuList.length)
     if (after >= this.data.menuList.length) {
       this.setData({
         num: this.data.menuList.length

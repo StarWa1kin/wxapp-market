@@ -37,6 +37,7 @@
           <view class='subtract' bindtap="subtract" wx:if="{{item.reshowNum>0}}" data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
             <image src='../../assets/page/-.png'></image>
           </view>
+          <!-- 填充块 -->
           <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
           <view class='quantity'>{{item.reshowNum}}</view>
           <view class='add' bindtap='add' id='{{item.id}}'>
