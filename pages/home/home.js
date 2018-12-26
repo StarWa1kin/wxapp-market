@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    bannerList:[],
     indicatorDots: true,
     autoplay: true,
     interval: 3000, //切换时间
@@ -36,6 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    this.getBanner();
     this.loadList();
   },
 
@@ -94,6 +96,17 @@ Page({
         image:'../../assets/page/err.png'
       })
     }
+  },
+  //获取轮播图
+  getBanner(){
+    http.request({
+      apiName: '/banners',
+      method: 'GET',
+    }).then((res) => {
+      this.setData({
+        bannerList:res
+      })
+    })
   },
   //初始化取商品列表
   getList() {
