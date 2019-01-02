@@ -155,9 +155,9 @@ Page({
     debugger;
     let payMethod;
     if (this.data.radioChoose1) {
-      payMethod = '余额'
+      payMethod = '0'
     } else {
-      payMethod = '微信支付'
+      payMethod = '1'
     }
     http.request({
       apiName: '/orders',

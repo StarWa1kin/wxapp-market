@@ -7,6 +7,8 @@ Page({
     winHeight: 0,
     // tab切换
     currentTab: 0,
+    allOrder:[],//全部
+    waitPay:[],//待付款
 
   },
 
@@ -21,7 +23,7 @@ Page({
         });
       }
     })
-    this.getOrderList()
+    
   },
 
   /**
@@ -35,7 +37,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getOrderList(this.data.currentTab)
   },
 
   /**
@@ -73,17 +75,43 @@ Page({
 
   },
   //获取订单列表
-  getOrderList() { 
+  getOrderList(current) { 
     http.request({
       apiName: '/orders',
       method: 'GET',
       data:{
-        status:0
+        status: current
       },
       isShowProgress: true,
     }).then((res) => {
-      if (res) {
-        debugger
+      debugger
+      if(res.length>0){
+        //全部订单
+        if(current==0){
+          console.log(0)
+          this.setData({
+            allOrder: res
+          })
+        }
+        //待付款订单
+        else if(current==1){
+          console.log(1)
+          this.setData({
+            waitPay: res
+          })
+        }
+        //代收货订单
+        else if(current==2){
+          this.setData({
+            waitReceive: res
+          })
+        }
+        //已完成订单
+        else if(current==3){
+          this.setData({
+            already: res
+          })
+        }
       }
     })
   },
@@ -93,6 +121,7 @@ Page({
       currentTab: e.detail.current
     });
     console.log(`滑动-确定当前tabIndex,${this.data.currentTab}`)
+    this.getOrderList(this.data.currentTab)
   },
   //点击切换选项卡
   swichNav: function(e) {
