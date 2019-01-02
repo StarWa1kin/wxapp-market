@@ -10,6 +10,7 @@ Page({
     hasAddress:false,
     shoppingList:[],//购物车列表
     total:0,//购物车商品合计
+    addressInfo:{}
   },
 
   /**
@@ -31,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    this.getAddress()
   },
 
   /**
@@ -77,13 +78,20 @@ Page({
   //取回保存的地址
   getAddress(){
     http.request({
-      apiName: '',
+      apiName: '/users/address',
       method: 'GET',
       isShowProgress: false,
     }).then((res) => {
-      if(res){
+      if (JSON.stringify(res) != '{}') {
+        //保存地址后就有回显示
+        debugger
         this.setData({
-          hasAddress:true
+          hasAddress:true,
+          addressInfo:res
+        })
+      } else {
+        this.setData({
+          hasAddress: false,
         })
       }
     })

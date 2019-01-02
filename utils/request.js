@@ -5,13 +5,19 @@ const sendRequest = (config) => {
   let apiHost = ipConfig.apiHost; //取出要访问的接口ip地址
   let token;
   try {
-    const value = wx.getStorageSync('token')
+    const value = wx.getStorageSync('token');
     if (value) {
       token = 'Bearer ' + JSON.parse(value).access_token
+    }else{
+      // 无token重定向登陆页面--!!正式环境请解放注释
+      // wx.navigateTo({
+      //   url: '../login/login',
+      // })
     }
   } catch (e) {
     wx.showToast({
-      title: '无登陆信息',
+      title: e,
+      image:'../../assets/page/err.png'
     })
   }
   let deaufltConfig = {

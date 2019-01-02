@@ -1,4 +1,4 @@
-// pages/newAddress/newAddress.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
@@ -6,7 +6,9 @@ Page({
    */
   data: {
     region: [],
-    
+    consignee:'',//收货人
+    consignee_mobile:'',//联系方式
+    detail:'',//详细地址
   },
 
   /**
@@ -20,7 +22,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    this.reshowAddress()
   },
 
   /**
@@ -121,5 +123,43 @@ Page({
     }
     //最终提交
     console.log("通过验证,可以提交")
+    http.request({
+      apiName: '/users/address',
+      method: 'POST',
+      data: {
+        consignee: json.name,
+        consignee_mobile:json.telphone,
+        province:json.region[0],
+        city: json.region[1],
+        county: json.region[2],
+        detail:json.address,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.reshowAddress();
+      wx.showToast({
+        title: '保存成功',
+      })
+    })
   },
+  //回显地址
+  reshowAddress(){
+    http.request({
+      apiName: '/users/address',
+      method: 'GET',
+      isShowProgress: true,
+    }).then((res) => {
+      if(JSON.stringify(res)!='{}'){
+        //保存地址后就有回显示
+        this.setData({
+          consignee: res.consignee,
+          consignee_mobile: res.consignee_mobile,
+          detail: res.detail,
+          region: [res.province, res.city, res.county],
+        })
+      }else{
+        //
+      }
+    })
+  }
 })

@@ -9,19 +9,19 @@
   <view class='detailAddress row'>
     <view class='textColor'>详细地址:</view>
     <view>
-      <input name="address" placeholder='填写详细地址'></input>
+      <input name="address" placeholder='填写详细地址' value="{{detail}}"></input>
     </view>
   </view>
   <view class='name row'>
     <view class='textColor'>收货人:</view>
     <view>
-      <input name="name" placeholder='填写收获人姓名'></input>
+      <input name="name" placeholder='填写收获人姓名' value='{{consignee}}'></input>
     </view>
   </view>
   <view class='telphone row'>
     <view class='textColor'>联系电话:</view>
     <view>
-      <input name="telphone" type="number" maxlength="11" placeholder='填写收货人电话'></input>
+      <input name="telphone" type="number" maxlength="11" placeholder='填写收货人电话' value='{{consignee_mobile}}'></input>
     </view>
   </view>
 

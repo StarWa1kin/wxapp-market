@@ -1,8 +1,8 @@
 <!-- 地址 -->
 <view class='chooseAddress' wx:if="{{hasAddress==true}}" bindtap='enterAddress'>
   <view class='addressInfo'>
-    <view class='blacktext'>收货人:张三 17761295425</view>
-    <view class='color'>四川省成都市天府三街</view>
+    <view class='blacktext'>收货人:{{addressInfo.consignee}} {{addressInfo.consignee_mobile}}</view>
+    <view class='color'>{{addressInfo.province}}{{addressInfo.city}}{{addressInfo.county}}{{addressInfo.detail}}</view>
   </view>
   <view class='icon'>></view>
 </view>

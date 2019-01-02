@@ -1,4 +1,4 @@
-// const app = getApp()
+const http = require('../../utils/request.js')
 Page({
   /**
    * 页面的初始数据
@@ -21,6 +21,7 @@ Page({
         });
       }
     })
+    this.getOrderList()
   },
 
   /**
@@ -71,6 +72,21 @@ Page({
   onShareAppMessage: function() {
 
   },
+  //获取订单列表
+  getOrderList() { 
+    http.request({
+      apiName: '/orders',
+      method: 'GET',
+      data:{
+        status:0
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      if (res) {
+        debugger
+      }
+    })
+  },
   // 滑动切换选项卡
   bindChange: function(e) {
     this.setData({
@@ -90,4 +106,5 @@ Page({
       })
     }
   }
+  
 })
