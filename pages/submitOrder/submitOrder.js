@@ -7,6 +7,7 @@ Page({
   data: {
     radioChoose1:true,
     radioChoose2:false,
+    hasAddress:false,
     shoppingList:[],//购物车列表
     total:0,//购物车商品合计
   },
@@ -67,6 +68,26 @@ Page({
   onShareAppMessage: function() {
 
   },
+  //跳转地址页面
+  enterAddress(){
+    wx.navigateTo({
+      url: '../newAddress/newAddress',
+    })
+  },
+  //取回保存的地址
+  getAddress(){
+    http.request({
+      apiName: '',
+      method: 'GET',
+      isShowProgress: false,
+    }).then((res) => {
+      if(res){
+        this.setData({
+          hasAddress:true
+        })
+      }
+    })
+  },
   //初始化加载购物车列表
   getShoppingList() {
     http.request({
@@ -75,7 +96,6 @@ Page({
       isShowProgress: true,
     }).then((res) => {
       console.log(res)
-      
       //统计合计金额
       var sum = 0;
       if (res.length == 0) {

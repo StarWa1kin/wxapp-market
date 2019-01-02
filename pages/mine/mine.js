@@ -64,6 +64,12 @@ Page({
 
   },
   /*自定义函数*/
+  //我的订单
+  enterOrder(){
+    wx.switchTab({
+      url: '../order/order',
+    })
+  },
   //跳转地址管理页面
   enterAddress(){
     wx.navigateTo({

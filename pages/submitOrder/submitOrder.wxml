@@ -1,10 +1,14 @@
-<!-- 选择地址 -->
-<view class='chooseAddress'>
+<!-- 地址 -->
+<view class='chooseAddress' wx:if="{{hasAddress==true}}" bindtap='enterAddress'>
   <view class='addressInfo'>
     <view class='blacktext'>收货人:张三 17761295425</view>
     <view class='color'>四川省成都市天府三街</view>
   </view>
   <view class='icon'>></view>
+</view>
+
+<view class='emptyAddress' wx:if="{{hasAddress==false}}" bindtap='enterAddress'>
+  请填写收货信息
 </view>
 
 <!-- 已加入购物车商品列表 -->

@@ -121,7 +121,7 @@ Page({
   },
   //加载购物车
   loadList() {
-    debugger
+
     http.request({
       apiName: '/carts',
       method: 'GET',

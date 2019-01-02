@@ -23,7 +23,7 @@
 
 <view class='menu'>
   <!-- 菜单选项 -->
-  <view class='row'>
+  <view class='row' bindtap='enterOrder'>
     <view class='icon'>
       <image class="" src="../../assets/page/myOrder.png" mode="scaleToFill"></image>
     </view>
