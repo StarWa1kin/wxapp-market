@@ -5,12 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    radioChoose1:true,
-    radioChoose2:false,
-    hasAddress:false,
-    shoppingList:[],//购物车列表
-    total:0,//购物车商品合计
-    addressInfo:{}
+    radioChoose1: true,
+    radioChoose2: false,
+    hasAddress: false,
+    shoppingList: [], //购物车列表
+    total: 0, //购物车商品合计
+    addressInfo: {}
   },
 
   /**
@@ -70,13 +70,13 @@ Page({
 
   },
   //跳转地址页面
-  enterAddress(){
+  enterAddress() {
     wx.navigateTo({
       url: '../newAddress/newAddress',
     })
   },
   //取回保存的地址
-  getAddress(){
+  getAddress() {
     http.request({
       apiName: '/users/address',
       method: 'GET',
@@ -84,10 +84,9 @@ Page({
     }).then((res) => {
       if (JSON.stringify(res) != '{}') {
         //保存地址后就有回显示
-        debugger
         this.setData({
-          hasAddress:true,
-          addressInfo:res
+          hasAddress: true,
+          addressInfo: res
         })
       } else {
         this.setData({
@@ -129,10 +128,10 @@ Page({
   },
   //支付方式选择框
   radioChange: function(e) {
-    if (e.detail.value=="余额"){
+    if (e.detail.value == "余额") {
       this.setData({
         radioChoose2: false,
-        radioChoose1:true
+        radioChoose1: true
       })
     }
     if (e.detail.value == "微信") {
@@ -142,5 +141,36 @@ Page({
       })
     }
     console.log('radio发生change事件，携带value值为：', e.detail.value)
+  },
+  //支付
+  pay() {
+    //验证参数部分
+    if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) =="{}"){
+      wx.showToast({
+        title: '请先填写地址',
+        image:'../../assets/err.png'
+      })
+      return false
+    }
+    debugger;
+    let payMethod;
+    if (this.data.radioChoose1) {
+      payMethod = '余额'
+    } else {
+      payMethod = '微信支付'
+    }
+    http.request({
+      apiName: '/orders',
+      method: 'POST',
+      data: {
+        pay_method: payMethod,
+        consignee: this.data.addressInfo.consignee,
+        consignee_mobile: this.data.addressInfo.consignee_mobile,
+        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
+      },
+      isShowProgress: true,
+    }).then(res => {
+      debugger
+    })
   }
 })
