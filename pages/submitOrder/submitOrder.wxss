@@ -33,9 +33,14 @@ page{
 }
 .icon{
   width: 50rpx;
+  height: 50rpx;
   margin-right: 20rpx;
   text-align: center;
    
+}
+.icon>image{
+  width: 100%;
+  height: 100%;
 }
 
 .goodsList{

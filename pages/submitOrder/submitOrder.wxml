@@ -4,7 +4,9 @@
     <view class='blacktext'>收货人:{{addressInfo.consignee}} {{addressInfo.consignee_mobile}}</view>
     <view class='color'>{{addressInfo.province}}{{addressInfo.city}}{{addressInfo.county}}{{addressInfo.detail}}</view>
   </view>
-  <view class='icon'>></view>
+  <view class='icon'>
+    <image src='../../assets/alibaba/right.png'></image>
+  </view>
 </view>
 
 <view class='emptyAddress' wx:if="{{hasAddress==false}}" bindtap='enterAddress'>
