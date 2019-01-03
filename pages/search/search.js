@@ -101,5 +101,22 @@ Page({
       }
 
     })
+  },
+  //添加商品
+  add(e){
+    let productId = e.currentTarget.id;
+    http.request({
+      apiName: '/carts',
+      method: 'POST',
+      data: {
+        "product_id": productId,
+        "quantity": 1,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      wx.showToast({
+        title: '添加至购物车',
+      })
+    })
   }
 })
