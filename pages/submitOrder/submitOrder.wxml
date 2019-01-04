@@ -4,7 +4,9 @@
     <view class='blacktext'>收货人:{{addressInfo.consignee}} {{addressInfo.consignee_mobile}}</view>
     <view class='color'>{{addressInfo.province}}{{addressInfo.city}}{{addressInfo.county}}{{addressInfo.detail}}</view>
   </view>
-  <view class='icon'>></view>
+  <view class='icon'>
+    <image src='../../assets/alibaba/right.png'></image>
+  </view>
 </view>
 
 <view class='emptyAddress' wx:if="{{hasAddress==false}}" bindtap='enterAddress'>
@@ -15,11 +17,11 @@
 <view class='goodsList' wx:for="{{shoppingList}}" wx:key="{{index}}">
   <view class='goodsDetail'>
     <view class='img'>
-      <image src=''></image>
+      <image src='{{item.product.img}}'></image>
     </view>
     <view class='content'>
       <view class='goodsName'>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-      <view class='desc'>默认切块</view>
+      <view class='desc'>{{item.product.describe}}</view>
       <view class='money'>
         <view>￥{{item.product.price}}x{{item.quantity}}</view>
         <view class='littleSum'>￥{{item.littleSum}}</view>
@@ -48,7 +50,7 @@
   <view class='totalMoney'>共5件商品 总计:
     <text class='big'>￥{{total}}</text>
   </view>
-  <view class='acType'>账户类型:现款后货</view>
+  <view class='acType'>账户类型:先款后货</view>
 </view>
 
 <!-- 支付方式 -->

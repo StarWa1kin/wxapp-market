@@ -15,7 +15,7 @@
     <view class="smaller">账户余额</view>
     <view class="bigger">￥{{userInfo.balance}}</view>
   </view>
-  <view class='rigth'>
+  <view class='right'>
     <view class="smaller">积分</view>
     <view class="bigger">{{userInfo.integral}}</view>
   </view>
@@ -25,23 +25,26 @@
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterOrder'>
     <view class='icon'>
-      <image class="" src="../../assets/page/myOrder.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/dingdan2.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>我的订单</view>
-      <view class='text-icon'><text class="littleSize">全部订单</text>></view>
+      <text class="littleSize">全部订单</text>
+      <view class='text-icon'>
+        <image class="teshu" src="../../assets/alibaba/right.png" mode="scaleToFill"></image>
+      </view>
     </view>
   </view>
 
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterAddress'>
     <view class='icon'>
-      <image class="" src="../../assets/page/myAddress.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/dizhi1.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>送货地址</view>
-      <view class='text-icon'>
-        <image class="" src="../../assets/page/Arrow.png" mode="scaleToFill"></image>
+      <view class='text-icon showIcon'>
+        <image class="" src="../../assets/alibaba/right.png" mode="scaleToFill"></image>
       </view>
     </view>
   </view>
@@ -49,33 +52,39 @@
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterContact'>
     <view class='icon'>
-      <image class="" src="../../assets/page/customerService.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/kefu1.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>联系客服</view>
-      <view class='text-icon'>></view>
+      <view class='text-icon showIcon'>
+        <image src='../../assets/alibaba/right.png'></image>
+      </view>
     </view>
   </view>
 
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterFeedback'>
     <view class='icon'>
-      <image class="" src="../../assets/page/feedback.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/yijian.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>意见反馈</view>
-      <view class='text-icon'>></view>
+      <view class='text-icon showIcon'>
+        <image src='../../assets/alibaba/right.png'></image>
+      </view>
     </view>
   </view>
 
   <!-- 菜单选项 -->
   <view class='row' bindtap='exitLogin'>
     <view class='icon'>
-      <image class="" src="../../assets/page/setting.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/tuichu2.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>退出登陆</view>
-      <view class='text-icon'>></view>
+      <view class='text-icon showIcon'>
+        <image src='../../assets/alibaba/right.png'></image>
+      </view>
     </view>
   </view>
 </view>

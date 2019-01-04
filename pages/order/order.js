@@ -9,6 +9,8 @@ Page({
     currentTab: 0,
     allOrder:[],//全部
     waitPay:[],//待付款
+    waitReceive:[],//待收货
+    already:[],//已完成
 
   },
 
@@ -112,6 +114,11 @@ Page({
             already: res
           })
         }
+      }else{
+        wx.showToast({
+          title:"无订单信息",
+          icon:"none",
+        })
       }
     })
   },
@@ -120,13 +127,13 @@ Page({
     this.setData({
       currentTab: e.detail.current
     });
-    console.log(`滑动-确定当前tabIndex,${this.data.currentTab}`)
+    // console.log(`滑动-确定当前tabIndex,${this.data.currentTab}`)
     this.getOrderList(this.data.currentTab)
   },
   //点击切换选项卡
   swichNav: function(e) {
     /*注释：e.target.dataset.current--点击传递过来的tabIndex*/
-    console.log(`点击-确定当前currentTab,${this.data.currentTab}`)
+    // console.log(`点击-确定当前currentTab,${this.data.currentTab}`)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
