@@ -22,7 +22,7 @@
     <!-- 商品展示栏 -->
     <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">
       <view class='img'>
-        <image></image>
+        <image src='{{item.img}}'></image>
       </view>
       <view class='content'>
         <view class='name'>{{item.name}}{{item.weight}}/{{item.unit}}</view>
