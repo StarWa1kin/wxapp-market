@@ -10,9 +10,9 @@ const sendRequest = (config) => {
       token = 'Bearer ' + JSON.parse(value).access_token
     }else{
       // 无token重定向登陆页面--!!正式环境请解放注释
-      // wx.navigateTo({
-      //   url: '../login/login',
-      // })
+      wx.navigateTo({
+        url: '../login/login',
+      })
     }
   } catch (e) {
     wx.showToast({

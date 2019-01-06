@@ -86,7 +86,6 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      debugger
       if(res.length>0){
         //全部订单
         if(current==0){

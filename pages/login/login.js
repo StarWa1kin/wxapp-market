@@ -1,4 +1,4 @@
- // pages/login/login.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
@@ -15,7 +15,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    // wx.login({
+    //   success(res) {
+    //     if(res.code){
+    //       debugger
+    //     }
+    //   }
+    // })
   },
 
   /**
@@ -191,9 +197,50 @@ Page({
   },
   //微信登录
   wxlogin(e) {
-    console.log(e.detail);
-    wx.switchTab({
-      url: '../home/home',
+
+    wx.checkSession({
+      success() {
+        debugger
+        // session_key 未过期，并且在本生命周期一直有效
+        console.log(e)
+      },
+      fail() {
+        debugger
+        // session_key 已经失效，需要重新执行登录流程
+        // wx.login() // 重新登录
+      }
     })
-  }
+    
+    // wx.login({
+    //   success(res) {
+    //     if (res.code) {
+    //       console.log(res.code)
+    //       wx.request({
+    //         url: http.interface.apiHost + '/auth/code/login',
+    //         method: 'POST',
+    //         data: {
+    //           js_code: res.code
+    //         },
+    //         success: function(res) {
+    //           debugger
+    //         },
+    //         fail: function(err) {
+    //           debugger
+    //         }
+    //       })
+
+    //     } else {
+    //       console.log('登录失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
+    // wx.switchTab({
+    //   url: '../home/home',
+    // })
+  },
+  // test(e) {
+  //   console.log(e.detail.errMsg)
+  //   console.log(e.detail.iv)
+  //   console.log(e.detail.encryptedData)
+  // }
 })
