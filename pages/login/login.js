@@ -197,47 +197,78 @@ Page({
   },
   //微信登录
   wxlogin(e) {
-    wx.checkSession({
-      success() {
-        
-        // session_key 未过期，并且在本生命周期一直有效
-        console.log(e.detail.encryptedData)
-        console.log(e.detail.iv)
-        debugger
-      },
-      fail() {
-        debugger
-        // session_key 已经失效，需要重新执行登录流程
-        // wx.login() // 重新登录
+    //调用wxApi获取code
+    wx.login({
+      success(res) {
+        if (res.code) {
+          /*1-向服务器传递code-->后台用code去换openId,并检查数据库是否含有此openId?有->就登陆成功！无->返回->openid,sessionKey
+            2-调用解密登陆获取用户手机号->检查手机号是否会员,是那么就将openId存入数据同手机号绑定,下次登陆微信登陆不需要解密,否则阻止登陆*/
+          wx.request({
+            url: http.interface.apiHost + '/auth/code/login',
+            method: 'POST',
+            data: {
+              js_code: res.code
+            },
+            success: function(res) {
+              // 判断是否有返回openid,sessionKey,有-->解密登陆，无->就算登陆成功
+              if (res.data.data.hasOwnProperty('session_key')) {
+                let openid = res.data.data.openid;
+                let session_key = res.data.data.session_key;
+                wx.checkSession({
+                  success() {
+                    // session_key 未过期，并且在本生命周期一直有效
+                    let encrypted_data = e.detail.encryptedData;
+                    let iv = e.detail.iv;
+                    console.log(e.detail.iv)
+                    wx.request({
+                      url: http.interface.apiHost + '/auth/decrypt/login',
+                      method: 'POST',
+                      data: {
+                        openid,
+                        session_key,
+                        encrypted_data,
+                        iv
+                      },
+                      success(res) {
+                        wx.setStorage({
+                          key: 'token',
+                          data: JSON.stringify(res.data.data),
+                        })
+                        // 存储token跳转首页
+                        wx.switchTab({
+                          url: '../home/home',
+                        })
+                      }
+                    })
+
+                  },
+                  fail() {
+                    debugger
+                    // session_key 已经失效，需要重新执行登录流程
+                    // wx.login() // 重新登录
+                  }
+                })
+              }
+              //后台绑定好openId会直接返回token 
+              else if (res.data.data.hasOwnProperty('access_token')) {
+                wx.setStorage({
+                  key: 'token',
+                  data: JSON.stringify(res.data.data),
+                })
+                // 存储token跳转首页
+                wx.switchTab({
+                  url: '../home/home',
+                })
+              }
+
+            },
+          })
+        } else {
+          console.log('登录失败！' + res.errMsg)
+        }
       }
     })
-    
-    // wx.login({
-    //   success(res) {
-    //     if (res.code) {
-    //       console.log(res.code)
-    //       wx.request({
-    //         url: http.interface.apiHost + '/auth/code/login',
-    //         method: 'POST',
-    //         data: {
-    //           js_code: res.code
-    //         },
-    //         success: function(res) {
-    //           debugger
-    //         },
-    //         fail: function(err) {
-    //           debugger
-    //         }
-    //       })
 
-    //     } else {
-    //       console.log('登录失败！' + res.errMsg)
-    //     }
-    //   }
-    // })
-    // wx.switchTab({
-    //   url: '../home/home',
-    // })
   },
-  
+
 })
