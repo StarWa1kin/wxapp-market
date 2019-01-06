@@ -46,10 +46,14 @@
 }
 /* icon共有属性 */
 .icon{
-  background: orange;
+  /* background: orange; */
   width: 70rpx;
   height: 70rpx;
   margin:0 20rpx;
+}
+.icon>image{
+  width: 100%;
+  height: 100%
 }
 /* 输入框共有属性 */
 input{

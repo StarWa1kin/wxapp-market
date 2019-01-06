@@ -197,12 +197,13 @@ Page({
   },
   //微信登录
   wxlogin(e) {
-
     wx.checkSession({
       success() {
-        debugger
+        
         // session_key 未过期，并且在本生命周期一直有效
-        console.log(e)
+        console.log(e.detail.encryptedData)
+        console.log(e.detail.iv)
+        debugger
       },
       fail() {
         debugger
@@ -238,9 +239,5 @@ Page({
     //   url: '../home/home',
     // })
   },
-  // test(e) {
-  //   console.log(e.detail.errMsg)
-  //   console.log(e.detail.iv)
-  //   console.log(e.detail.encryptedData)
-  // }
+  
 })

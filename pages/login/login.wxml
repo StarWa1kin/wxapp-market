@@ -5,11 +5,11 @@
 <!-- 输入框部分 -->
 <view class='form'>
   <view class='account input'>
-    <view class='icon'></view>
+    <view class='icon'><image src='../../assets/alibaba/tel.png'></image></view>
     <input type='number' maxlength="11" placeholder='手机号' bindinput="getNumber" ></input>
   </view>
   <view class='password input'>
-    <view class='icon'></view>
+    <view class='icon'><image src='../../assets/alibaba/pass.png'></image></view>
     <input  type='number' bindinput="getCode" class='shortInput' placeholder='验证码'></input>
     <button class='code' bindtap='sendCode' disabled='{{btnSwitch}}'>{{code}}</button>
   </view>
