@@ -17,7 +17,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log("购物车页面")
+    // console.log("购物车页面")
     this.getShoppingList();
   },
 
@@ -102,7 +102,7 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
+      // console.log(res)
       //统计合计金额
       var sum = 0;
       if (res.length == 0) {
@@ -140,7 +140,7 @@ Page({
         radioChoose2: true,
       })
     }
-    console.log('radio发生change事件，携带value值为：', e.detail.value)
+    // console.log('radio发生change事件，携带value值为：', e.detail.value)
   },
   //支付
   pay() {

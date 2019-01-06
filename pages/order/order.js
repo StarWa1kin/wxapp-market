@@ -7,10 +7,10 @@ Page({
     winHeight: 0,
     // tab切换
     currentTab: 0,
-    allOrder:[],//全部
-    waitPay:[],//待付款
-    waitReceive:[],//待收货
-    already:[],//已完成
+    allOrder: [], //全部
+    waitPay: [], //待付款
+    waitReceive: [], //待收货
+    already: [], //已完成
 
   },
 
@@ -25,7 +25,7 @@ Page({
         });
       }
     })
-    
+
   },
 
   /**
@@ -77,46 +77,46 @@ Page({
 
   },
   //获取订单列表
-  getOrderList(current) { 
+  getOrderList(current) {
     http.request({
       apiName: '/orders',
       method: 'GET',
-      data:{
+      data: {
         status: current
       },
       isShowProgress: true,
     }).then((res) => {
-      if(res.length>0){
+      if (res.length > 0) {
         //全部订单
-        if(current==0){
+        if (current == 0) {
           console.log(0)
           this.setData({
             allOrder: res
           })
         }
         //待付款订单
-        else if(current==1){
+        else if (current == 1) {
           console.log(1)
           this.setData({
             waitPay: res
           })
         }
         //代收货订单
-        else if(current==2){
+        else if (current == 2) {
           this.setData({
             waitReceive: res
           })
         }
         //已完成订单
-        else if(current==3){
+        else if (current == 3) {
           this.setData({
             already: res
           })
         }
-      }else{
+      } else {
         wx.showToast({
-          title:"无订单信息",
-          icon:"none",
+          title: "无订单信息",
+          icon: "none",
         })
       }
     })
@@ -126,13 +126,11 @@ Page({
     this.setData({
       currentTab: e.detail.current
     });
-    // console.log(`滑动-确定当前tabIndex,${this.data.currentTab}`)
     this.getOrderList(this.data.currentTab)
   },
   //点击切换选项卡
   swichNav: function(e) {
     /*注释：e.target.dataset.current--点击传递过来的tabIndex*/
-    // console.log(`点击-确定当前currentTab,${this.data.currentTab}`)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -140,6 +138,32 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+  //立即支付
+  buyNow(e) {
+    let orderId = e.currentTarget.dataset
+    http.request({
+      apiName: '/pay/wechat',
+      method: 'POST',
+      data: {
+        order_id: orderId
+      },
+      isShowProgress: true,
+    }).then(res => {
+      wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: res.signType,
+        paySign: res.paySign,
+        success(res) {
+
+        },
+        fail(res) {
+
+        }
+      })
+    })
   }
-  
+
 })
