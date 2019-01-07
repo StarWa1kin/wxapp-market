@@ -21,7 +21,7 @@
             <image src='{{item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>{{item.name}}1kg/份</view>
+            <view class='goodsName'>{{item.name}} 1kg/份</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
@@ -83,7 +83,7 @@
         </view>
         <view class='content'>
           <view class='goodsName'>警钟龙骨1kg/份</view>
-          <view class='desc'>默认切块</view>
+          <view class='desc'>{{item.describe}}</view>
           <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
         </view>
       </view>

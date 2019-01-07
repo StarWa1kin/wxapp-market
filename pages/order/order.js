@@ -86,17 +86,16 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
+      debugger
       if (res.length > 0) {
         //全部订单
         if (current == 0) {
-          console.log(0)
           this.setData({
             allOrder: res
           })
         }
         //待付款订单
         else if (current == 1) {
-          console.log(1)
           this.setData({
             waitPay: res
           })

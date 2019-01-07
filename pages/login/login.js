@@ -15,13 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // wx.login({
-    //   success(res) {
-    //     if(res.code){
-    //       debugger
-    //     }
-    //   }
-    // })
+   
   },
 
   /**
@@ -152,7 +146,6 @@ Page({
   },
   //手机登陆
   login() {
-    // console.log(this.data.verificationC)
     if (this.data.phone && this.data.verificationC) {
       wx.request({
         url: 'http://jz.tools001.net/v1/auth/sms/login',
@@ -210,7 +203,7 @@ Page({
               js_code: res.code
             },
             success: function(res) {
-              // 判断是否有返回openid,sessionKey,有-->解密登陆，无->就算登陆成功
+              // 判断是否有返回openid,sessionKey,有-->解密登陆，直接返回token->就算登陆成功 否则不是会员
               if (res.data.data.hasOwnProperty('session_key')) {
                 let openid = res.data.data.openid;
                 let session_key = res.data.data.session_key;
@@ -243,9 +236,8 @@ Page({
 
                   },
                   fail() {
-                    debugger
                     // session_key 已经失效，需要重新执行登录流程
-                    // wx.login() // 重新登录
+                    wx.login() // 重新登录
                   }
                 })
               }
@@ -258,6 +250,11 @@ Page({
                 // 存储token跳转首页
                 wx.switchTab({
                   url: '../home/home',
+                })
+              }else{
+                wx.showToast({
+                  title: '仅限会员登陆',
+                  image: '../../assets/page/err,png'
                 })
               }
 

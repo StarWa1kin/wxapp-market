@@ -31,7 +31,7 @@
       <view>我的订单</view>
       <text class="littleSize">全部订单</text>
       <view class='text-icon'>
-        <image class="teshu" src="../../assets/alibaba/right.png" mode="scaleToFill"></image>
+        <image class="teshu" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
       </view>
     </view>
   </view>
@@ -39,12 +39,12 @@
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterAddress'>
     <view class='icon'>
-      <image class="" src="../../assets/alibaba/dizhi1.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/dizhi3.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>送货地址</view>
       <view class='text-icon showIcon'>
-        <image class="" src="../../assets/alibaba/right.png" mode="scaleToFill"></image>
+        <image class="" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
       </view>
     </view>
   </view>
@@ -52,12 +52,12 @@
   <!-- 菜单选项 -->
   <view class='row' bindtap='enterContact'>
     <view class='icon'>
-      <image class="" src="../../assets/alibaba/kefu1.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/kefu3.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>联系客服</view>
       <view class='text-icon showIcon'>
-        <image src='../../assets/alibaba/right.png'></image>
+        <image src='../../assets/alibaba/sliverRight.png'></image>
       </view>
     </view>
   </view>
@@ -70,7 +70,7 @@
     <view class='text'>
       <view>意见反馈</view>
       <view class='text-icon showIcon'>
-        <image src='../../assets/alibaba/right.png'></image>
+        <image src='../../assets/alibaba/sliverRight.png'></image>
       </view>
     </view>
   </view>
@@ -83,7 +83,7 @@
     <view class='text'>
       <view>退出登陆</view>
       <view class='text-icon showIcon'>
-        <image src='../../assets/alibaba/right.png'></image>
+        <image src='../../assets/alibaba/sliverRight.png'></image>
       </view>
     </view>
   </view>

@@ -5,7 +5,7 @@
     <view class='color'>{{addressInfo.province}}{{addressInfo.city}}{{addressInfo.county}}{{addressInfo.detail}}</view>
   </view>
   <view class='icon'>
-    <image src='../../assets/alibaba/right.png'></image>
+    <image src='../../assets/alibaba/sliverRight.png'></image>
   </view>
 </view>
 
