@@ -7,7 +7,7 @@
   <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 52}}px">
     <view class='kind'>商品分类</view>
     <block wx:for="{{menuList}}" wx:key="{{index}}">
-      <view class='kindList {{item.id==num ? "active":""}}' bindtap='chooseMenu' data-num='{{item.id}}'>{{item.name}}</view>
+      <view class='kindList {{item.id==menuIdArr[idIndex] ? "active":""}}' bindtap='chooseMenu' data-num='{{index}}'>{{item.name}}</view>
     </block>
     <!-- <view class='kindList active'>冷鲜肉</view>
     <view class='kindList'>腌腊肉</view>

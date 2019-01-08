@@ -9,7 +9,8 @@ Page({
     winHeight: '', //可用窗口高度
     clickIcon: false, //控制模态框的弹出
     menuList: [], //菜单列表
-    num: 1, //菜单默认选中第一项,
+    menuIdArr:[], //菜单id数组)
+    idIndex:0,//菜单索引(用来确定当前选中菜单)
     productList: [], //一级菜单对应下的商品列表
     shoppingList: [], //购物车列表
     bubble: 0,
@@ -220,7 +221,7 @@ Page({
       method: 'DELETE',
       isShowProgress: true,
     }).then((res) => {
-      debugger;
+      // debugger;
       this.loadList()
     })
 
@@ -237,22 +238,31 @@ Page({
   },
   //获取菜单列表
   getMenuList() {
+    
     http.request({
       apiName: '/categories',
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
+      //取得菜单列表
+      let arr=[];
+      for(let value of res){
+        arr.push(value.id)
+      }
       this.setData({
-        menuList: res
+        menuList: res,
+        menuIdArr:arr
       })
+      // debugger
       http.request({
         apiName: '/products',
         method: 'GET',
         data: {
-          category_id: this.data.num
+          category_id: this.data.menuIdArr[this.data.idIndex]
         },
         isShowProgress: false,
       }).then((res) => {
+        // debugger
         this.setData({
           productList: res
         })
@@ -262,16 +272,17 @@ Page({
   //点击菜单进行渲染该分类下的商品
   chooseMenu(e) {
     this.setData({
-      num: e.currentTarget.dataset.num
+      idIndex: e.currentTarget.dataset.num
     })
     http.request({
       apiName: '/products',
       method: 'GET',
       data: {
-        category_id: e.currentTarget.dataset.num
+        category_id: this.data.menuIdArr[this.data.idIndex]
       },
       isShowProgress: true,
     }).then((res) => {
+      // debugger
       this.setData({
         productList: res
       })
@@ -294,15 +305,32 @@ Page({
 
   //右边view-scroll触底事件
   botttom() {
-    var after = this.data.num + 1;
+    console.log("11111111")
+    let after = this.data.idIndex + 1;
     if (after >= this.data.menuList.length) {
       this.setData({
-        num: this.data.menuList.length
+        idIndex: this.data.menuList.length
       })
     } else {
       this.setData({
-        num: after += 1
+        idIndex: after
       })
     }
+    
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data: {
+        category_id: this.data.menuIdArr[this.data.idIndex]
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      // debugger
+      this.setData({
+        productList: res
+      })
+      
+    })
+    
   }
 })
