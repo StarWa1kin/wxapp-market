@@ -25,8 +25,6 @@ Page({
   onLoad: function(options) {
     this.setArea();
     this.getMenuList();
-
-
   },
 
   /**
@@ -41,6 +39,7 @@ Page({
    */
   onShow: function() {
     this.loadList();
+    
   },
 
   /**
@@ -127,7 +126,7 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
+      debugger
       //渲染数据
       this.setData({
         shoppingList: res
@@ -243,7 +242,7 @@ Page({
       this.setData({
         menuList: res,
       })
-      // debugger
+      debugger
       http.request({
         apiName: '/products',
         method: 'GET',
@@ -252,7 +251,7 @@ Page({
         },
         isShowProgress: false,
       }).then((res) => {
-        // debugger
+        debugger
         this.setData({
           productList: res
         })
