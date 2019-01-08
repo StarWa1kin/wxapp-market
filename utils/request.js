@@ -1,6 +1,5 @@
 const ipConfig = require('./ipConfig.js');;
 
-
 const sendRequest = (config) => {
   let apiHost = ipConfig.apiHost; //取出要访问的接口ip地址
   let token;

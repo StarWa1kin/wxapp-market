@@ -1,18 +1,17 @@
 {
   "pages": [
-    "pages/login/login",
     "pages/home/home",
     "pages/kind/kind",
+    "pages/login/login",
     "pages/newAddress/newAddress",
     "pages/submitOrder/submitOrder",
     "pages/order/order",
     "pages/mine/mine",
     "pages/search/search",
-    "pages/feedback/feedback"
-    
+    "pages/feedback/feedback",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
-   
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#d3b65c",
     "navigationBarTitleText": "金忠食品",

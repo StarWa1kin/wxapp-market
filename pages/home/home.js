@@ -133,7 +133,6 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      debugger
       if(res.length==0){
         console.log("购物车没有商品")
         var copyList = this.data.goodsList

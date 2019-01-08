@@ -7,9 +7,10 @@ Page({
    */
   data: {
     winHeight: '', //可用窗口高度
+    bottom:0,//防止上拉触顶和下拉触底的多次触发
+    top:0,
     clickIcon: false, //控制模态框的弹出
     menuList: [], //菜单列表
-    menuIdArr:[], //菜单id数组)
     idIndex:0,//菜单索引(用来确定当前选中菜单)
     productList: [], //一级菜单对应下的商品列表
     shoppingList: [], //购物车列表
@@ -39,7 +40,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
     this.loadList();
   },
 
@@ -122,15 +122,12 @@ Page({
   },
   //加载购物车
   loadList() {
-
     http.request({
       apiName: '/carts',
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
       console.log(res)
-      
-
       //渲染数据
       this.setData({
         shoppingList: res
@@ -238,27 +235,20 @@ Page({
   },
   //获取菜单列表
   getMenuList() {
-    
     http.request({
       apiName: '/categories',
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      //取得菜单列表
-      let arr=[];
-      for(let value of res){
-        arr.push(value.id)
-      }
       this.setData({
         menuList: res,
-        menuIdArr:arr
       })
       // debugger
       http.request({
         apiName: '/products',
         method: 'GET',
         data: {
-          category_id: this.data.menuIdArr[this.data.idIndex]
+          category_id: this.data.menuList[this.data.idIndex].id
         },
         isShowProgress: false,
       }).then((res) => {
@@ -278,7 +268,7 @@ Page({
       apiName: '/products',
       method: 'GET',
       data: {
-        category_id: this.data.menuIdArr[this.data.idIndex]
+        category_id: this.data.menuList[this.data.idIndex].id
       },
       isShowProgress: true,
     }).then((res) => {
@@ -290,47 +280,81 @@ Page({
   },
   //右边view-scroll触顶事件
   top() {
-    var after = this.data.num - 1;
-    if (after <= 1) {
-      this.setData({
-        num: 1
-      })
-    } else {
-      this.setData({
-        num: after
-      })
+    // console.log("触顶")
+    if (this.data.top == 1) {
+      return false
     }
-
-  },
-
-  //右边view-scroll触底事件
-  botttom() {
-    console.log("11111111")
-    let after = this.data.idIndex + 1;
-    if (after >= this.data.menuList.length) {
+    var after = this.data.idIndex - 1;
+    if (this.data.idIndex <= 0) {
       this.setData({
-        idIndex: this.data.menuList.length
+        idIndex: 0
       })
+      return false
     } else {
       this.setData({
         idIndex: after
       })
     }
-    
+    //防止多次触发
+    this.setData({
+      top: 1
+    })
     http.request({
       apiName: '/products',
       method: 'GET',
       data: {
-        category_id: this.data.menuIdArr[this.data.idIndex]
+        category_id: this.data.menuList[this.data.idIndex].id
       },
       isShowProgress: true,
     }).then((res) => {
       // debugger
       this.setData({
-        productList: res
+        productList: res,
+        top:0
+      })
+
+    })
+
+  },
+
+  //右边view-scroll触底事件
+  botttom() {
+    // console.log("触底")
+    if(this.data.bottom==1){
+      return false
+    }
+    // debugger
+
+    let after = this.data.idIndex + 1;
+    if (this.data.idIndex >= this.data.menuList.length-1) {
+      this.setData({
+        idIndex: this.data.menuList.length-1
+      })
+      return false
+    } else {
+      this.setData({
+        idIndex: after
+      })
+    }
+    //防止多次触发
+    this.setData({
+      bottom:1
+    })
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data: {
+        category_id: this.data.menuList[this.data.idIndex].id
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.setData({
+        productList: res,
+        bottom:0
       })
       
     })
     
-  }
+  },
+ 
 })

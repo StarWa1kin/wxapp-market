@@ -127,75 +127,85 @@ Page({
     })
   },
   //支付方式选择框
-  radioChange: function(e) {
-    if (e.detail.value == "余额") {
-      this.setData({
-        radioChoose2: false,
-        radioChoose1: true
-      })
-    }
-    if (e.detail.value == "微信") {
-      this.setData({
-        radioChoose1: false,
-        radioChoose2: true,
-      })
-    }
-    // console.log('radio发生change事件，携带value值为：', e.detail.value)
-  },
+  // radioChange: function(e) {
+  //   if (e.detail.value == "余额") {
+  //     this.setData({
+  //       radioChoose2: false,
+  //       radioChoose1: true
+  //     })
+  //   }
+  //   if (e.detail.value == "微信") {
+  //     this.setData({
+  //       radioChoose1: false,
+  //       radioChoose2: true,
+  //     })
+  //   }
+  // },
   //支付
-  pay() {
-    //验证参数部分
+  // pay() {
+  //   if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
+  //     wx.showToast({
+  //       title: '请先填写地址',
+  //       image: '../../assets/err.png'
+  //     })
+  //     return false
+  //   }
+  //   let payMethod;
+  //   if (this.data.radioChoose1) {
+  //     payMethod = '0'
+  //   } else {
+  //     payMethod = '1'
+  //   }
+  //   http.request({
+  //     apiName: '/orders',
+  //     method: 'POST',
+  //     data: {
+  //       pay_method: payMethod,
+  //       consignee: this.data.addressInfo.consignee,
+  //       consignee_mobile: this.data.addressInfo.consignee_mobile,
+  //       address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
+  //     },
+  //     isShowProgress: true,
+  //   }).then(res => {
+  //     http.request({
+  //       apiName: '/pay/wechat',
+  //       method: 'POST',
+  //       data: {
+  //         order_id: res.order_id
+  //       },
+  //       isShowProgress: true,
+  //     }).then(res => {
+  //       wx.requestPayment({
+  //       timeStamp: res.timeStamp,
+  //       nonceStr: res.nonceStr,
+  //       package: res.package,
+  //       signType: res.signType,
+  //       paySign: res.paySign,
+  //       success(res) {
+  //         debugger
+  //       },
+  //       fail(res) {
+  //         wx.showToast({
+  //           title: "支付失败",
+  //           icon:"none"
+  //         })
+  //       }
+  //     })
+  //     })
+  //   })
+  // }
+
+  //提交订单只判断是否携带地址
+  submitOrder() {
     if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
       wx.showToast({
         title: '请先填写地址',
-        image: '../../assets/err.png'
+        image: '../../assets/page/err.png'
       })
       return false
     }
-    let payMethod;
-    if (this.data.radioChoose1) {
-      payMethod = '0'
-    } else {
-      payMethod = '1'
-    }
-    http.request({
-      apiName: '/orders',
-      method: 'POST',
-      data: {
-        pay_method: payMethod,
-        consignee: this.data.addressInfo.consignee,
-        consignee_mobile: this.data.addressInfo.consignee_mobile,
-        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
-      },
-      isShowProgress: true,
-    }).then(res => {
-      http.request({
-        apiName: '/pay/wechat',
-        method: 'POST',
-        data: {
-          order_id: res.order_id
-        },
-        isShowProgress: true,
-      }).then(res => {
-        //取回调用微信支付的必要参数
-        wx.requestPayment({
-        timeStamp: res.timeStamp,
-        nonceStr: res.nonceStr,
-        package: res.package,
-        signType: res.signType,
-        paySign: res.paySign,
-        success(res) {
-          debugger
-        },
-        fail(res) {
-          wx.showToast({
-            title: "支付失败",
-            icon:"none"
-          })
-        }
-      })
-      })
-
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail',
     })
   }
 })
