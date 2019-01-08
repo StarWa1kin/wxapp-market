@@ -56,6 +56,8 @@ const sendRequest = (config) => {
           resolve(res.data.data)
         }else if(res.data.code==1){
           reject(res.data.message)
+        }else{
+          reject(res.data.message)
         }
       },
       fail: err => {

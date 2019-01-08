@@ -15,7 +15,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-   
+
   },
 
   /**
@@ -128,6 +128,7 @@ Page({
         if (res.data.code == 0) {
           wx.showToast({
             title: '发送成功',
+            icon: 'none'
           })
         } else {
           wx.showToast({
@@ -156,7 +157,6 @@ Page({
         },
         dataType: 'json',
         success(res) {
-          console.log(res)
           debugger
           if (res.data.code == 0) {
             wx.setStorage({
@@ -190,6 +190,14 @@ Page({
   },
   //微信登录
   wxlogin(e) {
+    /*交互*/
+    wx.showLoading({
+      title: '正在登陆',
+      mask: true
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 2000)
     //调用wxApi获取code
     wx.login({
       success(res) {
@@ -212,7 +220,6 @@ Page({
                     // session_key 未过期，并且在本生命周期一直有效
                     let encrypted_data = e.detail.encryptedData;
                     let iv = e.detail.iv;
-                    console.log(e.detail.iv)
                     wx.request({
                       url: http.interface.apiHost + '/auth/decrypt/login',
                       method: 'POST',
@@ -222,11 +229,12 @@ Page({
                         encrypted_data,
                         iv
                       },
-                      success(res) {
+                      success:res=> {
                         wx.setStorage({
                           key: 'token',
                           data: JSON.stringify(res.data.data),
                         })
+                        wx.hideLoading()
                         // 存储token跳转首页
                         wx.switchTab({
                           url: '../home/home',
@@ -251,7 +259,7 @@ Page({
                 wx.switchTab({
                   url: '../home/home',
                 })
-              }else{
+              } else {
                 wx.showToast({
                   title: '仅限会员登陆',
                   image: '../../assets/page/err,png'

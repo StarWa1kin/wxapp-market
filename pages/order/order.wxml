@@ -33,7 +33,7 @@
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.number}}' bindtap='buyAgain'>再来一单</view>
+            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
             <view class='cancelOrder'>取消订单</view>
           </view>
         </view>
@@ -64,7 +64,7 @@
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.number}}' bindtap='buyNow'>立即支付</view>
+            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyNow'>立即支付</view>
             <view class='cancelOrder'>取消订单</view>
           </view>
         </view>

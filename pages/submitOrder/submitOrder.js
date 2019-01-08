@@ -145,14 +145,13 @@ Page({
   //支付
   pay() {
     //验证参数部分
-    if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) =="{}"){
+    if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
       wx.showToast({
         title: '请先填写地址',
-        image:'../../assets/err.png'
+        image: '../../assets/err.png'
       })
       return false
     }
-    debugger;
     let payMethod;
     if (this.data.radioChoose1) {
       payMethod = '0'
@@ -170,7 +169,33 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      debugger
+      http.request({
+        apiName: '/pay/wechat',
+        method: 'POST',
+        data: {
+          order_id: res.order_id
+        },
+        isShowProgress: true,
+      }).then(res => {
+        //取回调用微信支付的必要参数
+        wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: res.signType,
+        paySign: res.paySign,
+        success(res) {
+          debugger
+        },
+        fail(res) {
+          wx.showToast({
+            title: "支付失败",
+            icon:"none"
+          })
+        }
+      })
+      })
+
     })
   }
 })

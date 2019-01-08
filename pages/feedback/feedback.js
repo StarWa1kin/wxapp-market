@@ -1,4 +1,4 @@
-// pages/feedback/feedback.js
+const http = require('../../utils/request.js')
 Page({
 
   /**
@@ -79,6 +79,25 @@ Page({
       })
       return false
     }
+    http.request({
+      apiName: '/feedback',
+      method: 'POST',
+      data: {
+        content: this.data.userFeedback
+      }
+    }).then((res) => {
+      wx.showToast({
+        title: '提交成功',
+      })
+      this.setData({
+        userFeedback:''
+      })
+    }).catch(err=>{
+      wx.showToast({
+        title: err,
+        icon:'none'
+      })
+    })
 
   },
 })
