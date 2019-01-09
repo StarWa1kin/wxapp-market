@@ -48,7 +48,7 @@ Page({
         currentTab: tabIndex
       })
     }
-   
+    getApp().globalData.tabIndex=undefined;
     this.getOrderList(this.data.currentTab)
   },
 
