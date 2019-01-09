@@ -1,4 +1,5 @@
-const http = require('../../utils/request.js')
+const http = require('../../utils/request.js');
+var app=getApp()
 Page({
   /**
    * 页面的初始数据
@@ -161,6 +162,14 @@ Page({
           })
         }
       })
+      }else{
+        wx.showToast({
+          title: '支付成功',
+        })
+        app.globalData.tabIndex="2"
+        wx.switchTab({
+          url: '../order/order',
+        })
       }
     },err=>{
       wx.showToast({

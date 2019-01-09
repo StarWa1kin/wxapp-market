@@ -18,6 +18,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
+    
     wx.getSystemInfo({
       success: res => {
         this.setData({
@@ -39,6 +41,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    //收到tabIndex说明付款成功-->进入待收货列表
+    let tabIndex = getApp().globalData.tabIndex;
+    if (tabIndex){
+      this.setData({
+        currentTab: tabIndex
+      })
+    }
+   
     this.getOrderList(this.data.currentTab)
   },
 

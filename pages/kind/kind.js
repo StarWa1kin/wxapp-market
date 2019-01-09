@@ -349,9 +349,16 @@ Page({
     })
     
   },
-  // test(e){
-  //   console.log(e.detail)
-  //   debugger
-  // }
+  test(e){
+    console.log(e.detail.scrollTop)
+    if (e.detail.scrollTop>=182){
+      console.log("归零")
+      wx.pageScrollTo({
+        scrollTop: "0rpx",
+        duration: 300
+      })
+    }
+    // debugger
+  }
  
 })
