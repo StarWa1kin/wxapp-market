@@ -16,6 +16,7 @@ Page({
     shoppingList: [], //购物车列表
     bubble: 0,
     total: 0, //合计金额,
+    position:'180'
 
   },
 
@@ -126,7 +127,7 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      debugger
+      // debugger
       //渲染数据
       this.setData({
         shoppingList: res
@@ -242,7 +243,7 @@ Page({
       this.setData({
         menuList: res,
       })
-      debugger
+      // debugger
       http.request({
         apiName: '/products',
         method: 'GET',
@@ -251,7 +252,7 @@ Page({
         },
         isShowProgress: false,
       }).then((res) => {
-        debugger
+        // debugger
         this.setData({
           productList: res
         })
@@ -274,6 +275,21 @@ Page({
       // debugger
       this.setData({
         productList: res
+      })
+      wx.pageScrollTo({
+        scrollTop: 0,
+        duration: 300,
+        success(e){
+          debugger
+
+        },
+        fail(e){
+          debugger
+
+        },
+        complete(){
+          debugger
+        }
       })
     })
   },
@@ -355,5 +371,9 @@ Page({
     })
     
   },
+  // test(e){
+  //   console.log(e.detail)
+  //   debugger
+  // }
  
 })

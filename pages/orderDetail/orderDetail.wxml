@@ -1,6 +1,32 @@
+<!-- 已提交商品列表 -->
+<view class='goodsList' wx:for="{{list.products}}" wx:key="{{index}}">
+  <view class='goodsDetail'>
+    <view class='img'>
+      <image src='{{item.img}}'></image>
+    </view>
+    <view class='content'>
+      <view class='goodsName'>{{item.name}}{{item.weight}}g/{{item.unit}}</view>
+      <view class='desc'>{{item.describe}}</view>
+      <view class='money'>
+        <view>￥{{item.price}}x{{item.quantity}}</view>
+        <view class='littleSum'>￥{{list.amount}}</view>
+      </view>
+    </view>
+  </view>
+</view>
 <!-- 支付方式 -->
 <view class='payType'>支付方式</view>
-<view class="remainingSum bg">
+<radio-group bindchange="radioChange">
+  <block wx:for="{{payMethosList}}" wx:key="{{index}}">
+    <view class='payMethodList'>
+      <view>{{item.describe}}</view>
+      <view>
+        <radio class="radio" value="{{item.id}}" checked="{{item.checked}}" color="#d3b65c" />
+      </view>
+    </view>
+  </block>
+</radio-group>
+<!-- <view class="remainingSum bg">
   <view>余额(剩余￥{{userInfo.balance}})</view>
   <view>
     <radio-group class="radio-group" bindchange="radioChange">
@@ -19,11 +45,11 @@
       </label>
     </radio-group>
   </view>
-</view>
+</view> -->
 
 
 <!-- 固定支付栏 -->
 <view class='payFixed'>
-  <view class='payMoney'>￥{{orderInfo.amount}}</view>
+  <view class='payMoney'>￥{{list.amount}}</view>
   <view class='submit' bindtap='pay'>立即付款</view>
 </view>

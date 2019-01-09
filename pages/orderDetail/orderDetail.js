@@ -4,10 +4,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    radioChoose1: true, //余额支付
-    radioChoose2: false, //微信支付
-    control: false, //用来控制余额支付开个是否禁用
+    payMethosList:[],//支付方式列表
     userInfo: {}, //用户信息
+    methodID:'',//支付方式id
   },
 
   /**
@@ -15,10 +14,13 @@ Page({
    */
   onLoad: function(options) {
     this.getUserInfo();
+    this.getPayMethod();
     //获取从上个页面传来的订单信息
     this.setData({
       orderInfo: JSON.parse(options.order)
     })
+    console.log(this.data.orderInfo)
+    this.renderOrder()
     // debugger
 
   },
@@ -74,23 +76,12 @@ Page({
   /**自定义函数 */
   //支付方式选择框
   radioChange: function(e) {
-    /*先判断是否能使用余额支付*/
-    debugger
-    if (this.data.control) {
-      return
-    }
-    if (e.detail.value == "余额") {
-      this.setData({
-        radioChoose2: false,
-        radioChoose1: true
-      })
-    }
-    if (e.detail.value == "微信") {
-      this.setData({
-        radioChoose1: false,
-        radioChoose2: true,
-      })
-    }
+    //取得methodID
+    console.log(e.detail.value)
+    this.setData({
+      methodID: e.detail.value
+    })
+    
   },
   //初始化取用户信息
   getUserInfo() {
@@ -104,42 +95,80 @@ Page({
         userInfo: res
       })
       //判断余额是否能支付该订单
-      this.estimate()
+      // this.estimate()
+    })
+  },
+  //获取支付方式列表
+  getPayMethod(){
+    http.request({
+      apiName: '/pay/methods',
+      method: 'GET',
+    }).then(res => {
+      this.setData({
+        payMethosList:res
+      })
     })
   },
   //判断是否能用余额支付
   estimate() {
-    debugger
-    if (Number(this.data.userInfo.balance) >= Number(this.data.orderInfo.amount)) {
-      console.log("可以余额支付")
-    } else {
-      console.log("不能余额支付")
+    
+  },
+  //渲染该订单列表
+  renderOrder(){
+    http.request({
+      apiName: '/orders/detail/'+this.data.orderInfo.id,
+      method: 'GET',
+      isShowProgress: true,
+    }).then(res=>{
+      debugger
       this.setData({
-        control: true,
-        radioChoose2: true,
-        radioChoose1: false
+        list:res
       })
-    }
+    })
   },
   //立即支付按钮
   pay() {
-    // 判断支付方式
-    let payMethod;
-    if (this.data.radioChoose1) {
-      payMethod = "0";
-    } else {
-      payMethod = "1";
-    }
     http.request({
       apiName: '/pay',
       method: 'POST',
       data: {
         order_id: this.data.orderInfo.id,
-        pay_method: payMethod
+        pay_method: this.data.methodID
       },
       isShowProgress: true,
     }).then(res => {
       debugger
+      //methodID=1 余额支付
+      //methodID=2 微信
+      //methodID=3 先货后款
+      if (res.hasOwnProperty("nonceStr") && res.hasOwnProperty("package")){
+        console.log("调用微信支付")
+        wx.requestPayment({
+        timeStamp: res.timeStamp,
+        nonceStr: res.nonceStr,
+        package: res.package,
+        signType: res.signType,
+        paySign: res.paySign,
+        success(res) {
+          debugger
+          wx.switchTab({
+            url: '../order/order',
+          })
+        },
+        fail(res) {
+          wx.showToast({
+            title: "支付失败",
+            icon:"none"
+          })
+        }
+      })
+      }
+    },err=>{
+      debugger
+      wx.showToast({
+        title: err,
+        image: '../../assets/page/err.png'
+      })
     })
   }
 })

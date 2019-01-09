@@ -1,5 +1,6 @@
 {
   "pages": [
+    
     "pages/home/home",
     "pages/kind/kind",
     "pages/login/login",
@@ -8,8 +9,9 @@
     "pages/order/order",
     "pages/mine/mine",
     "pages/search/search",
-    "pages/feedback/feedback",
-    "pages/orderDetail/orderDetail"
+    "pages/orderDetail/orderDetail",
+    "pages/feedback/feedback"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",
