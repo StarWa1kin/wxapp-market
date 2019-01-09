@@ -137,6 +137,14 @@ Page({
   },
   //立即支付按钮
   pay() {
+    if (this.data.methodID == ""){
+      // debugger
+      wx.showToast({
+        title: '请选择支付方式',
+        image: '../../assets/page/err.png'
+      })
+      return
+    }
     http.request({
       apiName: '/pay',
       method: 'POST',
