@@ -16,7 +16,7 @@ Page({
     shoppingList: [], //购物车列表
     bubble: 0,
     total: 0, //合计金额,
-    position:'180'
+    topNum:0,//滚动条位置
 
   },
 
@@ -351,13 +351,8 @@ Page({
   },
   test(e){
     console.log(e.detail.scrollTop)
-    if (e.detail.scrollTop>=182){
-      console.log("归零")
-      wx.pageScrollTo({
-        scrollTop: "0rpx",
-        duration: 300
-      })
-    }
+    console.log(this.data.topNum)
+    
     // debugger
   }
  

@@ -149,28 +149,9 @@ Page({
   },
   //立即支付
   buyNow(e) {
-    let orderId = e.currentTarget.dataset
-    http.request({
-      apiName: '/pay/wechat',
-      method: 'POST',
-      data: {
-        order_id: orderId
-      },
-      isShowProgress: true,
-    }).then(res => {
-      wx.requestPayment({
-        timeStamp: res.timeStamp,
-        nonceStr: res.nonceStr,
-        package: res.package,
-        signType: res.signType,
-        paySign: res.paySign,
-        success(res) {
-
-        },
-        fail(res) {
-
-        }
-      })
+    let orderId = e.currentTarget.dataset.orderid
+    wx.navigateTo({
+      url: '../orderDetail/orderDetail?param='+orderId,
     })
   }
 

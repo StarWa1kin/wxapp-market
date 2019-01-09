@@ -17,7 +17,7 @@
     <view class='kindList'>猪副产品</view> -->
   </scroll-view>
   <!-- 右边显示栏 -->
-  <scroll-view class='right' scroll-y="ture" bindscroll="test" style="height:{{winHeight - 102}}px" bindscrolltolower="botttom" bindscrolltoupper="top">
+  <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' scroll-top='{{topNum}}' style="height:{{winHeight - 102}}px" bindscrolltolower="botttom" bindscrolltoupper="top" bindscroll="test">
     <view class='isChoose'>冷鲜肉</view>
     <!-- 商品展示栏 -->
     <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">

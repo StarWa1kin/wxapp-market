@@ -14,13 +14,23 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    if(options.hasOwnProperty("param")){
+      //从订单列表也跳转过来收到options参数
+      this.setData({
+        orderId: options.param
+      })
+    }else{
+      //获取从提交传来的订单信息
+      this.setData({
+        orderInfo: JSON.parse(options.order),
+        orderId: JSON.parse(options.order).id
+      })
+    }
+    
     this.getUserInfo();
     this.getPayMethod();
-    //获取从上个页面传来的订单信息
-    this.setData({
-      orderInfo: JSON.parse(options.order)
-    })
-    console.log(this.data.orderInfo)
+    
+    // console.log(this.data.orderInfo)
     this.renderOrder()
 
   },
@@ -116,7 +126,7 @@ Page({
   //渲染该订单列表
   renderOrder(){
     http.request({
-      apiName: '/orders/detail/'+this.data.orderInfo.id,
+      apiName: '/orders/detail/'+this.data.orderId,
       method: 'GET',
       isShowProgress: true,
     }).then(res=>{
