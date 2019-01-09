@@ -109,6 +109,7 @@ Page({
         this.setData({
           total: 0
         })
+        wx.navigateBack({})
       } else {
         for (let index in res) {
           var price = res[index].product.price;
@@ -124,6 +125,48 @@ Page({
         shoppingList: res
       })
 
+    })
+  },
+  //清除某一商品
+  deleteIt(e) {
+    let id = e.currentTarget.dataset.id;
+    http.request({
+      apiName: '/carts/' + id,
+      method: 'DELETE',
+      // isShowProgress: true,
+    }).then((res) => {
+      this.getShoppingList();
+    })
+  },
+  //商品+1
+  add(e) {
+    let productId = e.currentTarget.id;
+    http.request({
+      apiName: '/carts',
+      method: 'POST',
+      data: {
+        "product_id": productId,
+        "quantity": 1,
+      },
+      // isShowProgress: true,
+    }).then((res) => {
+      this.getShoppingList()
+    })
+
+  },
+  //商品-1
+  subtract(e) {
+    let id = e.currentTarget.dataset.id;
+    let nowQuantity = e.currentTarget.dataset.quantity - 1
+    http.request({
+      apiName: '/carts/' + id,
+      method: 'PUT',
+      data: {
+        "quantity": nowQuantity,
+      },
+      // isShowProgress: true,
+    }).then((res) => {
+      this.getShoppingList()
     })
   },
   //支付方式选择框
@@ -214,7 +257,6 @@ Page({
       },
       isShowProgress: true,
     }).then(res=>{
-      // debugger
       if(JSON.stringify(res)!="{}"){
         wx.showToast({
           title: '提交成功!跳转支付页面',

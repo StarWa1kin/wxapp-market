@@ -21,7 +21,6 @@ Page({
     })
     console.log(this.data.orderInfo)
     this.renderOrder()
-    // debugger
 
   },
 
@@ -120,7 +119,6 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then(res=>{
-      debugger
       this.setData({
         list:res
       })
@@ -137,7 +135,6 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      debugger
       //methodID=1 余额支付
       //methodID=2 微信
       //methodID=3 先货后款
@@ -150,7 +147,9 @@ Page({
         signType: res.signType,
         paySign: res.paySign,
         success(res) {
-          debugger
+          wx.showToast({
+            title: '支付成功',
+          })
           wx.switchTab({
             url: '../order/order',
           })
@@ -164,7 +163,6 @@ Page({
       })
       }
     },err=>{
-      debugger
       wx.showToast({
         title: err,
         image: '../../assets/page/err.png'

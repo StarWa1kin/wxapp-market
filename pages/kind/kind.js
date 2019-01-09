@@ -127,7 +127,6 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
-      // debugger
       //渲染数据
       this.setData({
         shoppingList: res
@@ -218,7 +217,6 @@ Page({
       method: 'DELETE',
       isShowProgress: true,
     }).then((res) => {
-      // debugger;
       this.loadList()
     })
 
@@ -243,7 +241,6 @@ Page({
       this.setData({
         menuList: res,
       })
-      // debugger
       http.request({
         apiName: '/products',
         method: 'GET',
@@ -252,7 +249,6 @@ Page({
         },
         isShowProgress: false,
       }).then((res) => {
-        // debugger
         this.setData({
           productList: res
         })
@@ -272,24 +268,8 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      // debugger
       this.setData({
         productList: res
-      })
-      wx.pageScrollTo({
-        scrollTop: 0,
-        duration: 300,
-        success(e){
-          debugger
-
-        },
-        fail(e){
-          debugger
-
-        },
-        complete(){
-          debugger
-        }
       })
     })
   },
@@ -322,7 +302,6 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      // debugger
       this.setData({
         productList: res,
         top:0
@@ -338,7 +317,6 @@ Page({
     if(this.data.bottom==1){
       return false
     }
-    // debugger
 
     let after = this.data.idIndex + 1;
     if (this.data.idIndex >= this.data.menuList.length-1) {

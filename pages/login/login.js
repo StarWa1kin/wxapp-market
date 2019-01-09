@@ -157,7 +157,6 @@ Page({
         },
         dataType: 'json',
         success(res) {
-          debugger
           if (res.data.code == 0) {
             wx.setStorage({
               key: 'token',
