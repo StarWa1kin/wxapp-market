@@ -1,0 +1,29 @@
+<!-- 支付方式 -->
+<view class='payType'>支付方式</view>
+<view class="remainingSum bg">
+  <view>余额(剩余￥{{userInfo.balance}})</view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio">
+        <radio value="余额" checked="{{radioChoose1}}" color="#d3b65c" disabled="{{control}}"/>
+      </label>
+    </radio-group>
+  </view>
+</view>
+<view class='wechat bg'>
+  <view>微信支付</view>
+  <view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio">
+        <radio value="微信" checked="{{radioChoose2}}" color="#d3b65c" />
+      </label>
+    </radio-group>
+  </view>
+</view>
+
+
+<!-- 固定支付栏 -->
+<view class='payFixed'>
+  <view class='payMoney'>￥{{orderInfo.amount}}</view>
+  <view class='submit' bindtap='pay'>立即付款</view>
+</view>

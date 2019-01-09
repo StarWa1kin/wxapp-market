@@ -174,7 +174,7 @@ Page({
         "product_id": productId,
         "quantity": 1,
       },
-      isShowProgress: true,
+      isShowProgress: false,
     }).then((res) => {
       this.loadList()
     })

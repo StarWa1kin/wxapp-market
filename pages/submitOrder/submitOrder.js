@@ -5,8 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    radioChoose1: true,
-    radioChoose2: false,
+    // radioChoose1: true,
+    // radioChoose2: false,
     hasAddress: false,
     shoppingList: [], //购物车列表
     total: 0, //购物车商品合计
@@ -202,10 +202,28 @@ Page({
         title: '请先填写地址',
         image: '../../assets/page/err.png'
       })
-      return false
+      return
     }
-    wx.navigateTo({
-      url: '../orderDetail/orderDetail',
+    http.request({
+      apiName: '/orders',
+      method: 'POST',
+      data: {
+        consignee: this.data.addressInfo.consignee,
+        consignee_mobile: this.data.addressInfo.consignee_mobile,
+        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
+      },
+      isShowProgress: true,
+    }).then(res=>{
+      // debugger
+      if(JSON.stringify(res)!="{}"){
+        wx.showToast({
+          title: '提交成功!跳转支付页面',
+        })
+        wx.navigateTo({
+          url: '../orderDetail/orderDetail?order=' + JSON.stringify(res),
+        })
+      }
     })
+    
   }
 })

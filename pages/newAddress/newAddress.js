@@ -140,6 +140,7 @@ Page({
       wx.showToast({
         title: '保存成功',
       })
+      wx.navigateBack({})
     })
   },
   //回显地址
@@ -147,7 +148,7 @@ Page({
     http.request({
       apiName: '/users/address',
       method: 'GET',
-      isShowProgress: true,
+      isShowProgress: false,
     }).then((res) => {
       if(JSON.stringify(res)!='{}'){
         //保存地址后就有回显示
