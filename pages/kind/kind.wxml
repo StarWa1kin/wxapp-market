@@ -4,10 +4,10 @@
 
 <view class='section'>
   <!-- 左边菜单栏 -->
-  <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 52}}px">
+  <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 204}}rpx">
     <view class='kind'>商品分类</view>
     <block wx:for="{{menuList}}" wx:key="{{index}}">
-      <view class='kindList {{item.id==menuList[idIndex].id ? "active":""}}' bindtap='chooseMenu' data-num='{{index}}'>{{item.name}}</view>
+      <view class='kindList {{item.id==menuList[idIndex].id ? "active":""}}' bindtap='chooseMenu' data-index="{{index}}" data-id="b_{{index}}">{{item.name}}</view>
     </block>
     <!-- <view class='kindList active'>冷鲜肉</view>
     <view class='kindList'>腌腊肉</view>
@@ -17,10 +17,22 @@
     <view class='kindList'>猪副产品</view> -->
   </scroll-view>
   <!-- 右边显示栏 -->
-  <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' scroll-top='{{topNum}}' style="height:{{winHeight - 102}}px" bindscrolltolower="botttom" bindscrolltoupper="top" bindscroll="test">
-    <view class='isChoose'>冷鲜肉</view>
+  <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' style="height:{{winHeight - 204}}rpx" bindscroll="scroll" scroll-into-view="{{toView}}">
+    <view class='infoBox' wx:for="{{productList}}" wx:key="{{index}}">
+      <view class='nowTitle' id="b_{{index}}">{{menuList[index].name}}</view>
+      <view class='productInfo' wx:for="{{item}}" wx:key="{{index}}" wx:for-item="good">
+        <view class='imgBox'>
+          <image src="{{good.img}}"></image>
+        </view>
+        <view class='itemBox'>
+
+        </view>
+        <view class='operate'></view>
+      </view>
+    </view>
     <!-- 商品展示栏 -->
-    <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">
+    <!-- <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">
+      <view class='isChoose' id="pur_{{index}}">{{menuList[index].name}}</view>
       <view class='img'>
         <image src='{{item.img}}'></image>
       </view>
@@ -34,18 +46,18 @@
         <view class='description'>{{item.describe}}</view>
         <view class='detail'>
           <view class='price'>￥{{item.price}}</view>
-          <view class='subtract' bindtap="subtract" wx:if="{{item.reshowNum>0}}" data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
+          <view class='subtract' bindtap="subtract" wx:if="{{item.reshowNum>0}}" data-cartsId="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
             <image src='../../assets/page/-.png'></image>
           </view>
-          <!-- 填充块 -->
+          
           <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
           <view class='quantity'>{{item.reshowNum}}</view>
-          <view class='add' bindtap='add' id='{{item.id}}'>
+          <view class='add' bindtap='add' data-productId='{{item.id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>
       </view>
-    </view>
+    </view> -->
   </scroll-view>
 </view>
 
@@ -76,15 +88,15 @@
       <view class='contentBox'>
         <view class='first-row'>
           <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-          <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>X</view>
+          <view class='delete' bindtap='deleteIt' data-cartsId='{{item.id}}'>X</view>
         </view>
         <view class='modal-detail'>
           <view class="price">￥{{item.product.price}}</view>
-          <view class='modal-subtract' bindtap="subtract" data-id='{{item.id}}' data-quantity='{{item.quantity}}'>
+          <view class='modal-subtract' bindtap="subtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='quantity'>{{item.quantity}}</view>
-          <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
+          <view class='modal-add' bindtap='add' data-productId='{{item.product_id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>

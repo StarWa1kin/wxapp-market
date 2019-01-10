@@ -6,17 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
+    toView: 0, //
+    height_arr: [], //
     winHeight: '', //可用窗口高度
-    bottom:0,//防止上拉触顶和下拉触底的多次触发
-    top:0,
     clickIcon: false, //控制模态框的弹出
     menuList: [], //菜单列表
-    idIndex:0,//菜单索引(用来确定当前选中菜单)
+    idIndex: 0, //菜单索引(用来确定当前选中菜单)
+    lastIndex:0,//
     productList: [], //一级菜单对应下的商品列表
     shoppingList: [], //购物车列表
     bubble: 0,
     total: 0, //合计金额,
-    topNum:0,//滚动条位置
 
   },
 
@@ -40,7 +40,7 @@ Page({
    */
   onShow: function() {
     this.loadList();
-    
+
   },
 
   /**
@@ -141,7 +141,7 @@ Page({
         this.setData({
           total: 0
         })
-        
+
       } else {
         for (let value of res) {
           var price = value.product.price;
@@ -155,11 +155,11 @@ Page({
       //分类列表回显数量
       let copyGoodList = this.data.productList;
       for (let index in copyGoodList) {
-        copyGoodList[index].reshowNum = 0;//制空reshowNum属性
+        copyGoodList[index].reshowNum = 0; //制空reshowNum属性
         for (var reshow of res) {
           if (copyGoodList[index].id == reshow.product.id) {
-            copyGoodList[index].reshowNum = reshow.quantity;//添加字段用来回显数量
-            copyGoodList[index].shoppingCarId = reshow.id;//添加字段控制减少购物车数量
+            copyGoodList[index].reshowNum = reshow.quantity; //添加字段用来回显数量
+            copyGoodList[index].shoppingCarId = reshow.id; //添加字段控制减少购物车数量
           }
         }
         this.setData({
@@ -226,134 +226,116 @@ Page({
     wx.getSystemInfo({
       success: res => {
         this.setData({
-          winHeight: res.windowHeight
-        });
+          //换算成rpx
+          winHeight: res.windowHeight * (750 / res.windowWidth)
+        })
+        
       }
     })
   },
-  //获取菜单列表
+  //获取一级菜单列表
   getMenuList() {
     http.request({
       apiName: '/categories',
       method: 'GET',
-      isShowProgress: true,
+      // isShowProgress: true,
     }).then((res) => {
       this.setData({
         menuList: res,
       })
-      http.request({
-        apiName: '/products',
-        method: 'GET',
-        data: {
-          category_id: this.data.menuList[this.data.idIndex].id
-        },
-        isShowProgress: false,
-      }).then((res) => {
-        this.setData({
-          productList: res
-        })
+      this.getMenuGoods()
+    })
+  },
+  //获取对应一级菜单下的商品列表
+  getMenuGoods() {
+    http.request({
+      apiName: '/products',
+      method: 'GET',
+      data: {
+        category_id: this.data.menuList[this.data.idIndex].id
+      },
+    }).then((res) => {
+      let dyadicArr = []; //定义一个二维数组用于存放商品列表的json数组
+      dyadicArr.push(res);
+      let originalArr = this.data.productList; //复制
+      let newArr = originalArr.concat(dyadicArr); //合并数组
+      this.setData({
+        productList: newArr
       })
+      this.getHeightArr(this)
     })
   },
   //点击菜单进行渲染该分类下的商品
   chooseMenu(e) {
     this.setData({
-      idIndex: e.currentTarget.dataset.num
+      idIndex: e.currentTarget.dataset.index,
+      toView: e.currentTarget.dataset.id
     })
-    http.request({
-      apiName: '/products',
-      method: 'GET',
-      data: {
-        category_id: this.data.menuList[this.data.idIndex].id
-      },
-      isShowProgress: true,
-    }).then((res) => {
-      this.setData({
-        productList: res
-      })
-    })
+    this.getMenuGoods()
+    // http.request({
+    //   apiName: '/products',
+    //   method: 'GET',
+    //   data: {
+    //     category_id: this.data.menuList[this.data.idIndex].id
+    //   },
+    //   isShowProgress: true,
+    // }).then((res) => {
+    //   this.setData({
+    //     productList: res
+    //   })
+    // })
   },
-  //右边view-scroll触顶事件
-  top() {
-    // console.log("触顶")
-    if (this.data.top == 1) {
-      return false
-    }
-    var after = this.data.idIndex - 1;
-    if (this.data.idIndex <= 0) {
-      this.setData({
-        idIndex: 0
-      })
-      return false
-    } else {
-      this.setData({
-        idIndex: after
-      })
-    }
-    //防止多次触发
-    this.setData({
-      top: 1
-    })
-    http.request({
-      apiName: '/products',
-      method: 'GET',
-      data: {
-        category_id: this.data.menuList[this.data.idIndex].id
-      },
-      isShowProgress: true,
-    }).then((res) => {
-      this.setData({
-        productList: res,
-        top:0
-      })
+  getHeightArr(self) {
+    let height = 0,
+      height_arr = [],
+      details = self.data.productList,//复制productlist
+      winHeight = self.data.winHeight;
+    for (let i = 0; i < details.length; i++) {
+      var last_height = 60 + details[i].length * 90;
+      if (i == details.length - 1) {
+        last_height = last_height > winHeight ? last_height : winHeight + 50;
+        // debugger
+      }
+      height += last_height;
 
-    })
-
-  },
-
-  //右边view-scroll触底事件
-  botttom() {
-    // console.log("触底")
-    if(this.data.bottom==1){
-      return false
+      height_arr.push(height);
     }
-
-    let after = this.data.idIndex + 1;
-    if (this.data.idIndex >= this.data.menuList.length-1) {
-      this.setData({
-        idIndex: this.data.menuList.length-1
-      })
-      return false
-    } else {
-      this.setData({
-        idIndex: after
-      })
-    }
-    //防止多次触发
-    this.setData({
-      bottom:1
-    })
-    http.request({
-      apiName: '/products',
-      method: 'GET',
-      data: {
-        category_id: this.data.menuList[this.data.idIndex].id
-      },
-      isShowProgress: true,
-    }).then((res) => {
-      this.setData({
-        productList: res,
-        bottom:0
-      })
-      
-    })
+    self.setData({
+      height_arr: height_arr
+    });
     
+
   },
-  test(e){
-    console.log(e.detail.scrollTop)
-    console.log(this.data.topNum)
-    
-    // debugger
+  //view-scroll滚动触发
+  scroll(e) {
+    let self = this;
+    self.scrollmove(self, e, e.detail.scrollTop)
+  },
+  scrollmove(self, e, scrollTop) {
+    // last_scrollTop=scrollTop;
+    console.log(scrollTop)
+    let scrollArr = self.data.height_arr;
+    if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight) {
+      return;
+    } else {
+      for (var i = 0; i < scrollArr.length; i++) {
+        if (scrollTop >= 0 && scrollTop < scrollArr[0]) {
+          if (0 != self.data.lastIndex) {
+            self.setData({
+              idIndex: 0,
+              lastIndex: 0
+            });
+          }
+        } else if (scrollTop >= scrollArr[i - 1] && scrollTop <= scrollArr[i]) {
+          if (i != self.data.lastIndex) {
+            self.setData({
+              idIndex: i,
+              lastIndex: i
+            });
+          }
+        }
+      }
+    }
   }
- 
+
 })

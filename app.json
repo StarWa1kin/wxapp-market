@@ -1,9 +1,12 @@
 {
   "pages": [
+    "pages/kind/kind",
+    "pages/xiaoguo/xiaoguo",
+    
+    
+    
     "pages/login/login",
     "pages/home/home",
-    "pages/kind/kind",
-   
     "pages/newAddress/newAddress",
     "pages/submitOrder/submitOrder",
     "pages/order/order",
@@ -11,7 +14,7 @@
     "pages/search/search",
     "pages/orderDetail/orderDetail",
     "pages/feedback/feedback"
-    
+   
   ],
   "window": {
     "backgroundTextStyle": "light",

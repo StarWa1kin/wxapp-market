@@ -79,7 +79,7 @@ Page({
   sendCode() {
     /* 验证手机号是否为空*/
     if (this.data.phone) {
-      console.log(this.data.phone)
+      // console.log(this.data.phone)
     } else {
       wx.showToast({
         image: '../../assets/page/err.png',
@@ -117,7 +117,7 @@ Page({
     }, 1000)
 
     wx.request({
-      url: 'http://jz.tools001.net/v1/auth/sms',
+      url: http.interface.apiHost+'/auth/sms',
       method: 'POST',
       data: {
         mobile: this.data.phone
@@ -133,7 +133,7 @@ Page({
         } else {
           wx.showToast({
             title: '仅限会员登陆',
-            image: '../../assets/page/err,png'
+            image: '../../assets/page/err.png'
           })
         }
       }
@@ -149,7 +149,7 @@ Page({
   login() {
     if (this.data.phone && this.data.verificationC) {
       wx.request({
-        url: 'http://jz.tools001.net/v1/auth/sms/login',
+        url: http.interface.apiHost+'/auth/sms/login',
         method: 'POST',
         data: {
           mobile: this.data.phone,
@@ -168,15 +168,17 @@ Page({
           } else if (res.data.code == 1) {
             wx.showToast({
               title: res.data.message,
-              image: '../../assets/page/err,png'
+              image: '../../assets/page/err.png'
             })
           } else {
+            debugger
             wx.showToast({
-              title: '未知错误',
-              image: '../../assets/page/err,png'
+              title: res.data.message,
+              icon:"none"
+              // image: '../../assets/page/err.png'
             })
           }
-        }
+        },
       })
 
     } else {
@@ -261,7 +263,7 @@ Page({
               } else {
                 wx.showToast({
                   title: '仅限会员登陆',
-                  image: '../../assets/page/err,png'
+                  image: '../../assets/page/err.png'
                 })
               }
 

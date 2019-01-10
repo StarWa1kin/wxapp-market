@@ -131,8 +131,8 @@ Page({
     http.request({
       apiName: '/carts',
       method: 'GET',
-      isShowProgress: true,
     }).then((res) => {
+      // debugger
       if(res.length==0){
         console.log("购物车没有商品")
         var copyList = this.data.goodsList
@@ -166,7 +166,15 @@ Page({
   },
   //商品+1
   add(e){
-    let productId=e.currentTarget.id; 
+    let productId=e.currentTarget.id;//商品id
+    let reshowIndex = e.currentTarget.dataset.index;//所添加的index索引
+    let copydata=this.data.goodsList;//复制goodList
+    copydata[reshowIndex].reshowNum+=1;
+    this.setData({
+      goodsList:copydata
+    })
+    // debugger
+
     http.request({
       apiName: '/carts',
       method: 'POST',
@@ -174,24 +182,30 @@ Page({
         "product_id": productId,
         "quantity": 1,
       },
-      isShowProgress: false,
     }).then((res) => {
-      this.loadList()
+      // this.loadList()
     })
   },
   //商品-1
   subtract(e) {
-    let id = e.currentTarget.dataset.id; 
-    let nowQuantity = e.currentTarget.dataset.quantity - 1;
+    let productId = e.currentTarget.id;
+    let reshowIndex = e.currentTarget.dataset.index;
+    let copydata = this.data.goodsList
+    copydata[reshowIndex].reshowNum -= 1
+    this.setData({
+      goodsList: copydata
+    })
+    // debugger
+    let id = e.currentTarget.dataset.id; //购物车id
+    // let nowQuantity = e.currentTarget.dataset.quantity - 1;
     http.request({
       apiName: '/carts/' + id,
       method: 'PUT',
       data: {
-        "quantity": nowQuantity,
+        "quantity": copydata[reshowIndex].reshowNum,
       },
-      isShowProgress: true,
     }).then((res) => {
-      this.loadList()
+      // this.loadList()
     })
   }
 })
