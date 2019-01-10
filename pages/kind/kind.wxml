@@ -9,16 +9,10 @@
     <block wx:for="{{menuList}}" wx:key="{{index}}">
       <view class='kindList {{item.id==menuList[idIndex].id ? "active":""}}' bindtap='chooseMenu' data-index="{{index}}" data-id="b_{{index}}">{{item.name}}</view>
     </block>
-    <!-- <view class='kindList active'>冷鲜肉</view>
-    <view class='kindList'>腌腊肉</view>
-    <view class='kindList'>酱卤肉</view>
-    <view class='kindList'>优质肉</view>
-    <view class='kindList'>精品肉</view>
-    <view class='kindList'>猪副产品</view> -->
   </scroll-view>
   <!-- 右边显示栏 -->
   <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' style="height:{{winHeight - 204}}rpx" bindscroll="scroll" scroll-into-view="{{toView}}">
-    <view class='infoBox' wx:for="{{productList}}" wx:key="{{index}}">
+    <view class='infoBox' wx:for="{{productList}}" wx:key="{{index}}" style="height:{{index==detail.length-1?s_height+50+'rpx':''}}">
       <view class='nowTitle' id="b_{{index}}">{{menuList[index].name}}</view>
       <view class='productInfo' wx:for="{{item}}" wx:key="{{index}}" wx:for-item="good">
         <view class='imgBox'>

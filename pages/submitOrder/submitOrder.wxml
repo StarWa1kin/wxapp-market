@@ -45,7 +45,7 @@
       <view class='modal-subtract' bindtap="subtract" data-id='{{item.id}}' data-quantity='{{item.quantity}}'>
         <image src='../../assets/page/-.png'></image>
       </view>
-      <view class='quantity'>{{item.quantity}}</view>
+      <view class='quantity'><input type='number' maxlength='2' value='{{item.quantity}}' data-id='{{item.id}}' bindblur='changeNum'/></view>
       <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
         <image src='../../assets/page/+.png'></image>
       </view>

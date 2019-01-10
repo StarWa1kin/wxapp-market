@@ -6,8 +6,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    toView: 0, //
-    height_arr: [], //
+    toView: 0, //要切换的高度
+    height_arr: [], //高度临界值
     winHeight: '', //可用窗口高度
     clickIcon: false, //控制模态框的弹出
     menuList: [], //菜单列表
@@ -286,15 +286,18 @@ Page({
     // })
   },
   getHeightArr(self) {
-    let height = 0,
+    let height = 0,//初始高度0
       height_arr = [],
       details = self.data.productList,//复制productlist
-      winHeight = self.data.winHeight;
+      winHeight = self.data.winHeight-204;
     for (let i = 0; i < details.length; i++) {
       var last_height = 60 + details[i].length * 90;
       if (i == details.length - 1) {
-        last_height = last_height > winHeight ? last_height : winHeight + 50;
+        
+        console.log(last_height,winHeight)
         // debugger
+        last_height = (last_height > winHeight ? last_height : winHeight+50 )
+        
       }
       height += last_height;
 
@@ -309,13 +312,23 @@ Page({
   //view-scroll滚动触发
   scroll(e) {
     let self = this;
-    self.scrollmove(self, e, e.detail.scrollTop)
+    let scrollTop = e.detail.scrollTop;
+    wx.getSystemInfo({
+      success: res => {
+        scrollTop = scrollTop* (750 / res.windowWidth)
+      }
+    })
+    self.scrollmove(self, scrollTop)
   },
-  scrollmove(self, e, scrollTop) {
+  scrollmove(self, scrollTop) {
+    /**
+     * @{scrollTop}:当前滚动条高度(原单位是:px-->换成rpx)
+    */
     // last_scrollTop=scrollTop;
+    console.log(self.data.height_arr)
     console.log(scrollTop)
     let scrollArr = self.data.height_arr;
-    if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight) {
+    if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight -204) {
       return;
     } else {
       for (var i = 0; i < scrollArr.length; i++) {

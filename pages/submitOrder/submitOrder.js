@@ -95,7 +95,7 @@ Page({
       }
     })
   },
-  //初始化加载购物车列表
+  //初始化加载购物车列表并回显购物车数量
   getShoppingList() {
     http.request({
       apiName: '/carts',
@@ -127,6 +127,7 @@ Page({
 
     })
   },
+  
   //清除某一商品
   deleteIt(e) {
     let id = e.currentTarget.dataset.id;
@@ -169,75 +170,22 @@ Page({
       this.getShoppingList()
     })
   },
-  //支付方式选择框
-  // radioChange: function(e) {
-  //   if (e.detail.value == "余额") {
-  //     this.setData({
-  //       radioChoose2: false,
-  //       radioChoose1: true
-  //     })
-  //   }
-  //   if (e.detail.value == "微信") {
-  //     this.setData({
-  //       radioChoose1: false,
-  //       radioChoose2: true,
-  //     })
-  //   }
-  // },
-  //支付
-  // pay() {
-  //   if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
-  //     wx.showToast({
-  //       title: '请先填写地址',
-  //       image: '../../assets/err.png'
-  //     })
-  //     return false
-  //   }
-  //   let payMethod;
-  //   if (this.data.radioChoose1) {
-  //     payMethod = '0'
-  //   } else {
-  //     payMethod = '1'
-  //   }
-  //   http.request({
-  //     apiName: '/orders',
-  //     method: 'POST',
-  //     data: {
-  //       pay_method: payMethod,
-  //       consignee: this.data.addressInfo.consignee,
-  //       consignee_mobile: this.data.addressInfo.consignee_mobile,
-  //       address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
-  //     },
-  //     isShowProgress: true,
-  //   }).then(res => {
-  //     http.request({
-  //       apiName: '/pay/wechat',
-  //       method: 'POST',
-  //       data: {
-  //         order_id: res.order_id
-  //       },
-  //       isShowProgress: true,
-  //     }).then(res => {
-  //       wx.requestPayment({
-  //       timeStamp: res.timeStamp,
-  //       nonceStr: res.nonceStr,
-  //       package: res.package,
-  //       signType: res.signType,
-  //       paySign: res.paySign,
-  //       success(res) {
-  //         debugger
-  //       },
-  //       fail(res) {
-  //         wx.showToast({
-  //           title: "支付失败",
-  //           icon:"none"
-  //         })
-  //       }
-  //     })
-  //     })
-  //   })
-  // }
-
+  //input输入修改数量
+  changeNum(e){
+    // console.log(e.currentTarget.dataset.id)
+    // console.log(e.detail.value)
+    http.request({
+      apiName: '/carts/' + e.currentTarget.dataset.id,
+      method: 'PUT',
+      data: {
+        "quantity": e.detail.value,
+      },
+      // isShowProgress: true,
+    }).then((res) => {
+      this.getShoppingList()
+    })
+  },
+  
   //提交订单只判断是否携带地址
   submitOrder() {
     if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
