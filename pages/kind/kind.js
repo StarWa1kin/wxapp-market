@@ -313,7 +313,7 @@ Page({
   },
   scrollmove(self, e, scrollTop) {
     // last_scrollTop=scrollTop;
-    console.log(scrollTop)
+    console.log(self.data.productList)
     let scrollArr = self.data.height_arr;
     if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight) {
       return;
