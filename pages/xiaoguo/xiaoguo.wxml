@@ -1,12 +1,12 @@
 <view class="nav_left">
-  <view wx:for="{{category}}" wx:for-item="item">
-    <view class="nac_left_li {{index===navActive?'active':''}}" data-index="{{index}}" data-id="b_{{index}}" bindtap="tap">{{item.categoryName}}</view>
+  <view wx:for="{{category}}" wx:for-item="item"  wx:key="{{index}}">
+    <view class="nac_left_li {{index===navActive?'active':''}}" data-index="{{index}}" data-id="b_{{index}}" bindtap="tap">{{item.name}}</view>
   </view>
 </view>
 <scroll-view class="nav_right" scroll-y="true" scroll-into-view="{{toView}}" style="height:{{s_height}}px;margin-left:120px" bindscroll="scroll" scroll-with-animation="true">
-  <view class="nav_right_box" wx:for="{{detail}}" style="height:{{index==detail.length-1?s_height+50+'px':''}}" wx:for-item="item">
-    <view class="nav_right_tit" id="b_{{index}}">{{category[index].categoryName}}</view>
-    <view class="nav_goods_box" wx:for="{{item}}" wx:for-item="good">
+  <view class="nav_right_box" wx:for="{{detail}}" style="height:{{index==detail.length-1?s_height+50+'px':''}}" wx:for-item="item"  wx:key="{{index}}">
+    <view class="nav_right_tit" id="b_{{index}}">{{category[index].name}}</view>
+    <view class="nav_goods_box" wx:for="{{item}}" wx:for-item="good" wx:key="{{index}}">
       <image class="nav_goods_l" src="../../images/click/click_1.png"></image>
       <view class="nav_goods_r">
         <view class="nav_goods_name">{{good.goodsName}}</view>

@@ -38,7 +38,7 @@ Page({
    */
   onShow: function() {
     this.getBanner();
-    this.loadList();
+    this.justLoadCar();
   },
 
   /**
@@ -124,6 +124,7 @@ Page({
       this.setData({
         goodsList: res
       })
+      this.loadList();
     })
   },
   //加载购物车渲染bubble
@@ -164,6 +165,18 @@ Page({
       })
     })
   },
+  //单纯加载购物车
+  justLoadCar() {
+    http.request({
+      apiName: '/carts',
+      method: 'GET',
+    }).then(res => {
+      //气泡
+      this.setData({
+        bubble: res.length
+      })
+    })
+  },
   //商品+1
   add(e){
     let productId=e.currentTarget.id;//商品id
@@ -183,6 +196,7 @@ Page({
         "quantity": 1,
       },
     }).then((res) => {
+      this.justLoadCar();
       // this.loadList()
     })
   },
@@ -195,8 +209,8 @@ Page({
     this.setData({
       goodsList: copydata
     })
-    // debugger
     let id = e.currentTarget.dataset.id; //购物车id
+    debugger
     // let nowQuantity = e.currentTarget.dataset.quantity - 1;
     http.request({
       apiName: '/carts/' + id,
@@ -207,5 +221,26 @@ Page({
     }).then((res) => {
       // this.loadList()
     })
-  }
+    
+  },
+  //input修改
+  // changeNum(e){
+  //   let reshowIndex = e.currentTarget.dataset.index;
+  //   let id = e.currentTarget.dataset.id; //购物车id
+  //   let quantity=e.detail.value;
+  //   let copydata = this.data.goodsList
+  //   copydata[reshowIndex].reshowNum = quantity
+  //   this.setData({
+  //     goodsList: copydata
+  //   })
+  //   debugger
+  //   http.request({
+  //     apiName: '/carts/' + id,
+  //     method: 'PUT',
+  //     data: {
+  //       "quantity": quantity
+  //     },
+  //   }).then((res) => {
+  //   })
+  // }
 })

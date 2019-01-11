@@ -45,6 +45,12 @@ page{
 
 .goodsList{
   margin-top:20rpx; 
+  
+}
+.quantity input{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
 }
 /* 购物车列表 */
 /* .goodsDetail{

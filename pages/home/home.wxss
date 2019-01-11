@@ -121,6 +121,11 @@ swiper image{
   justify-content: space-around;
 
 }
+.operate input{
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center
+}
 .add{
   width: 60rpx;
   height: 60rpx !important;

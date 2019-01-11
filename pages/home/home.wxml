@@ -39,7 +39,7 @@
           </view>
           <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
           <!-- <view class='quantity'>{{item.reshowNum}}</view> -->
-          <view class='quantity'><input type='number' value='{{item.reshowNum}}'></input></view>
+          <view class='quantity'><input type='number' value='{{item.reshowNum}}' maxlength='2' bindblur="changeNum" data-index='{{index}}' data-id="{{item.shoppingCarId}}"></input></view>
           <view class='add' id='{{item.id}}' data-index='{{index}}' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>
