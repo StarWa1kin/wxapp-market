@@ -33,7 +33,7 @@
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyNow' wx:if="{{item.status_name=='待付款'}}">立刻付款</view>
+            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyNow' wx:if="{{item.status_name=='待付款'}}">立即支付</view>
             <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain' wx:else>再来一单</view>
             <view class='cancelOrder'>取消订单</view>
           </view>

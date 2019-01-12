@@ -78,18 +78,10 @@ Page({
   },
   //联系客服
   enterContact(){
-    let tel ='1776195425';
+    // let tel ='1776195425';
+    let tel=http.interface.tel;
     wx.makePhoneCall({
       phoneNumber:tel,
-      success(){
-
-      },
-      fail(){
-        wx.showToast({
-          title: '请重试',
-          image:'../../assets/page/err.png'
-        })
-      },
     })
   },
   //意见反馈

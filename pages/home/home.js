@@ -133,7 +133,6 @@ Page({
       apiName: '/carts',
       method: 'GET',
     }).then((res) => {
-      // debugger
       if(res.length==0){
         console.log("购物车没有商品")
         var copyList = this.data.goodsList
@@ -186,7 +185,6 @@ Page({
     this.setData({
       goodsList:copydata
     })
-    // debugger
 
     http.request({
       apiName: '/carts',
@@ -196,7 +194,7 @@ Page({
         "quantity": 1,
       },
     }).then((res) => {
-      this.justLoadCar();
+      // this.justLoadCar();
       // this.loadList()
     })
   },
@@ -210,7 +208,7 @@ Page({
       goodsList: copydata
     })
     let id = e.currentTarget.dataset.id; //购物车id
-    debugger
+    // debugger
     // let nowQuantity = e.currentTarget.dataset.quantity - 1;
     http.request({
       apiName: '/carts/' + id,

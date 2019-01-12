@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    toView: 0, //要切换的高度
+    toView: '', //要切换的高度
     height_arr: [], //高度临界值
     winHeight: '', //可用窗口高度
     clickIcon: false, //控制模态框的弹出
@@ -32,7 +32,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    
   },
 
   /**
@@ -40,7 +40,6 @@ Page({
    */
   onShow: function() {
     this.loadList();
-
   },
 
   /**
@@ -125,7 +124,6 @@ Page({
     http.request({
       apiName: '/carts',
       method: 'GET',
-      isShowProgress: true,
     }).then((res) => {
       //渲染数据
       this.setData({
@@ -178,7 +176,7 @@ Page({
         "product_id": productId,
         "quantity": 1,
       },
-      isShowProgress: true,
+      // isShowProgress: true,
     }).then((res) => {
       this.loadList()
     })
@@ -201,7 +199,8 @@ Page({
   },
   //清除某一商品
   deleteIt(e) {
-    let id = e.currentTarget.dataset.id;
+    debugger
+    let id = e.currentTarget.dataset.cartsid;
     http.request({
       apiName: '/carts/' + id,
       method: 'DELETE',
@@ -209,6 +208,21 @@ Page({
     }).then((res) => {
       this.loadList()
     })
+  },
+  inputChange(e){
+    let currentNum=e.detail.value;
+    let cartsId = e.currentTarget.dataset.cartsid;
+    http.request({
+      apiName: '/carts/' + cartsId,
+      method: 'PUT',
+      data: {
+        "quantity": currentNum,
+      },
+      isShowProgress: true,
+    }).then((res) => {
+      this.loadList()
+    })
+
   },
   //清空购物车
   clearList() {
@@ -225,13 +239,15 @@ Page({
   setArea() {
     wx.getSystemInfo({
       success: res => {
+        let realHeight = (res.windowHeight * (750 / res.windowWidth))-204;
         this.setData({
           //换算成rpx
-          winHeight: res.windowHeight * (750 / res.windowWidth)
+          winHeight: realHeight
         })
         
       }
     })
+    
   },
   //获取一级菜单列表
   getMenuList() {
@@ -243,16 +259,18 @@ Page({
       this.setData({
         menuList: res,
       })
-      this.getMenuGoods()
+      for(let i of res){
+        this.getMenuGoods(i.id)
+      }
     })
   },
   //获取对应一级菜单下的商品列表
-  getMenuGoods() {
+  getMenuGoods(categoryId) {
     http.request({
       apiName: '/products',
       method: 'GET',
       data: {
-        category_id: this.data.menuList[this.data.idIndex].id
+        category_id: categoryId
       },
     }).then((res) => {
       let dyadicArr = []; //定义一个二维数组用于存放商品列表的json数组
@@ -271,7 +289,7 @@ Page({
       idIndex: e.currentTarget.dataset.index,
       toView: e.currentTarget.dataset.id
     })
-    this.getMenuGoods()
+    // debugger
     // http.request({
     //   apiName: '/products',
     //   method: 'GET',
@@ -289,45 +307,42 @@ Page({
     let height = 0,//初始高度0
       height_arr = [],
       details = self.data.productList,//复制productlist
-      winHeight = self.data.winHeight-204;
+      winHeight = self.data.winHeight;
     for (let i = 0; i < details.length; i++) {
-      var last_height = 60 + details[i].length * 90;
+      var last_height = 60 + details[i].length * 250;
       if (i == details.length - 1) {
-        
-        console.log(last_height,winHeight)
-        // debugger
         last_height = (last_height > winHeight ? last_height : winHeight+50 )
-        
       }
       height += last_height;
-
       height_arr.push(height);
     }
     self.setData({
       height_arr: height_arr
-    });
-    
+    })
+    // console.log(self.data.height_arr)
 
   },
   //view-scroll滚动触发
   scroll(e) {
     let self = this;
     let scrollTop = e.detail.scrollTop;
+    // console.log(scrollTop)
     wx.getSystemInfo({
       success: res => {
         scrollTop = scrollTop* (750 / res.windowWidth)
+        self.scrollmove(self, scrollTop)
       }
     })
-    self.scrollmove(self, scrollTop)
+    
   },
   scrollmove(self, scrollTop) {
     /**
      * @{scrollTop}:当前滚动条高度(原单位是:px-->换成rpx)
     */
     // last_scrollTop=scrollTop;
-
+    
     let scrollArr = self.data.height_arr;
-    if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight -204) {
+    if (scrollTop > scrollArr[scrollArr.length - 1] - self.data.winHeight) {
       return;
     } else {
       for (var i = 0; i < scrollArr.length; i++) {
@@ -340,6 +355,7 @@ Page({
           }
         } else if (scrollTop >= scrollArr[i - 1] && scrollTop <= scrollArr[i]) {
           if (i != self.data.lastIndex) {
+            console.log(i)
             self.setData({
               idIndex: i,
               lastIndex: i
@@ -348,6 +364,7 @@ Page({
         }
       }
     }
+    
   }
 
 })

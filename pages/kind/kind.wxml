@@ -4,26 +4,38 @@
 
 <view class='section'>
   <!-- 左边菜单栏 -->
-  <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight - 204}}rpx">
+  <scroll-view class='leftNav' scroll-y="true" style="height:{{winHeight}}rpx">
     <view class='kind'>商品分类</view>
     <block wx:for="{{menuList}}" wx:key="{{index}}">
-      <view class='kindList {{item.id==menuList[idIndex].id ? "active":""}}' bindtap='chooseMenu' data-index="{{index}}" data-id="{{'b'+index}}">{{item.name}}</view>
+      <view class='kindList {{index==idIndex ? "active":""}}' bindtap='chooseMenu' data-index="{{index}}" data-id="{{'b'+index}}">{{item.name}}</view>
     </block>
   </scroll-view>
   <!-- 右边显示栏 -->
-  <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' style="height:{{winHeight - 204}}rpx" bindscroll="scroll" scroll-into-view="{{toView}}">
-
+  <scroll-view class='right' scroll-y="ture" scroll-with-animation='true' style="height:{{winHeight}}rpx" bindscroll="scroll" scroll-into-view="{{toView}}">
     <view class='infoBox' wx:for="{{productList}}" wx:key="{{index}}" style="height:{{index==detail.length-1?s_height+50+'rpx':''}}">
-      <view class='nowTitle' id="b_{{index}}">{{menuList[index].name}}</view>
+      <view class='nowTitle' id="{{'b'+index}}">{{menuList[index].name}}</view>
 
       <view class='productInfo' wx:for="{{item}}" wx:key="{{index}}" wx:for-item="good">
         <view class='imgBox'>
           <image src="{{good.img}}"></image>
         </view>
         <view class='itemBox'>
-
+          <view class='itemText'>
+            <text>{{good.name}}{{good.weight}}/{{good.unit}}</text>
+          </view>
+          <view class='star'>
+            <block wx:for="{{good.star}}" wx:key="{{index}}">
+              <image src='../../assets/page/star.png'></image>
+            </block>
+          </view>
+          <view class='itemText'>{{good.describe}}</view>
         </view>
-        <view class='operate'></view>
+        <view class='operate'>
+          <view class='price'>￥{{good.price}}</view>
+          <view class='add' id='{{good.id}}' bindtap='add'>
+            <image src='../../assets/page/+.png'></image>
+          </view>
+        </view>
       </view>
     </view>
     <!-- 商品展示栏 -->
@@ -73,7 +85,7 @@
 
 
 <!-- 模态框 -->
-<view class='modal-shopingCar' wx:if="{{clickIcon}}" style='height:{{winHeight*0.5}}px'>
+<view class='modal-shopingCar' wx:if="{{clickIcon}}" style='height:{{(winHeight+204)*0.5}}rpx'>
   <view class='clearAll' bindtap='clearList'>清空购物车</view>
   <scroll-view scroll-y="ture" style="height:400rpx">
     <!-- 商品列表 -->
@@ -84,14 +96,14 @@
       <view class='contentBox'>
         <view class='first-row'>
           <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-          <view class='delete' bindtap='deleteIt' data-cartsId='{{item.id}}'>X</view>
+          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}'>X</view>
         </view>
         <view class='modal-detail'>
-          <view class="price">￥{{item.product.price}}</view>
+          <view class="modal-price">￥{{item.product.price}}</view>
           <view class='modal-subtract' bindtap="subtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
             <image src='../../assets/page/-.png'></image>
           </view>
-          <view class='quantity'>{{item.quantity}}</view>
+          <view class='modal-quantity'><input type='number' maxlength='2' value='{{item.quantity}}' bindblur='inputChange' data-cartsId='{{item.id}}'/></view>
           <view class='modal-add' bindtap='add' data-productId='{{item.product_id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
@@ -102,4 +114,4 @@
 </view>
 
 <!-- 遮罩层* -->
-<view bindtap='openModal' wx:if="{{clickIcon}}" class='mask' style='height:{{winHeight*0.5}}px' catchtouchmove="myCatchTouch"></view>
+<view bindtap='openModal' wx:if="{{clickIcon}}" class='mask' style='height:{{winHeight+204}}rpx' catchtouchmove="myCatchTouch"></view>
