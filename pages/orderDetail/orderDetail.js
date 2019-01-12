@@ -106,7 +106,6 @@ Page({
       apiName: '/pay/methods',
       method: 'GET',
     }).then(res => {
-      // debugger
       this.setData({
         payMethosList: res
       })
@@ -114,7 +113,6 @@ Page({
   },
   //支付方式选择框
   radioChange: function (e) {
-    debugger
     //取得methodID
     console.log(e.detail.value)
     this.setData({
@@ -157,14 +155,12 @@ Page({
   //立即支付按钮
   pay() {
     if (this.data.methodID == "") {
-      // debugger
       wx.showToast({
         title: '请选择支付方式',
         image: '../../assets/page/err.png'
       })
       return
     }
-    debugger
     http.request({
       apiName: '/pay',
       method: 'POST',

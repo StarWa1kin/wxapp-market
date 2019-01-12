@@ -93,7 +93,6 @@ Page({
       } 
       else {
         console.log("添加")
-        // debugger
         http.request({
           apiName: '/carts',
           method: 'POST',

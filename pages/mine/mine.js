@@ -103,7 +103,6 @@ Page({
       method:'GET',
       isShowProgress: true,
     }).then((res)=>{
-      // console.log(res)
       this.setData({
         userInfo:res
       })

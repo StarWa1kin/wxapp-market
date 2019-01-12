@@ -69,7 +69,6 @@ Page({
   //取消
   cancel(){
     wx.navigateBack({
-      // delta: 1,
     })
   },
   //键盘事件获取input text

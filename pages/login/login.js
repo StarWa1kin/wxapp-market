@@ -171,11 +171,9 @@ Page({
               image: '../../assets/page/err.png'
             })
           } else {
-            debugger
             wx.showToast({
               title: res.data.message,
               icon:"none"
-              // image: '../../assets/page/err.png'
             })
           }
         },
