@@ -47,6 +47,9 @@ page{
   margin-top:20rpx; 
   
 }
+.quantity{
+  border-bottom: 1px solid #cacaca;
+}
 .quantity input{
   width: 60rpx;
   height: 60rpx;

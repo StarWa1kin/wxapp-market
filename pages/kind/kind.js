@@ -199,12 +199,11 @@ Page({
   },
   //清除某一商品
   deleteIt(e) {
-    debugger
     let id = e.currentTarget.dataset.cartsid;
+    debugger
     http.request({
       apiName: '/carts/' + id,
       method: 'DELETE',
-      isShowProgress: true,
     }).then((res) => {
       this.loadList()
     })
