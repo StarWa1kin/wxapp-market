@@ -1,5 +1,5 @@
 const http = require('../../utils/request.js')
-
+let app = getApp();
 Page({
 
   /**
@@ -24,6 +24,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    console.log(app.globalData.bubble)
     this.setArea();
     this.getMenuList();
   },
@@ -95,8 +96,8 @@ Page({
       })
     } else {
       wx.showToast({
-        title: '购物车无商品',
-        image: '../../assets/page/err.png'
+        title: '购物车空空如也',
+        icon: 'none'
       })
     }
   },
@@ -106,7 +107,6 @@ Page({
       this.setData({
         clickIcon: true,
       })
-      // this.loadList()
     } else {
       this.setData({
         clickIcon: false,
@@ -130,6 +130,11 @@ Page({
         shoppingList: res
       })
       //气泡
+      /*解决切换过快页面回显错误*/
+      if (res.length != app.globalData.bubble && app.globalData.hasOwnProperty("bubble")){
+        this.loadList()
+        delete app.globalData.bubble
+      }
       this.setData({
         bubble: res.length
       })
@@ -199,7 +204,6 @@ Page({
   //清除某一商品
   deleteIt(e) {
     let id = e.currentTarget.dataset.cartsid;
-    debugger
     http.request({
       apiName: '/carts/' + id,
       method: 'DELETE',
@@ -288,19 +292,7 @@ Page({
       idIndex: e.currentTarget.dataset.index,
       toView: e.currentTarget.dataset.id
     })
-    // debugger
-    // http.request({
-    //   apiName: '/products',
-    //   method: 'GET',
-    //   data: {
-    //     category_id: this.data.menuList[this.data.idIndex].id
-    //   },
-    //   isShowProgress: true,
-    // }).then((res) => {
-    //   this.setData({
-    //     productList: res
-    //   })
-    // })
+    
   },
   getHeightArr(self) {
     let height = 0,//初始高度0
@@ -318,14 +310,12 @@ Page({
     self.setData({
       height_arr: height_arr
     })
-    // console.log(self.data.height_arr)
 
   },
   //view-scroll滚动触发
   scroll(e) {
     let self = this;
     let scrollTop = e.detail.scrollTop;
-    // console.log(scrollTop)
     wx.getSystemInfo({
       success: res => {
         scrollTop = scrollTop* (750 / res.windowWidth)

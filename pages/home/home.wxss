@@ -146,3 +146,77 @@ swiper image{
   width: 100%;
   height: 100%
 }
+
+
+/* 底部固定栏 */
+
+.fixedBar {
+  width: 100%;
+  height: 100rpx;
+  background: white;
+  position: fixed;
+  bottom: -100rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid rgb(231, 231, 231);
+  box-sizing: border-box;
+  z-index: 101;
+}
+
+.totalM {
+  display: flex;
+  align-items: center;
+}
+
+.money {
+  margin-left: 30rpx;
+  color: #ee0f1f;
+}
+
+.bigger {
+  font-size: 46rpx;
+}
+
+.icon {
+  margin-left: 50rpx;
+  font-size: 42rpx;
+  color: #d3b65c;
+  background: #d3b65c;
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 80rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.icon>image {
+  width: 80%;
+  height: 80%;
+}
+
+.bottomBubble {
+  width: 30rpx;
+  height: 30rpx;
+  border-radius: 30rpx;
+  line-height: 30rpx;
+  font-size: 20rpx;
+  text-align: center;
+  background: #ee0f1f;
+  color: #fff;
+  position: absolute;
+  top: -4rpx;
+  left: 62rpx;
+}
+
+.buyIt {
+  width: 220rpx;
+  background: #ee0f1f;
+  height: 100rpx;
+  text-align: center;
+  line-height: 100rpx;
+  color: white;
+}
+/* 底部固定栏 */

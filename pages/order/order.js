@@ -23,7 +23,7 @@ Page({
     wx.getSystemInfo({
       success: res => {
         this.setData({
-          winHeight: res.windowHeight
+          winHeight: (res.windowHeight * (750 / res.windowWidth)) 
         });
       }
     })

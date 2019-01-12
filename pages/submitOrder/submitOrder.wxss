@@ -42,6 +42,12 @@ page{
   width: 100%;
   height: 100%;
 }
+.clearAll{
+  width: 100%;
+  text-align: right;
+  font-size: 32rpx;
+  color: #333333;
+}
 
 .goodsList{
   margin-top:20rpx; 
@@ -109,6 +115,10 @@ page{
 }
 .delete{
   margin-right:20rpx; 
+}
+.delete>image{
+  width: 40rpx;
+  height: 40rpx
 }
 .img{
   width: 190rpx;

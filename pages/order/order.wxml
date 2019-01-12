@@ -7,7 +7,7 @@
 </view>
 
 <view style='height:108rpx'></view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 31}}px" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 108}}rpx" bindchange="bindChange">
   <!-- currentTab1全部订单 -->
   <swiper-item>
     <scroll-view scroll-y="true" style="height:{{winHeight - 31}}px">

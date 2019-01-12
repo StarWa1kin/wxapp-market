@@ -318,6 +318,12 @@ white-space:nowrap;
 }
 .delete{
   margin-right:20rpx; 
+  /* background: gold; */
+  vertical-align: middle
+}
+.delete>image{
+  width: 40rpx;
+  height: 40rpx;
 }
 .modal-price{
   color: #ee0f1f;

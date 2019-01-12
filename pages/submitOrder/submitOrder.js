@@ -1,4 +1,5 @@
 const http = require('../../utils/request.js')
+let app = getApp()
 Page({
 
   /**
@@ -103,30 +104,55 @@ Page({
       // isShowProgress: true,
     }).then((res) => {
       //统计合计金额
-      var sum = 0;
-      if (res.length == 0) {
-        this.setData({
-          total: 0
-        })
-        wx.navigateBack({})
+      console.log(getApp().globalData.bubble)
+      if (res.length != app.globalData.bubble && app.globalData.hasOwnProperty("bubble")) {
+        setTimeout(() => {
+          this.getShoppingList()
+        }, 1000)
+
+        delete app.globalData.bubble
       } else {
-        for (let index in res) {
-          var price = res[index].product.price;
-          var quantity = res[index].quantity;
-          sum += (price * quantity)
-          res[index]["littleSum"] = (price * quantity).toFixed(2)
+        this.setData({
+          bubble: res.length
+        })
+        var sum = 0;
+        if (res.length == 0) {
+          this.setData({
+            total: 0
+          })
+          wx.showToast({
+            title: '购物车空空如也',
+            icon: 'none',
+            success() {
+              setTimeout(() => {
+                wx.navigateBack({
+
+                })
+              }, 1000)
+            }
+          })
+
+        } else {
+          for (let index in res) {
+            var price = res[index].product.price;
+            var quantity = res[index].quantity;
+            sum += (price * quantity)
+            res[index]["littleSum"] = (price * quantity).toFixed(2)
+          }
+          this.setData({
+            total: sum.toFixed(2)
+          })
         }
         this.setData({
-          total: sum.toFixed(2)
+          shoppingList: res
         })
       }
-      this.setData({
-        shoppingList: res
-      })
+
+
 
     })
   },
-  
+
   //清除某一商品
   deleteIt(e) {
     let id = e.currentTarget.dataset.id;
@@ -170,7 +196,7 @@ Page({
     })
   },
   //input输入修改数量
-  changeNum(e){
+  changeNum(e) {
     // console.log(e.currentTarget.dataset.id)
     // console.log(e.detail.value)
     http.request({
@@ -184,7 +210,7 @@ Page({
       this.getShoppingList()
     })
   },
-  
+
   //提交订单只判断是否携带地址
   submitOrder() {
     if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
@@ -203,8 +229,8 @@ Page({
         address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
       },
       isShowProgress: true,
-    }).then(res=>{
-      if(JSON.stringify(res)!="{}"){
+    }).then(res => {
+      if (JSON.stringify(res) != "{}") {
         wx.showToast({
           title: '提交成功!跳转支付页面',
         })
@@ -213,6 +239,6 @@ Page({
         })
       }
     })
-    
+
   }
 })

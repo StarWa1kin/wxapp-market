@@ -96,7 +96,9 @@
       <view class='contentBox'>
         <view class='first-row'>
           <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}'>X</view>
+          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}'>
+            <image src='../../assets/alibaba/del.png'></image>
+          </view>
         </view>
         <view class='modal-detail'>
           <view class="modal-price">￥{{item.product.price}}</view>

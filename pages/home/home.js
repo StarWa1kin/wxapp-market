@@ -32,7 +32,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    wx.getSystemInfo({
+      success: res => {
+        let realHeight = (res.windowHeight * (750 / res.windowWidth)-532);
+        this.setData({
+          //换算成rpx
+          winHeight: realHeight
+        })
 
+      }
+    })
   },
 
   /**
@@ -48,10 +57,16 @@ Page({
   onHide: function() {
     let carList = this.data.localCar;
     // console.log(carList)
-    console.log(app.globalData.bubble=carList.length)
     if (!carList.length) {
       return
     }
+    let actNum = 0;
+    for (let index in carList) {
+      if (carList[index].quantity == 0) {
+        actNum++
+      }
+    }
+    app.globalData.bubble = carList.length - actNum;
     for (let index in carList) {
       if (carList[index].hasOwnProperty("id") && carList[index].quantity == 0) {
         http.request({
@@ -95,20 +110,6 @@ Page({
       }
     }
 
-
-    // if(this.localCar.length){
-    //   this.data.loadCar.forEach((item, index) => {
-    //     if (item.hasOwnProperty("id")) {
-    //       // console.log(item)
-    //       debugger
-
-    //     } else {
-    //       // console.log(item)
-    //       debugger
-
-    //     }
-    //   })
-    // }
   },
 
   /**
@@ -262,34 +263,11 @@ Page({
         this.setData({
           goodsList: goodsList
         })
-        console.log(this.data.localCar)
       }
     })
   },
   //商品+1
   add(e) {
-    // let productId = e.currentTarget.id; //商品id
-    // let reshowIndex = e.currentTarget.dataset.index; //所添加的index索引
-    // let copydata = this.data.goodsList; //复制goodList
-    // copydata[reshowIndex].reshowNum += 1;
-    // this.setData({
-    //   goodsList: copydata
-    // })
-
-    // http.request({
-    //   apiName: '/carts',
-    //   method: 'POST',
-    //   data: {
-    //     "product_id": productId,
-    //     "quantity": 1,
-    //   },
-    // }).then((res) => {
-    //   // this.loadList()
-    // })
-    // this.setData({
-    //   changeSwitch:true
-    // })
-    /**3种情况 1: +的是原先在数据库里的购物车(有购物车id的) 2: +的是本地购物车里的(有id的) 3：+的是本地购物车(无id的)*/
     let goosId = e.currentTarget.id;
     let copy = this.data.localCar;
     if (!copy.length) {
@@ -324,7 +302,9 @@ Page({
       bubble:copy.length
     })
     this.reshow()
-
+    if(copy.length>0){
+      this.showBottom()
+    }
   },
   //商品-1
   subtract(e) {
@@ -372,5 +352,12 @@ Page({
     this.setData({
       goodsList: goodsList
     })
+  },
+  showBottom(){
+    this.setData({
+      show:true,
+      move:'0'
+    })
+
   }
 })
