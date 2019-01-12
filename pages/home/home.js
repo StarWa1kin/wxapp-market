@@ -1,4 +1,5 @@
 const http = require('../../utils/request.js')
+let app=getApp();
 Page({
 
   /**
@@ -46,7 +47,8 @@ Page({
    */
   onHide: function() {
     let carList = this.data.localCar;
-    console.log(carList)
+    // console.log(carList)
+    console.log(app.globalData.bubble=carList.length)
     if (!carList.length) {
       return
     }
@@ -318,7 +320,8 @@ Page({
       }
     }
     this.setData({
-      loadCar: copy
+      loadCar: copy,
+      bubble:copy.length
     })
     this.reshow()
 
@@ -332,29 +335,12 @@ Page({
         copy[index].quantity -= 1;
       }
     }
+    
     this.setData({
-      localCar: copy
+      localCar: copy,
+      bubble: copy.length
     })
     this.reshow()
-    // let productId = e.currentTarget.id;
-    // let reshowIndex = e.currentTarget.dataset.index;
-    // let copydata = this.data.goodsList
-    // copydata[reshowIndex].reshowNum -= 1
-    // this.setData({
-    //   goodsList: copydata
-    // })
-    // let id = e.currentTarget.dataset.id; //购物车id
-    // // let nowQuantity = e.currentTarget.dataset.quantity - 1;
-    // http.request({
-    //   apiName: '/carts/' + id,
-    //   method: 'PUT',
-    //   data: {
-    //     "quantity": copydata[reshowIndex].reshowNum,
-    //   },
-    // }).then((res) => {
-    //   // this.loadList()
-    // })
-
   },
   //input修改
   changeNum(e) {
@@ -367,7 +353,8 @@ Page({
       }
     }
     this.setData({
-      localCar: copy
+      localCar: copy,
+      bubble: copy.length
     })
     this.reshow()
 

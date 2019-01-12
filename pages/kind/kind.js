@@ -184,7 +184,7 @@ Page({
   },
   //商品-1
   subtract(e) {
-    let id = e.currentTarget.dataset.id;
+    let id = e.currentTarget.dataset.cartsid;
     let nowQuantity = e.currentTarget.dataset.quantity - 1
     http.request({
       apiName: '/carts/' + id,
@@ -192,7 +192,6 @@ Page({
       data: {
         "quantity": nowQuantity,
       },
-      isShowProgress: true,
     }).then((res) => {
       this.loadList()
     })
@@ -279,6 +278,7 @@ Page({
       this.setData({
         productList: newArr
       })
+      
       this.getHeightArr(this)
     })
   },

@@ -104,7 +104,7 @@
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='modal-quantity'><input type='number' maxlength='2' value='{{item.quantity}}' bindblur='inputChange' data-cartsId='{{item.id}}'/></view>
-          <view class='modal-add' bindtap='add' data-productId='{{item.product_id}}'>
+          <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>

@@ -100,9 +100,8 @@ Page({
     http.request({
       apiName: '/carts',
       method: 'GET',
-      isShowProgress: true,
+      // isShowProgress: true,
     }).then((res) => {
-      // console.log(res)
       //统计合计金额
       var sum = 0;
       if (res.length == 0) {
