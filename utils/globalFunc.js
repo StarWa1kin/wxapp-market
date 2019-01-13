@@ -12,7 +12,7 @@ const submitLocalCar=()=> {
     }
   }
   app.globalData.bubble = carList.length - actNum;
-  let httpRequest=0;
+  let httpRequest=0;//发了几次请i去
   for (let index in carList) {
     if (carList[index].hasOwnProperty("id") && carList[index].quantity == 0) {
       http.request({
@@ -26,7 +26,6 @@ const submitLocalCar=()=> {
         }
       })
     } else if (carList[index].hasOwnProperty("id") && carList[index].quantity > 0) {
-      console.log("修改quanj")
       http.request({
         apiName: '/carts/' + carList[index].id,
         method: 'PUT',
