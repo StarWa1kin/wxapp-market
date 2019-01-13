@@ -150,8 +150,9 @@ Page({
   //立即支付
   buyNow(e) {
     let orderId = e.currentTarget.dataset.orderid
+    let amount = e.currentTarget.dataset.amount
     wx.navigateTo({
-      url: '../orderDetail/orderDetail?param='+orderId,
+      url: '../orderDetail/orderDetail?param=' + orderId + '&amount=' + amount,
     })
   }
 

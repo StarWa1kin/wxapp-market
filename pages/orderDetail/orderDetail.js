@@ -10,6 +10,7 @@ Page({
     methodID: '', //支付方式id
     checked:'',//控制默认选择什么支付！余额够->余额付
     disabled:'',//控制radio的禁用
+    buyNow:false,//从buyNow页面进入的
   },
 
   /**
@@ -19,7 +20,9 @@ Page({
     if (options.hasOwnProperty("param")) {
       //从订单列表也跳转过来收到options参数
       this.setData({
-        orderId: options.param
+        orderId: options.param,
+        buyNow:true,
+        amount:options.amount
       })
     } else {
       //获取从提交传来的订单信息
@@ -28,7 +31,6 @@ Page({
         orderId: JSON.parse(options.order).id
       })
     }
-
     this.getUserInfo();
     this.getPayMethod();
     this.renderOrder()
@@ -128,7 +130,14 @@ Page({
      * disbaled 1->余额不足禁用余额支付方式
      */
     let balance = Number(this.data.userInfo.balance)
-    let amount = Number(this.data.orderInfo.amount)
+    let amount;
+    if(this.data.buyNow){
+      amount=Number(this.data.amount)
+    }else{
+      amount = Number(this.data.orderInfo.amount)
+    }
+    
+    
     if (balance >= amount) {
       this.setData({
         checked:"1",

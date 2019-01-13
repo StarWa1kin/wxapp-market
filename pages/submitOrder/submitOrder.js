@@ -18,8 +18,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // console.log("购物车页面")
-    this.getShoppingList();
+    if (app.globalData.ajaxOk) {
+      this.getShoppingList();
+    } else {
+      setTimeout(() => {
+        this.getShoppingList();
+      }, 1300)
+    }
   },
 
   /**
@@ -104,49 +109,43 @@ Page({
       // isShowProgress: true,
     }).then((res) => {
       //统计合计金额
-      console.log(getApp().globalData.bubble)
-      if (res.length != app.globalData.bubble && app.globalData.hasOwnProperty("bubble")) {
-        setTimeout(() => {
-          this.getShoppingList()
-        }, 1000)
+      console.log(getApp().globalData)
 
-        delete app.globalData.bubble
-      } else {
+      this.setData({
+        bubble: res.length
+      })
+      var sum = 0;
+      if (res.length == 0) {
         this.setData({
-          bubble: res.length
+          total: 0
         })
-        var sum = 0;
-        if (res.length == 0) {
-          this.setData({
-            total: 0
-          })
-          wx.showToast({
-            title: '购物车空空如也',
-            icon: 'none',
-            success() {
-              setTimeout(() => {
-                wx.navigateBack({
+        wx.showToast({
+          title: '购物车空空如也',
+          icon: 'none',
+          success() {
+            setTimeout(() => {
+              wx.navigateBack({
 
-                })
-              }, 1000)
-            }
-          })
-
-        } else {
-          for (let index in res) {
-            var price = res[index].product.price;
-            var quantity = res[index].quantity;
-            sum += (price * quantity)
-            res[index]["littleSum"] = (price * quantity).toFixed(2)
+              })
+            }, 1000)
           }
-          this.setData({
-            total: sum.toFixed(2)
-          })
+        })
+
+      } else {
+        for (let index in res) {
+          var price = res[index].product.price;
+          var quantity = res[index].quantity;
+          sum += (price * quantity)
+          res[index]["littleSum"] = (price * quantity).toFixed(2)
         }
         this.setData({
-          shoppingList: res
+          total: sum.toFixed(2)
         })
       }
+      this.setData({
+        shoppingList: res
+      })
+
 
 
 

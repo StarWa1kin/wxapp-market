@@ -1,7 +1,7 @@
-text{
-overflow:hidden; 
-text-overflow:ellipsis;
-white-space:nowrap; 
+text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .header {
@@ -80,132 +80,57 @@ white-space:nowrap;
   /* align-items: center; */
   flex-wrap: wrap;
   /* background: pink; */
-
 }
-.imgBox{
+
+.imgBox {
   width: 170rpx;
   height: 170rpx;
   background-color: silver;
   margin: 15rpx 15rpx;
-  
 }
-.imgBox image{
+
+.imgBox image {
   width: 100%;
   height: 100%;
 }
-.itemBox{
+
+.itemBox {
   width: 360rpx;
   height: 170rpx;
   margin: 15rpx 0;
   /* background: silver; */
   display: flex;
   flex-direction: column;
-  justify-content: space-around
+  justify-content: space-around;
 }
-.itemText{
+
+.itemText {
   font-size: 30rpx;
 }
+
 .star>image {
   width: 36rpx;
   height: 36rpx;
 }
-.operate{
+
+.operate {
   width: 100%;
   height: 50rpx;
   /* border-bottom: 1px solid rgb(231, 231, 231); */
   display: flex;
-  align-items: center
-  /* background: silver */
-}
-.price{
-  margin-left: 200rpx;
-  color: #ee0f1f;
-}
-.add{
-  width: 60rpx;
-  height: 60rpx;
-  /* background: gold; */
-  margin-left: 140rpx;
-  
-
-}
-.add>image{
-  width: 100%;
-  height: 100%
-}
-/* .productInfo {
-  width: 100%;
-  height: 240rpx;
-  display: flex; 
-  justify-content: start;
   align-items: center;
-  border-bottom: 1px solid rgb(231, 231, 231);
-}
-
-
-.img {
-  width: 170rpx;
-  height: 170rpx;
-  background-color: silver;
-  margin-left: 20rpx;
-}
-
-.img>image {
-  width: 100%;
-  height: 100%;
-}
-
-.content {
-  margin-left: 20rpx;
-  width: 340rpx;
-  height: 190rpx;
-}
-.content view {
-  margin-bottom: 12rpx;
-  height: 36rpx;
-}
-
-.star>image {
-  width: 36rpx;
-  height: 36rpx;
-}
-
-.name {
-  font-size: 36rpx;
-}
-
-.description {
-  font-size: 30rpx;
-  color: #888;
-}
-
-.detail {
-  display: flex;
-  justify-content: space-between;
-  font-size: 40rpx;
-  height: 60rpx !important;
+  /* background: silver */
 }
 
 .price {
+  margin-left: 200rpx;
   color: #ee0f1f;
 }
 
-.add {
-  width: 60rpx;
-  height: 100% !important;
-}
-
-.add>image {
-  width: 100%;
-  height: 100%;
-}
-.blankView{
-   width: 60rpx;
-  height: 60rpx 
-}
 .subtract {
   width: 60rpx;
-  height: 100% !important;
+  height: 60rpx;
+  margin-left: 20rpx;
 }
 
 .subtract>image {
@@ -213,11 +138,30 @@ white-space:nowrap;
   height: 100%;
 }
 
-.quantity {
+.add {
+  width: 60rpx;
   height: 60rpx;
-  font-size: 32rpx;
-  line-height: 60rpx;
-} */
+  margin-left: 10rpx;
+}
+
+.reshowNum {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+   /* border-bottom: 1px solid #cacaca; */
+}
+
+.reshowNum>input {
+  width: 60rpx;
+  height: 60rpx;
+  text-align: center;
+}
+
+.add>image {
+  width: 100%;
+  height: 100%;
+}
+
 
 /* 底部固定栏 */
 
@@ -290,6 +234,7 @@ white-space:nowrap;
   line-height: 100rpx;
   color: white;
 }
+
 /* 底部固定栏 */
 
 /* 模态框 */
@@ -301,6 +246,7 @@ white-space:nowrap;
   background: white;
   z-index: 100;
 }
+
 .img {
   width: 170rpx;
   height: 170rpx;
@@ -312,22 +258,26 @@ white-space:nowrap;
   width: 100%;
   height: 100%;
 }
-.first-row{
+
+.first-row {
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
 }
-.delete{
-  margin-right:20rpx; 
-  /* background: gold; */
-  vertical-align: middle
+
+.delete {
+  margin-right: 20rpx;
+  vertical-align: middle;
 }
-.delete>image{
+
+.delete>image {
   width: 40rpx;
   height: 40rpx;
 }
-.modal-price{
+
+.modal-price {
   color: #ee0f1f;
 }
+
 .clearAll {
   height: 60rpx;
   line-height: 60rpx;
@@ -390,15 +340,19 @@ white-space:nowrap;
   width: 60rpx;
   height: 60rpx;
 }
-.modal-quantity{
+
+.modal-quantity {
   border-bottom: 1px solid #cacaca;
 }
-.modal-quantity>input{
+
+.modal-quantity>input {
   width: 60rpx;
   height: 60rpx;
   text-align: center;
 }
+
 /* 模态框 */
+
 /*遮罩层*/
 
 .mask {

@@ -36,5 +36,6 @@ App({
   },
   globalData: {
     
-  }
+  },
+  
 })

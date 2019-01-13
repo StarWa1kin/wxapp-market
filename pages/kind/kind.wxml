@@ -32,40 +32,18 @@
         </view>
         <view class='operate'>
           <view class='price'>￥{{good.price}}</view>
+          <view class='subtract' id='{{good.id}}' bindtap='subtract' wx:if="{{good.reshowNum>0}}">
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view class='subtract' wx:else></view>
+          <view class='reshowNum'><input type='number' maxlength="2" value='{{good.reshowNum?good.reshowNum:0}}' bindblur='inputChange' id='{{good.id}}'></input></view>
           <view class='add' id='{{good.id}}' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>
       </view>
     </view>
-    <!-- 商品展示栏 -->
-    <!-- <view class='productInfo' wx:for="{{productList}}" wx:key="{{index}}">
-      <view class='isChoose' id="pur_{{index}}">{{menuList[index].name}}</view>
-      <view class='img'>
-        <image src='{{item.img}}'></image>
-      </view>
-      <view class='content'>
-        <view class='name'>{{item.name}}{{item.weight}}/{{item.unit}}</view>
-        <view class='star'>
-          <block wx:for="{{item.star}}" wx:key="{{index}}">
-            <image src='../../assets/page/star.png'></image>
-          </block>
-        </view>
-        <view class='description'>{{item.describe}}</view>
-        <view class='detail'>
-          <view class='price'>￥{{item.price}}</view>
-          <view class='subtract' bindtap="subtract" wx:if="{{item.reshowNum>0}}" data-cartsId="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}">
-            <image src='../../assets/page/-.png'></image>
-          </view>
-          
-          <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
-          <view class='quantity'>{{item.reshowNum}}</view>
-          <view class='add' bindtap='add' data-productId='{{item.id}}'>
-            <image src='../../assets/page/+.png'></image>
-          </view>
-        </view>
-      </view>
-    </view> -->
+    
   </scroll-view>
 </view>
 
@@ -96,17 +74,17 @@
       <view class='contentBox'>
         <view class='first-row'>
           <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}'>
+          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}' data-goodsid='{{item.product_id}}'>
             <image src='../../assets/alibaba/del.png'></image>
           </view>
         </view>
         <view class='modal-detail'>
           <view class="modal-price">￥{{item.product.price}}</view>
-          <view class='modal-subtract' bindtap="subtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
+          <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
             <image src='../../assets/page/-.png'></image>
           </view>
-          <view class='modal-quantity'><input type='number' maxlength='2' value='{{item.quantity}}' bindblur='inputChange' data-cartsId='{{item.id}}'/></view>
-          <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
+          <view class='modal-quantity'><input type='number' maxlength='2' value='{{item.quantity}}' bindblur='modalInput' data-cartsId='{{item.id}}'/></view>
+          <view class='modal-add' bindtap='modalAdd' id='{{item.product_id}}'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>

@@ -1,5 +1,6 @@
 const http = require('../../utils/request.js')
-let app=getApp();
+const func=require('../../utils/globalFunc.js')
+var app=getApp();
 Page({
 
   /**
@@ -16,8 +17,7 @@ Page({
     goodsList: [],
     bubble: 0,
     //本地购物车
-    localCar: [],
-    changeSwitch: false,
+    // localCar: [],
   },
 
   /**
@@ -55,59 +55,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    let carList = this.data.localCar;
-    // console.log(carList)
-    if (!carList.length) {
-      return
-    }
-    let actNum = 0;
-    for (let index in carList) {
-      if (carList[index].quantity == 0) {
-        actNum++
-      }
-    }
-    app.globalData.bubble = carList.length - actNum;
-    for (let index in carList) {
-      if (carList[index].hasOwnProperty("id") && carList[index].quantity == 0) {
-        http.request({
-          apiName: '/carts/' + carList[index].id,
-          method: 'DELETE',
-        }).then((res) => {
-          this.setData({
-            localCar: []
-          })
-        })
-      } else if (carList[index].hasOwnProperty("id") && carList[index].quantity > 0){
-        console.log("修改")
-        http.request({
-          apiName: '/carts/' + carList[index].id,
-          method: 'PUT',
-          data: {
-            "quantity": carList[index].quantity
-          },
-        }).then((res) => {
-          this.setData({
-            localCar: []
-          })
-        })
-      } 
-      else {
-        console.log("添加")
-        http.request({
-          apiName: '/carts',
-          method: 'POST',
-          data: {
-            "product_id": carList[index].product_id,
-            "quantity": carList[index].quantity,
-          },
-        }).then((res) => {
-          this.setData({
-            localCar: []
-          })
-
-        })
-      }
-    }
+    // this.submitLocalCar()
+    // app.submitLocalCar()
+    func()
 
   },
 
@@ -151,16 +101,7 @@ Page({
     wx.navigateTo({
       url: '../submitOrder/submitOrder',
     })
-    // if (this.data.bubble > 0) {
-    //   wx.navigateTo({
-    //     url: '../submitOrder/submitOrder',
-    //   })
-    // } else {
-    //   wx.showToast({
-    //     title: '购物车无商品',
-    //     image: '../../assets/page/err.png'
-    //   })
-    // }
+   
   },
   //获取轮播图
   getBanner() {
@@ -187,46 +128,15 @@ Page({
       this.loadCar(res);
     })
   },
-  //加载购物车渲染bubble
-  // loadList() {
-  //   http.request({
-  //     apiName: '/carts',
-  //     method: 'GET',
-  //   }).then((res) => {
-  //     if(res.length==0){
-  //       var copyList = this.data.goodsList
-  //       for (var item of copyList){
-  //         item.reshowNum=0
-  //       }
-  //       this.setData({
-  //         goodsList:copyList
-  //       })
-  //     }else{
-  //       let copyGoodList = this.data.goodsList;
-  //       for (var index in copyGoodList) {
-  //         copyGoodList[index].reshowNum=0;//制空reshowNum属性
-  //         for (var reshow of res) {
-  //           if (copyGoodList[index].id == reshow.product.id) {
-  //             copyGoodList[index].reshowNum = reshow.quantity;//添加字段用来回显数量
-  //             copyGoodList[index].shoppingCarId=reshow.id;//添加字段控制减少购物车数量
-  //           }
-  //         }
-  //       }
-  //       this.setData({
-  //         goodsList: copyGoodList
-  //       })
-  //     }
-  //     this.setData({
-  //       bubble: res.length
-  //     })
-  //   })
-  // },
+  
   //单纯加载购物车
   loadCar(goodsList) {
     http.request({
       apiName: '/carts',
       method: 'GET',
     }).then(res => {
+      //请求购物车列表处理成本地全局变量
+      app.globalData.globalCar=res;
       //购物车无商品会显0
       if (res.length == 0) {
         goodsList.forEach(function(item, index) {
@@ -239,21 +149,22 @@ Page({
       }
       //购物车有商品
       else {
-        let localArr = [];
+        app.globalData.globalCar = [];
         for (let value of res) {
           let json = {};
           json.id = value.id;
           json.product_id = value.product_id;
-          json.quantity = value.quantity
-          localArr.push(json)
+          json.quantity = value.quantity;
+          json.product == value.product;
+
+          app.globalData.globalCar.push(json)
         }
         this.setData({
           bubble: res.length,
-          localCar: localArr
         })
         for (let index in goodsList) {
           goodsList[index].reshowNum = 0
-          for (let car of this.data.localCar) {
+          for (let car of app.globalData.globalCar) {
             if (goodsList[index].id == car.product_id) {
               goodsList[index].reshowNum = car.quantity
             }
@@ -268,18 +179,17 @@ Page({
   //商品+1
   add(e) {
     let goosId = e.currentTarget.id;
-    let copy = this.data.localCar;
-    if (!copy.length) {
+    if (!app.globalData.globalCar.length) {
       let json = {};
       json.product_id = goosId;
       json.quantity = 1;
-      copy.push(json)
+      app.globalData.globalCar.push(json)
     } else {
       //购物车有商品
       let swiCh = false;
-      for (let index in copy) {
-        if (copy[index].product_id == goosId) {
-          copy[index].quantity += 1;
+      for (let index in app.globalData.globalCar) {
+        if (app.globalData.globalCar[index].product_id == goosId) {
+          app.globalData.globalCar[index].quantity += 1;
           swiCh = true;
           break;
         } else {
@@ -292,32 +202,27 @@ Page({
         var json = {};
         json.product_id = goosId;
         json.quantity = 1;
-        copy.push(json)
+        app.globalData.globalCar.push(json)
         console.log('PUSH!!!')
       }
     }
     this.setData({
-      loadCar: copy,
-      bubble:copy.length
+      bubble: app.globalData.globalCar.length
     })
     this.reshow()
-    // if(copy.length>0){
-    //   this.showBottom()
-    // }
+    
   },
   //商品-1
   subtract(e) {
     let goodsId = e.currentTarget.id;
-    let copy = this.data.localCar;
-    for (let index in copy) {
-      if (copy[index].product_id == goodsId) {
-        copy[index].quantity -= 1;
+    for (let index in app.globalData.globalCar) {
+      if (app.globalData.globalCar[index].product_id == goodsId) {
+        app.globalData.globalCar[index].quantity -= 1;
       }
     }
     
     this.setData({
-      localCar: copy,
-      bubble: copy.length
+      bubble: app.globalData.globalCar.length
     })
     this.reshow()
   },
@@ -325,26 +230,24 @@ Page({
   changeNum(e) {
     let goodsId = e.currentTarget.dataset.id;
     let quantity = parseInt(e.detail.value);
-    let copy = this.data.localCar;
-    for (let index in copy) {
-      if (copy[index].product_id == goodsId) {
-        copy[index].quantity = quantity;
+    for (let index in app.globalData.globalCar) {
+      if (app.globalData.globalCar[index].product_id == goodsId) {
+        app.globalData.globalCar[index].quantity = quantity;
       }
     }
     this.setData({
-      localCar: copy,
-      bubble: copy.length
+      localCar: app.globalData.globalCar,
+      bubble: app.globalData.globalCar.length
     })
     this.reshow()
 
   },
   reshow() {
     let goodsList = this.data.goodsList;
-    let localCar = this.data.localCar
     for (let index in goodsList) {
-      for (let i in localCar) {
-        if (localCar[i].product_id == goodsList[index].id) {
-          goodsList[index].reshowNum = localCar[i].quantity
+      for (let i in app.globalData.globalCar) {
+        if (app.globalData.globalCar[i].product_id == goodsList[index].id) {
+          goodsList[index].reshowNum = app.globalData.globalCar[i].quantity
         }
       }
     }
@@ -352,11 +255,5 @@ Page({
       goodsList: goodsList
     })
   },
-  // showBottom(){
-  //   this.setData({
-  //     show:true,
-  //     move:'0'
-  //   })
-
-  // }
+  
 })
