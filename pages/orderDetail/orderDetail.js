@@ -131,7 +131,8 @@ Page({
     let amount = Number(this.data.orderInfo.amount)
     if (balance >= amount) {
       this.setData({
-        checked:"1"
+        checked:"1",
+        methodID:'1'
       })
     } else {
       this.setData({
