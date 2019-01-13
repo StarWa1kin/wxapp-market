@@ -30,25 +30,27 @@
   </view>
 
 </view> -->
-<view class='clearAll'  bindtap='clearList'>清空购物车</view>
+<view class='clearAll' bindtap='clearList'>清空购物车</view>
 <!-- 商品列表 -->
 <view class=' buyingList ' wx:for="{{shoppingList}}" wx:key="{{index}}">
   <view class='img '>
-    <image src='{{item.product.img}} '></image>
+    <image src='{{item.product.img}}'></image>
   </view>
   <view class='contentBox '>
     <view class='first-row '>
       <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-      <view class='delete ' bindtap='deleteIt ' data-id='{{item.id}} '>
+      <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>
         <image src='../../assets/alibaba/del.png '></image>
       </view>
     </view>
     <view class='modal-detail '>
       <view class="price">￥{{item.product.price}}</view>
-      <view class='modal-subtract ' bindtap="subtract" data-id='{{item.id}} ' data-quantity='{{item.quantity}} '>
+      <view class='modal-subtract ' bindtap="subtract" data-id='{{item.id}}' data-quantity='{{item.quantity}}'>
         <image src='../../assets/page/-.png '></image>
       </view>
-      <view class='quantity '><input type='number ' maxlength='2 ' value='{{item.quantity}} ' data-id='{{item.id}} ' bindblur='changeNum'/></view>
+      <view class='quantity '>
+        <input type='number' maxlength='2' value='{{item.quantity}}' data-id='{{item.id}}' bindblur='changeNum' />
+      </view>
       <view class='modal-add ' bindtap='add ' id='{{item.product_id}} '>
         <image src='../../assets/page/+.png '></image>
       </view>
