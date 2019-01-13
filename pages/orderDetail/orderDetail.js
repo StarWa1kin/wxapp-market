@@ -137,7 +137,8 @@ Page({
     } else {
       this.setData({
         disabled:"1",
-        checked:"2"
+        checked:"2",
+        methodID: '2'
       })
     }
   },
