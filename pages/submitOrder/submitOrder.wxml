@@ -30,43 +30,43 @@
   </view>
 
 </view> -->
-<view class='clearAll'>清空购物车</view>
+<view class='clearAll'  bindtap='clearList'>清空购物车</view>
 <!-- 商品列表 -->
-<view class='buyingList' wx:for="{{shoppingList}}" wx:key="{{index}}">
-  <view class='img'>
-    <image src='{{item.product.img}}'></image>
+<view class=' buyingList ' wx:for="{{shoppingList}}" wx:key="{{index}}">
+  <view class='img '>
+    <image src='{{item.product.img}} '></image>
   </view>
-  <view class='contentBox'>
-    <view class='first-row'>
+  <view class='contentBox '>
+    <view class='first-row '>
       <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-      <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>
-        <image src='../../assets/alibaba/del.png'></image>
+      <view class='delete ' bindtap='deleteIt ' data-id='{{item.id}} '>
+        <image src='../../assets/alibaba/del.png '></image>
       </view>
     </view>
-    <view class='modal-detail'>
+    <view class='modal-detail '>
       <view class="price">￥{{item.product.price}}</view>
-      <view class='modal-subtract' bindtap="subtract" data-id='{{item.id}}' data-quantity='{{item.quantity}}'>
-        <image src='../../assets/page/-.png'></image>
+      <view class='modal-subtract ' bindtap="subtract" data-id='{{item.id}} ' data-quantity='{{item.quantity}} '>
+        <image src='../../assets/page/-.png '></image>
       </view>
-      <view class='quantity'><input type='number' maxlength='2' value='{{item.quantity}}' data-id='{{item.id}}' bindblur='changeNum'/></view>
-      <view class='modal-add' bindtap='add' id='{{item.product_id}}'>
-        <image src='../../assets/page/+.png'></image>
+      <view class='quantity '><input type='number ' maxlength='2 ' value='{{item.quantity}} ' data-id='{{item.id}} ' bindblur='changeNum '/></view>
+      <view class='modal-add ' bindtap='add ' id='{{item.product_id}} '>
+        <image src='../../assets/page/+.png '></image>
       </view>
     </view>
   </view>
 </view>
 <!-- 合计区域 -->
-<view class='total'>
-  <view class='totalMoney'>共{{shoppingList.length}}件商品 总计:
-    <text class='big'>￥{{total}}</text>
+<view class='total '>
+  <view class='totalMoney '>共{{shoppingList.length}}件商品 总计:
+    <text class='big '>￥{{total}}</text>
   </view>
-  <!-- <view class='acType'>账户类型:先款后货</view> -->
+  <!-- <view class='acType '>账户类型:先款后货</view> -->
 </view>
 
 
 
 <!-- 固定支付栏 -->
-<view class='payFixed'>
-  <view class='payMoney'>￥{{total}}</view>
-  <view class='submit' bindtap='submitOrder'>提交订单</view>
+<view class='payFixed '>
+  <view class='payMoney '>￥{{total}}</view>
+  <view class='submit ' bindtap='submitOrder '>提交订单</view>
 </view>

@@ -301,9 +301,9 @@ Page({
       bubble:copy.length
     })
     this.reshow()
-    if(copy.length>0){
-      this.showBottom()
-    }
+    // if(copy.length>0){
+    //   this.showBottom()
+    // }
   },
   //商品-1
   subtract(e) {
@@ -352,11 +352,11 @@ Page({
       goodsList: goodsList
     })
   },
-  showBottom(){
-    this.setData({
-      show:true,
-      move:'0'
-    })
+  // showBottom(){
+  //   this.setData({
+  //     show:true,
+  //     move:'0'
+  //   })
 
-  }
+  // }
 })

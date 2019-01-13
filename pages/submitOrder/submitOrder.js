@@ -210,6 +210,17 @@ Page({
       this.getShoppingList()
     })
   },
+  //清空购物车
+  clearList() {
+    http.request({
+      apiName: '/carts',
+      method: 'DELETE',
+      isShowProgress: true,
+    }).then((res) => {
+      this.getShoppingList()
+    })
+
+  },
 
   //提交订单只判断是否携带地址
   submitOrder() {
