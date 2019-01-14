@@ -1,19 +1,21 @@
-<!-- 已提交商品列表 -->
-<view class='goodsList' wx:for="{{list.products}}" wx:key="{{index}}">
-  <view class='goodsDetail'>
-    <view class='img'>
-      <image src='{{item.img}}'></image>
-    </view>
-    <view class='content'>
-      <view class='goodsName'>{{item.name}} 小计:{{item.weight}}g</view>
-      <view class='desc'>{{item.describe}}</view>
-      <view class='money'>
-        <view>￥{{item.price}}x{{item.quantity}}</view>
-        <view class='littleSum'>￥{{item.amount}}</view>
+<scroll-view scroll-y="true" style="height:{{list.products.length>=3?720:480}}rpx">
+  <!-- 已提交商品列表 -->
+  <view class='goodsList' wx:for="{{list.products}}" wx:key="{{index}}">
+    <view class='goodsDetail'>
+      <view class='img'>
+        <image src='{{item.img}}'></image>
+      </view>
+      <view class='content'>
+        <view class='goodsName'>{{item.name}} 小计:{{item.weight}}g</view>
+        <view class='desc'>{{item.describe}}</view>
+        <view class='money'>
+          <view>￥{{item.price}}x{{item.quantity}}</view>
+          <view class='littleSum'>￥{{item.amount}}</view>
+        </view>
       </view>
     </view>
   </view>
-</view>
+</scroll-view>
 <!-- 支付方式 -->
 <view class='payType'>支付方式</view>
 <radio-group bindchange="radioChange">
@@ -22,7 +24,7 @@
       <view wx:if="{{item.describe=='余额支付'}}">{{item.describe}}(￥{{userInfo.balance}})</view>
       <view wx:else>{{item.describe}}</view>
       <view>
-        <radio class="radio" value="{{item.id}}" checked="{{item.id==checked}}" color="#d3b65c" disabled='{{item.id==disabled}}'/>
+        <radio class="radio" value="{{item.id}}" checked="{{item.id==checked}}" color="#d3b65c" disabled='{{item.id==disabled}}' />
       </view>
     </view>
   </block>

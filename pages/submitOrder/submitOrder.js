@@ -31,7 +31,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
+    wx.getSystemInfo({
+      success: res => {
+        let realHeight = (res.windowHeight * (750 / res.windowWidth)) - 280;
+        this.setData({
+          //换算成rpx
+          winHeight: realHeight
+        })
 
+      }
+    })
   },
 
   /**

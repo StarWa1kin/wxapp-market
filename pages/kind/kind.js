@@ -49,7 +49,7 @@ Page({
     } else {
       setTimeout(() => {
         this.loadList();
-      }, 1300)
+      }, 1500)
     }
 
 
@@ -131,7 +131,7 @@ Page({
       } else {
         setTimeout(() => {
           this.loadList();
-        }, 1300)
+        }, 1500)
       }
 
     } else {
@@ -267,17 +267,6 @@ Page({
       }
     }
     this.reshow()
-    // http.request({
-    //   apiName: '/carts/' + cartsId,
-    //   method: 'PUT',
-    //   data: {
-    //     "quantity": currentNum,
-    //   },
-    //   isShowProgress: true,
-    // }).then((res) => {
-    //   this.loadList();
-    // })
-
   },
   reshow() {
     let productList = this.data.productList
