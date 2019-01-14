@@ -63,7 +63,7 @@
 
 
 <!-- 模态框 -->
-<view class='modal-shopingCar' wx:if="{{clickIcon}}" style='height:{{(winHeight+204)*0.5}}rpx'>
+<view class='modal-shopingCar' wx:if="{{clickIcon}}" style='height:{{(winHeight+204)*0.5}}rpx' catchtouchmove="myCatchTouch">
   <view class='clearAll' bindtap='clearList'>清空购物车</view>
   <scroll-view scroll-y="ture" style="height:400rpx">
     <!-- 商品列表 -->

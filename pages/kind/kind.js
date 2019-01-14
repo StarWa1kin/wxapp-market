@@ -133,10 +133,14 @@ Page({
         clickIcon: true,
       })
       func();
+      wx.showLoading({
+        title: '',
+      })
       let listenSuc = setInterval(() => {
         if (app.globalData.ajaxOk) {
           this.loadList();
-          clearInterval(listenSuc)
+          clearInterval(listenSuc);
+          wx.hideLoading()
         }
       }, 1000)
       // if (app.globalData.ajaxOk) {
