@@ -16,8 +16,6 @@ Page({
     // 促销信息
     goodsList: [],
     bubble: 0,
-    //本地购物车
-    // localCar: [],
   },
 
   /**
@@ -32,16 +30,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    wx.getSystemInfo({
-      success: res => {
-        let realHeight = (res.windowHeight * (750 / res.windowWidth)-532);
-        this.setData({
-          //换算成rpx
-          winHeight: realHeight
-        })
-
-      }
-    })
+    this.setScrollHeight()
   },
 
   /**
@@ -95,13 +84,24 @@ Page({
       url: '../search/search',
     })
   },
-
   // 跳转购物车页面
   toPay() {
     wx.navigateTo({
       url: '../submitOrder/submitOrder',
     })
-   
+  },
+  //设置scroll组件的高度
+  setScrollHeight(){
+    wx.getSystemInfo({
+      success: res => {
+        let realHeight = (res.windowHeight * (750 / res.windowWidth) - 532);
+        this.setData({
+          //换算成rpx
+          winHeight: realHeight
+        })
+
+      }
+    })
   },
   //获取轮播图
   getBanner() {
@@ -114,7 +114,7 @@ Page({
       })
     })
   },
-  //初始化取商品列表
+  //初始化取促销商品列表
   getList() {
     http.request({
       apiName: '/products',
