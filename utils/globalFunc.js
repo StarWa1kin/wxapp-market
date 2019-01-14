@@ -1,7 +1,10 @@
-let app=getApp()
-let http=require('./request.js')
-const submitLocalCar=()=> {
+let app = getApp()
+let http = require('./request.js')
+const submitLocalCar = () => {
   let carList = app.globalData.globalCar;
+  if (!carList) {
+    return
+  }
   if (!carList.length) {
     return
   }
@@ -12,7 +15,7 @@ const submitLocalCar=()=> {
     }
   }
   app.globalData.bubble = carList.length - actNum;
-  let httpRequest=0;//发了几次请i去
+  let httpRequest = 0; //发了几次请i去
   for (let index in carList) {
     if (carList[index].hasOwnProperty("id") && carList[index].quantity == 0) {
       http.request({
@@ -35,12 +38,11 @@ const submitLocalCar=()=> {
       }).then((res) => {
         httpRequest++
         if (httpRequest == app.globalData.globalCar.length) {
-          app.globalData.ajaxOk=true;
+          app.globalData.ajaxOk = true;
           app.globalData.globalCar = []
         }
       })
-    }
-    else {
+    } else {
       console.log("添加")
       http.request({
         apiName: '/carts',
@@ -53,14 +55,14 @@ const submitLocalCar=()=> {
         httpRequest++;
         if (httpRequest == app.globalData.globalCar.length) {
           app.globalData.ajaxOk = true;
-          app.globalData.globalCar=[]
+          app.globalData.globalCar = []
         }
       })
     }
   }
 
- 
-  
+
+
 }
 
 module.exports = submitLocalCar;
