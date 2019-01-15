@@ -6,8 +6,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    // radioChoose1: true,
-    // radioChoose2: false,
     hasAddress: false,
     shoppingList: [], //购物车列表
     total: 0, //购物车商品合计
@@ -18,13 +16,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    if (app.globalData.ajaxOk) {
-      this.getShoppingList();
-    } else {
-      setTimeout(() => {
+    // if (app.globalData.ajaxOk) {
+    //   this.getShoppingList();
+    // } else {
+    //   setTimeout(() => {
+    //     this.getShoppingList();
+    //   }, 1300)
+    // }
+    let listenSuc = setInterval(() => {
+      console.log("等待回调")
+      if (app.globalData.ajaxOk) {
+        console.log("回调成功")
         this.getShoppingList();
-      }, 1300)
-    }
+        clearInterval(listenSuc)
+      }
+    }, 1000)
   },
 
   /**
@@ -115,11 +121,8 @@ Page({
     http.request({
       apiName: '/carts',
       method: 'GET',
-      // isShowProgress: true,
     }).then((res) => {
       //统计合计金额
-      console.log(getApp().globalData)
-
       this.setData({
         bubble: res.length
       })
@@ -154,10 +157,6 @@ Page({
       this.setData({
         shoppingList: res
       })
-
-
-
-
     })
   },
 
@@ -167,7 +166,6 @@ Page({
     http.request({
       apiName: '/carts/' + id,
       method: 'DELETE',
-      // isShowProgress: true,
     }).then((res) => {
       this.getShoppingList();
     })
@@ -182,7 +180,6 @@ Page({
         "product_id": productId,
         "quantity": 1,
       },
-      // isShowProgress: true,
     }).then((res) => {
       this.getShoppingList()
     })
@@ -198,22 +195,18 @@ Page({
       data: {
         "quantity": nowQuantity,
       },
-      // isShowProgress: true,
     }).then((res) => {
       this.getShoppingList()
     })
   },
   //input输入修改数量
   changeNum(e) {
-    // console.log(e.currentTarget.dataset.id)
-    // console.log(e.detail.value)
     http.request({
       apiName: '/carts/' + e.currentTarget.dataset.id,
       method: 'PUT',
       data: {
         "quantity": e.detail.value,
       },
-      // isShowProgress: true,
     }).then((res) => {
       this.getShoppingList()
     })
@@ -229,7 +222,6 @@ Page({
     })
 
   },
-
   //提交订单只判断是否携带地址
   submitOrder() {
     if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
@@ -250,9 +242,6 @@ Page({
       isShowProgress: true,
     }).then(res => {
       if (JSON.stringify(res) != "{}") {
-        wx.showToast({
-          title: '提交成功!跳转支付页面',
-        })
         wx.navigateTo({
           url: '../orderDetail/orderDetail?order=' + JSON.stringify(res),
         })
