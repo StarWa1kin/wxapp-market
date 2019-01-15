@@ -154,6 +154,34 @@ Page({
     wx.navigateTo({
       url: '../orderDetail/orderDetail?param=' + orderId + '&amount=' + amount,
     })
+  },
+  //再来一单子
+  buyAgain(e){
+    http.request({
+      apiName: '/orders/again',
+      method: 'POST',
+      data: {
+        order_id: e.currentTarget.dataset.orderid
+      },
+      isShowProgress: true,
+    }).then(res=>{
+      wx.navigateTo({
+        url: '../submitOrder/submitOrder',
+      })
+    })
+  },
+  //取消订单
+  cancelOrder(e){
+    http.request({
+      apiName: '/orders/cancel',
+      method: 'POST',
+      data: {
+        order_id: e.currentTarget.dataset.orderid
+      },
+      isShowProgress: true,
+    }).then(res => {
+      debugger
+    })
   }
 
 })
