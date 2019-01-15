@@ -19,7 +19,6 @@ Page({
    */
   onLoad: function(options) {
     
-    
     wx.getSystemInfo({
       success: res => {
         this.setData({
@@ -178,9 +177,12 @@ Page({
       data: {
         order_id: e.currentTarget.dataset.orderid
       },
-      isShowProgress: true,
+      // isShowProgress: true,
     }).then(res => {
       debugger
+    })
+    .catch(err=>{
+      console.log(err)
     })
   }
 
