@@ -43,13 +43,6 @@ Page({
   onShow: function() {
     this.getMenuList();
     /**回调成功后立即加载购物车否则延迟1s加载*/
-    // if (app.globalData.ajaxOk) {
-    //   delete app.globalData.ajaxOk
-    //   this.loadList();
-    // } else {
-    //   setTimeout(() => {
-    //     this.loadList();
-    //   }, 1500)
       //每一秒实时监听是否回调成功,回调成功才加载购物车列表
       let listenSuc=setInterval(()=>{
         if (app.globalData.ajaxOk){
@@ -134,22 +127,17 @@ Page({
       })
       func();
       wx.showLoading({
-        title: '',
+        title: '加载中',
       })
       let listenSuc = setInterval(() => {
         if (app.globalData.ajaxOk) {
           this.loadList();
           clearInterval(listenSuc);
           wx.hideLoading()
+        }else{
+          wx.hideLoading()
         }
       }, 1000)
-      // if (app.globalData.ajaxOk) {
-      //   this.loadList()
-      // } else {
-      //   setTimeout(() => {
-      //     this.loadList();
-      //   }, 1500)
-      // }
 
     } else {
       this.setData({
