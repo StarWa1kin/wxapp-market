@@ -177,12 +177,14 @@ Page({
       data: {
         order_id: e.currentTarget.dataset.orderid
       },
-      // isShowProgress: true,
     }).then(res => {
-      debugger
+      this.getOrderList(this.data.currentTab)
     })
     .catch(err=>{
-      console.log(err)
+      wx.showToast({
+        title: err,
+        icon:"none"
+      })
     })
   }
 

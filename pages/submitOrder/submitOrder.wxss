@@ -117,8 +117,8 @@ page{
   margin-right:20rpx; 
 }
 .delete>image{
-  width: 40rpx;
-  height: 40rpx
+  width: 46rpx;
+  height: 46rpx
 }
 .img{
   width: 190rpx;

@@ -116,7 +116,7 @@ Page({
   //支付方式选择框
   radioChange: function (e) {
     //取得methodID
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     this.setData({
       methodID: e.detail.value
     })
@@ -185,7 +185,7 @@ Page({
       //methodID=2 微信
       //methodID=3 先货后款
       if (res.hasOwnProperty("nonceStr") && res.hasOwnProperty("package")) {
-        console.log("调用微信支付")
+        // console.log("调用微信支付")
         wx.requestPayment({
           timeStamp: res.timeStamp,
           nonceStr: res.nonceStr,

@@ -203,7 +203,7 @@ Page({
         json.product_id = goosId;
         json.quantity = 1;
         app.globalData.globalCar.push(json)
-        console.log('PUSH!!!')
+        // console.log('PUSH!!!')
       }
     }
     this.setData({

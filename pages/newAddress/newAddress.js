@@ -78,7 +78,7 @@ Page({
   },
   //表单验证函数
   formValidation(param){
-    console.log(param)
+    // console.log(param)
     if(param.region.length==0){
       this.showMsg("地区不能为空");
       return false;
@@ -122,7 +122,7 @@ Page({
       return false;
     }
     //最终提交
-    console.log("通过验证,可以提交")
+    // console.log("通过验证,可以提交")
     http.request({
       apiName: '/users/address',
       method: 'POST',

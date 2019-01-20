@@ -99,7 +99,7 @@
           </view>
           <view class='button'>
             <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
-            <view class='cancelOrder'>取消订单</view>
+            <!-- <view class='cancelOrder'>取消订单</view> -->
           </view>
         </view>
       </view>
@@ -118,12 +118,24 @@
             <image src='{{item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>警钟龙骨1kg/份</view>
+            <view class='goodsName'>{{item.name}}1kg/份</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
         </view>
+
+        <!-- 操作区域 -->
+        <view class='operation'>
+          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}}g 实付:
+            <text class='big'> ￥{{item.actual_payment}}</text>
+          </view>
+          <view class='button'>
+            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
+            <!-- <view class='cancelOrder'>取消订单</view> -->
+          </view>
+        </view>
       </view>
+
     </scroll-view>
   </swiper-item>
 </swiper>

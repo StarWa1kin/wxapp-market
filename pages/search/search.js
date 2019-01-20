@@ -87,11 +87,10 @@ Page({
       },
       isShowProgress: true,
     }).then((res) => {
-      console.log(res)
       if(res.length==0){
         wx.showToast({
           title: '无此商品',
-          image:'../../assets/page/err.png'
+          icon:'none'
         })
       }else{
         this.setData({

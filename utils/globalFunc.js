@@ -43,7 +43,7 @@ const submitLocalCar = () => {
         }
       })
     } else {
-      console.log("添加")
+      // console.log("添加")
       http.request({
         apiName: '/carts',
         method: 'POST',

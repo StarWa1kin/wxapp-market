@@ -24,7 +24,6 @@ Page({
     //   }, 1300)
     // }
     let listenSuc = setInterval(() => {
-      console.log("等待回调")
       if (app.globalData.ajaxOk) {
         console.log("回调成功")
         this.getShoppingList();

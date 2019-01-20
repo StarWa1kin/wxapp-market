@@ -250,7 +250,6 @@ Page({
   //商品-1
   subtract(e) {
     let goodsId = e.currentTarget.id;
-    // let copy = this.data.localCar;
     for (let index in app.globalData.globalCar) {
       if (app.globalData.globalCar[index].product_id == goodsId) {
         app.globalData.globalCar[index].quantity -= 1;
