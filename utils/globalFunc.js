@@ -65,4 +65,23 @@ const submitLocalCar = () => {
 
 }
 
-module.exports = submitLocalCar;
+const computed = () => {
+  // console.log(app.globalData.globalCar)
+  
+  let localCar = app.globalData.globalCar;
+  let sum = 0;
+  for (let val of localCar) {
+    if (val.hasOwnProperty("product")){
+      sum += (val.quantity) * (val.product.price)
+    }else{
+      sum += (val.quantity) * (val.price)
+    }
+  }
+  sum=sum.toFixed(2)
+  return sum
+}
+
+export {
+  submitLocalCar,
+  computed
+};

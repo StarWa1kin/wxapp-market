@@ -1,5 +1,6 @@
 const http = require('../../utils/request.js')
-const func = require('../../utils/globalFunc.js')
+// const func = require('../../utils/globalFunc.js')
+import {submitLocalCar,computed } from '../../utils/globalFunc.js'
 let app = getApp();
 Page({
 
@@ -42,6 +43,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    
     /**回调成功后立即加载购物车否则延迟1s加载*/
     //每一秒实时监听是否回调成功,回调成功才加载购物车列表
     let listenSuc = setInterval(() => {
@@ -68,7 +70,7 @@ Page({
         clickIcon: false,
       })
     }
-    func()
+    submitLocalCar()
 
   },
 
@@ -125,7 +127,7 @@ Page({
       this.setData({
         clickIcon: true,
       })
-      func();
+      submitLocalCar();
       wx.showLoading({
         title: '加载中',
       })
@@ -173,14 +175,13 @@ Page({
           json.id = value.id;
           json.product_id = value.product_id;
           json.quantity = value.quantity;
-          json.product == value.product;
-
+          json.product = value.product;
           app.globalData.globalCar.push(json)
         }
         this.setData({
           bubble: res.length,
         })
-        //回显方法
+        //回显数量字段方法
         this.reshow()
       }
 
@@ -214,11 +215,14 @@ Page({
   },
   //商品+1
   add(e) {
+    // debugger
     let goosId = e.currentTarget.id;
+    let price =e.currentTarget.dataset.price
     if (!app.globalData.globalCar.length) {
       let json = {};
       json.product_id = goosId;
       json.quantity = 1;
+      json.price=price;
       app.globalData.globalCar.push(json)
     } else {
       //购物车有商品
@@ -237,6 +241,7 @@ Page({
         var json = {};
         json.product_id = goosId;
         json.quantity = 1;
+        json.price = price;
         app.globalData.globalCar.push(json)
         // console.log('PUSH!!!')
       }
@@ -250,6 +255,7 @@ Page({
   //商品-1
   subtract(e) {
     let goodsId = e.currentTarget.id;
+    let price = e.currentTarget.dataset.price
     for (let index in app.globalData.globalCar) {
       if (app.globalData.globalCar[index].product_id == goodsId) {
         app.globalData.globalCar[index].quantity -= 1;
@@ -264,6 +270,7 @@ Page({
 
   inputChange(e) {
     let currentNum = e.detail.value;
+    let price = e.currentTarget.dataset.price
     let goodsId = e.currentTarget.id;
     for (let index in app.globalData.globalCar) {
       if (app.globalData.globalCar[index].product_id == goodsId) {
@@ -273,6 +280,7 @@ Page({
     this.reshow()
   },
   reshow() {
+    // debugger
     let productList = this.data.productList
     for (let value of productList) {
       for (let i in app.globalData.globalCar) {
@@ -283,10 +291,12 @@ Page({
         }
       }
     }
-
+    let comTotal = computed()
     this.setData({
-      productList: productList
+      productList: productList,
+      total: comTotal
     })
+    
   },
   //清空购物车
   clearList() {

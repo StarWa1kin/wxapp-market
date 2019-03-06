@@ -115,14 +115,14 @@ swiper image{
   color: #EE0F1F;
 }
 .operate{
-  width: 180rpx;
+  width: 200rpx;
   height: 60rpx;
   display: flex;
   justify-content: space-around;
 
 }
 .operate input{
-  width: 70rpx;
+  width: 80rpx;
   height: 60rpx;
   text-align: center;
   font-size: 28rpx;

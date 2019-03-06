@@ -35,7 +35,7 @@ App({
     
   },
   globalData: {
-    
+    globalCar:[]
   },
   
 })

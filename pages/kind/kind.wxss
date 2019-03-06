@@ -152,9 +152,10 @@ text {
 }
 
 .reshowNum>input {
-  width: 60rpx;
+  width: 80rpx;
   height: 60rpx;
   text-align: center;
+  font-size: 28rpx;
 }
 
 .add>image {
@@ -346,9 +347,10 @@ text {
 }
 
 .modal-quantity>input {
-  width: 60rpx;
+  width: 80rpx;
   height: 60rpx;
   text-align: center;
+  font-size: 28rpx;
 }
 
 /* 模态框 */
