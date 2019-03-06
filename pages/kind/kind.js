@@ -43,14 +43,14 @@ Page({
   onShow: function() {
     this.getMenuList();
     /**回调成功后立即加载购物车否则延迟1s加载*/
-      //每一秒实时监听是否回调成功,回调成功才加载购物车列表
-      let listenSuc=setInterval(()=>{
-        if (app.globalData.ajaxOk){
-          this.loadList();
-          clearInterval(listenSuc)
-        }
-      },1000)
-    
+    //每一秒实时监听是否回调成功,回调成功才加载购物车列表
+    let listenSuc = setInterval(() => {
+      if (app.globalData.ajaxOk) {
+        this.loadList();
+        clearInterval(listenSuc)
+      }
+    }, 1000)
+
 
 
   },
@@ -134,7 +134,7 @@ Page({
           this.loadList();
           clearInterval(listenSuc);
           wx.hideLoading()
-        }else{
+        } else {
           wx.hideLoading()
         }
       }, 1000)
@@ -352,6 +352,7 @@ Page({
       dyadicArr.push(reshowList);
       let originalArr = this.data.productList; //复制
       let newArr = originalArr.concat(dyadicArr); //合并数组
+      
       this.setData({
         productList: newArr
       })
@@ -498,9 +499,9 @@ Page({
     })
   },
   //模态输入框
-  modalInput(e){
+  modalInput(e) {
     let id = e.currentTarget.dataset.cartsid;
-    let quantity=e.detail.value;
+    let quantity = e.detail.value;
     http.request({
       apiName: '/carts/' + id,
       method: 'PUT',

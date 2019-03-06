@@ -228,6 +228,7 @@ Page({
   },
   //input修改
   changeNum(e) {
+    debugger
     let goodsId = e.currentTarget.dataset.id;
     let quantity = parseInt(e.detail.value);
     for (let index in app.globalData.globalCar) {
@@ -243,6 +244,7 @@ Page({
 
   },
   reshow() {
+    debugger
     let goodsList = this.data.goodsList;
     for (let index in goodsList) {
       for (let i in app.globalData.globalCar) {

@@ -122,9 +122,10 @@ swiper image{
 
 }
 .operate input{
-  width: 60rpx;
+  width: 70rpx;
   height: 60rpx;
-  text-align: center
+  text-align: center;
+  font-size: 28rpx;
 }
 .add{
   width: 60rpx;
