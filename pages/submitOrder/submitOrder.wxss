@@ -57,9 +57,10 @@ page{
   border-bottom: 1px solid #cacaca;
 }
 .quantity input{
-  width: 60rpx;
+  width: 80rpx;
   height: 60rpx;
   text-align: center;
+  font-size: 28rpx;
 }
 /* 购物车列表 */
 /* .goodsDetail{
