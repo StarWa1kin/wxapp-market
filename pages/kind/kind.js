@@ -34,14 +34,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-
+    this.getMenuList();
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getMenuList();
     /**回调成功后立即加载购物车否则延迟1s加载*/
       //每一秒实时监听是否回调成功,回调成功才加载购物车列表
       let listenSuc=setInterval(()=>{
@@ -59,9 +59,9 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    this.setData({
-      productList: []
-    })
+    // this.setData({
+    //   productList: []
+    // })
     //小优化:如果模态框此时打开着切换页面,那么将自动关闭模态框
     if (this.data.clickIcon == true) {
       this.setData({
