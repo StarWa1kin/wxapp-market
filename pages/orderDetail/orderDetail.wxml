@@ -29,6 +29,7 @@
     </view>
   </block>
 </radio-group>
+
 <!-- <view class="remainingSum bg">
   <view>余额(剩余￥{{userInfo.balance}})</view>
   <view>

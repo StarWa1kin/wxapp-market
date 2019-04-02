@@ -9,7 +9,8 @@ Page({
     hasAddress: false,
     shoppingList: [], //购物车列表
     total: 0, //购物车商品合计
-    addressInfo: {}
+    addressInfo: {},
+    date:''
   },
 
   /**
@@ -30,6 +31,7 @@ Page({
         clearInterval(listenSuc)
       }
     }, 1000)
+    this.getNowTime();
   },
 
   /**
@@ -93,6 +95,27 @@ Page({
   enterAddress() {
     wx.navigateTo({
       url: '../newAddress/newAddress',
+    })
+  },
+  //获取今日时间
+  getNowTime() {
+    var date = new Date();
+    var seperator1 = "-";
+    var seperator2 = ":";
+    var month = date.getMonth() + 1;
+    var strDate = date.getDate();
+    if (month >= 1 && month <= 9) {
+      month = "0" + month;
+    }
+    if (strDate >= 0 && strDate <= 9) {
+      strDate = "0" + strDate;
+    }
+    // var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
+    //   " " + date.getHours() + seperator2 + date.getMinutes() +
+    //   seperator2 + date.getSeconds();
+    let currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+    this.setData({
+      date: currentdate
     })
   },
   //取回保存的地址
@@ -220,6 +243,13 @@ Page({
       this.getShoppingList()
     })
 
+  },
+  //选择收货时间
+  bindDateChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
   },
   //提交订单只判断是否携带地址
   submitOrder() {

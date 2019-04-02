@@ -1,65 +1,77 @@
-page{
- background: #f1f1f1;
+page {
+  background: #f1f1f1;
 }
 
 /* 订单列表 */
+
 /* 购物车列表 */
-.goodsDetail{
+
+.goodsDetail {
   width: 100%;
   height: 240rpx;
   background: white;
   display: flex;
   justify-content: start;
   align-items: center;
-  border-bottom:1px solid rgb(231, 231, 231)
+  border-bottom: 1px solid rgb(231, 231, 231);
 }
 
-.img{
+.img {
   width: 190rpx;
-  height:190rpx;
+  height: 190rpx;
   background-color: silver;
-  margin-left:20rpx; 
+  margin-left: 20rpx;
 }
-.img>image{
+
+.img>image {
   width: 100%;
   height: 100%;
 }
-.content{
+
+.content {
   margin-left: 40rpx;
-  width:480rpx;
-  height:190rpx;
+  width: 480rpx;
+  height: 190rpx;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
-.content view{
-  margin-bottom:12rpx; 
+
+.content view {
+  margin-bottom: 12rpx;
   height: 36rpx;
   /* background: silver; */
 }
-.desc{
+
+.desc {
   font-size: 32rpx;
-  color: #888888;
+  color: #888;
 }
-.money{
+
+.money {
   display: flex;
   justify-content: space-between;
 }
-.littleSum{
-  color: #EE0F1F;
+
+.littleSum {
+  color: #ee0f1f;
 }
+
 /* 支付方式 */
-.payType{
+
+.payType {
   height: 60rpx;
   font-size: 32rpx;
   margin-left: 20rpx;
   line-height: 60rpx;
   color: #777;
 }
-.remainingSum{
-  border-bottom:1px solid rgb(231, 231, 231)
+
+.remainingSum {
+  border-bottom: 1px solid rgb(231, 231, 231);
 }
-.bg{
+
+.bg {
   background: white;
   height: 100rpx;
   display: flex;
@@ -67,11 +79,16 @@ page{
   align-items: center;
   color: #343434;
 }
-.bg view{
+
+.bg view {
   margin: 20rpx;
 }
+
+
+
 /* 支付栏 */
-.payFixed{
+
+.payFixed {
   width: 100%;
   height: 100rpx;
   background: white;
@@ -81,30 +98,33 @@ page{
   justify-content: space-between;
   align-items: center;
 }
-.payMoney{
+
+.payMoney {
   margin: 20rpx;
   font-size: 42rpx;
-  color: #EE0F1F;
+  color: #ee0f1f;
   font-weight: bold;
 }
-.submit{
+
+.submit {
   width: 220rpx;
-  background: #EE0F1F;
+  background: #ee0f1f;
   height: 100rpx;
   text-align: center;
   line-height: 100rpx;
   color: white;
 }
 
-.payMethodList{
+.payMethodList {
   width: 100%;
   height: 100rpx;
   line-height: 100rpx;
   background: white;
   display: flex;
   justify-content: space-between;
-  border-bottom:1px solid rgb(231, 231, 231)
+  border-bottom: 1px solid rgb(231, 231, 231);
 }
-.payMethodList view{
-  margin: 0 20rpx
+
+.payMethodList view {
+  margin: 0 20rpx;
 }

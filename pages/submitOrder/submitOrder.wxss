@@ -199,6 +199,31 @@ page{
   color:  #EE0F1F;
 }
 
+/* picker */
+/* .date {
+  height: 60rpx;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+  line-height: 60rpx;
+  color: #777;
+} */
+
+.datePicker {
+  width: 100%;
+  /* margin: 0 20rpx; */
+  font-size: 32rpx;
+  height: 100rpx;
+  background: white;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-bottom: 1px solid rgb(231, 231, 231);
+
+}
+
+.picker {
+  margin-right: 20rpx;
+}
 /* 支付类型 */
 .payType{
   height: 60rpx;

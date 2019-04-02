@@ -8,9 +8,10 @@ Page({
     payMethosList: [], //支付方式列表
     userInfo: {}, //用户信息
     methodID: '', //支付方式id
-    checked:'',//控制默认选择什么支付！余额够->余额付
-    disabled:'',//控制radio的禁用
-    buyNow:false,//从buyNow页面进入的
+    checked: '', //控制默认选择什么支付！余额够->余额付
+    disabled: '', //控制radio的禁用
+    buyNow: false, //从buyNow页面进入的
+    date: '2016-09-01',
   },
 
   /**
@@ -21,8 +22,8 @@ Page({
       //从订单列表也跳转过来收到options参数
       this.setData({
         orderId: options.param,
-        buyNow:true,
-        amount:options.amount
+        buyNow: true,
+        amount: options.amount
       })
     } else {
       //获取从提交传来的订单信息
@@ -34,6 +35,7 @@ Page({
     this.getUserInfo();
     this.getPayMethod();
     this.renderOrder()
+    this.getNowTime();
 
   },
 
@@ -114,7 +116,7 @@ Page({
     })
   },
   //支付方式选择框
-  radioChange: function (e) {
+  radioChange: function(e) {
     //取得methodID
     // console.log(e.detail.value)
     this.setData({
@@ -131,26 +133,27 @@ Page({
      */
     let balance = Number(this.data.userInfo.balance)
     let amount;
-    if(this.data.buyNow){
-      amount=Number(this.data.amount)
-    }else{
+    if (this.data.buyNow) {
+      amount = Number(this.data.amount)
+    } else {
       amount = Number(this.data.orderInfo.amount)
     }
-    
-    
+
+
     if (balance >= amount) {
       this.setData({
-        checked:"1",
-        methodID:'1'
+        checked: "1",
+        methodID: '1'
       })
     } else {
       this.setData({
-        disabled:"1",
-        checked:"2",
+        disabled: "1",
+        checked: "2",
         methodID: '2'
       })
     }
   },
+  
   //渲染该订单列表
   renderOrder() {
     http.request({
