@@ -11,13 +11,14 @@ Page({
     checked: '', //控制默认选择什么支付！余额够->余额付
     disabled: '', //控制radio的禁用
     buyNow: false, //从buyNow页面进入的
-    date: '2016-09-01',
+    vscrollHeig: '240',
+    // date: '2016-09-01',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     if (options.hasOwnProperty("param")) {
       //从订单列表也跳转过来收到options参数
       this.setData({
@@ -35,60 +36,60 @@ Page({
     this.getUserInfo();
     this.getPayMethod();
     this.renderOrder()
-    this.getNowTime();
+    // this.getNowTime();
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
   /**自定义函数 */
-  
+
   //初始化取用户信息
   getUserInfo() {
     http.request({
@@ -116,7 +117,7 @@ Page({
     })
   },
   //支付方式选择框
-  radioChange: function(e) {
+  radioChange: function (e) {
     //取得methodID
     // console.log(e.detail.value)
     this.setData({
@@ -153,7 +154,7 @@ Page({
       })
     }
   },
-  
+
   //渲染该订单列表
   renderOrder() {
     http.request({
@@ -161,8 +162,19 @@ Page({
       method: 'GET',
       isShowProgress: true,
     }).then(res => {
+      //根据订单量列表绘制 viewScroll高度
+      let height;
+      debugger
+      if (res.products.length == 1) {
+        height = 240
+      } else if (res.products.length == 2) {
+        height = 480
+      } else {
+        height = 720
+      }
       this.setData({
-        list: res
+        list: res,
+        vscrollHeig: height
       })
     })
   },

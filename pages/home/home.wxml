@@ -16,7 +16,7 @@
   </block>
 </swiper>
 <!-- 促销信息 -->
-<scroll-view scroll-y="ture" style="height:{{show?winHeight:winHeight+100}}rpx">
+<scroll-view scroll-y="ture" style="height:{{show?winHeight:winHeight+100}}rpx" bindscrolltolower="slideBottom">
   <view class='saleArea'>
     <view class='title'>促销信息</view>
     <!-- 商品信息 -->
@@ -50,37 +50,11 @@
         </view>
       </view>
     </view>
-
-    <!-- 商品信息 -->
-    <!-- <view class='productInfo'>
-    <view class='img'>
-      <image></image>
-    </view>
-    <view class='content'>
-      <view class='name'>{{name}}</view>
-      <view class='star'>
-        <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image>
-        <image src='../../assets/page/star.png'></image>
-      </view>
-      <view class='description'>金钟精品三鲜五花肉</view>
-      <view class='detail'>
-        <view class='price'>￥26.8</view>
-        <view class='subtract' bindtap="subtract">
-          <image src='../../assets/page/-.png'></image>
-        </view>
-        <view class='quantity'>10</view>
-        <view class='add' bindtap='add'>
-          <image src='../../assets/page/+.png'></image>
-        </view>
-      </view>
-    </view>
-  </view> -->
-
-
   </view>
+  <view wx:if="{{isEnd}}" class='end'>已经到底了</view>
+
 </scroll-view>
+
 
 <!-- 底部 -->
 <view class='fixedBar' style='bottom:{{move}}'>

@@ -1,13 +1,17 @@
 const http = require('../../utils/request.js')
 // const func=require('../../utils/globalFunc.js')
-import { submitLocalCar, computed } from '../../utils/globalFunc.js'
-var app=getApp();
+import {
+  submitLocalCar,
+  computed
+} from '../../utils/globalFunc.js'
+var app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    //Banner
     bannerList: [],
     indicatorDots: true,
     autoplay: true,
@@ -15,7 +19,10 @@ Page({
     duration: 1000, //滑动时长
     circular: true, //无缝轮播
     // 促销信息
+    currentPage: 1,
     goodsList: [],
+    isEnd: false,
+    needReshow: false,
     bubble: 0,
   },
 
@@ -24,6 +31,7 @@ Page({
    */
   onLoad: function(options) {
     this.getBanner();
+    this.getList();
 
   },
 
@@ -38,17 +46,16 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getList(); //请求商品列表
+    //请求购物车 
+    this.loadCar()
+    // this.getList(); //请求商品列表
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    // this.submitLocalCar()
-    // app.submitLocalCar()
-    submitLocalCar()
-
+    submitLocalCar();
   },
 
   /**
@@ -92,7 +99,7 @@ Page({
     })
   },
   //设置scroll组件的高度
-  setScrollHeight(){
+  setScrollHeight() {
     wx.getSystemInfo({
       success: res => {
         let realHeight = (res.windowHeight * (750 / res.windowWidth) - 532);
@@ -122,14 +129,30 @@ Page({
       method: 'GET',
       is_promotion: '1',
       data: {
-        page: 1
+        page: this.data.currentPage
       },
       isShowProgress: true,
     }).then(res => {
-      this.loadCar(res);
+      //默认先回显为0
+      res.forEach(function(item, index) {
+        item.reshowNum = 0
+      })
+      if (res.length == 0) {
+        //页码已经请求不出数据即数据已全部加载
+        this.setData({
+          isEnd: true
+        })
+      } else {
+        //合并操作
+        let conArr = this.data.goodsList.concat(res);
+        this.setData({
+          goodsList: conArr,
+          needReshow: true
+        })
+      }
     })
   },
-  
+
   //单纯加载购物车
   loadCar(goodsList) {
     http.request({
@@ -137,19 +160,16 @@ Page({
       method: 'GET',
     }).then(res => {
       //请求购物车列表处理成本地全局变量
-      app.globalData.globalCar=res;
+      // app.globalData.globalCar = res;
       //购物车无商品会显0
       if (res.length == 0) {
-        goodsList.forEach(function(item, index) {
-          item.reshowNum = 0
-        })
         this.setData({
           bubble: 0,
-          goodsList: goodsList
         })
       }
       //购物车有商品
       else {
+        //存全局变量
         app.globalData.globalCar = [];
         for (let value of res) {
           let json = {};
@@ -157,24 +177,13 @@ Page({
           json.product_id = value.product_id;
           json.quantity = value.quantity;
           json.product == value.product;
-
           app.globalData.globalCar.push(json)
         }
         this.setData({
           bubble: res.length,
         })
-        for (let index in goodsList) {
-          goodsList[index].reshowNum = 0
-          for (let car of app.globalData.globalCar) {
-            if (goodsList[index].id == car.product_id) {
-              goodsList[index].reshowNum = car.quantity
-            }
-          }
-        }
-        this.setData({
-          goodsList: goodsList
-        })
       }
+      this.reshow();
     })
   },
   //商品+1
@@ -211,7 +220,7 @@ Page({
       bubble: app.globalData.globalCar.length
     })
     this.reshow()
-    
+
   },
   //商品-1
   subtract(e) {
@@ -221,7 +230,7 @@ Page({
         app.globalData.globalCar[index].quantity -= 1;
       }
     }
-    
+
     this.setData({
       bubble: app.globalData.globalCar.length
     })
@@ -245,16 +254,40 @@ Page({
   },
   reshow() {
     let goodsList = this.data.goodsList;
-    for (let index in goodsList) {
-      for (let i in app.globalData.globalCar) {
-        if (app.globalData.globalCar[i].product_id == goodsList[index].id) {
-          goodsList[index].reshowNum = app.globalData.globalCar[i].quantity
+    let car = app.globalData.globalCar;
+    if (car.length == 0) {
+      goodsList.forEach(item => {
+        item.reshowNum = 0
+      })
+    } else {
+      for (let index in goodsList) {
+        for (let i in app.globalData.globalCar) {
+          if (app.globalData.globalCar[i].product_id == goodsList[index].id) {
+            goodsList[index].reshowNum = app.globalData.globalCar[i].quantity
+          }
         }
       }
     }
+
     this.setData({
       goodsList: goodsList
     })
   },
-  
+  //页面触底
+  slideBottom() {
+    //首先判断是否加载到末页
+    if (this.data.isEnd) {
+      return;
+    }
+    let page = this.data.currentPage + 1;
+    this.setData({
+      currentPage: page
+    })
+    this.getList();
+    //每次下滑也要 触发回显函数
+    if (this.data.needReshow) {
+      this.reshow()
+    }
+  }
+
 })

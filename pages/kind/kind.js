@@ -1,6 +1,9 @@
 const http = require('../../utils/request.js')
 // const func = require('../../utils/globalFunc.js')
-import {submitLocalCar,computed } from '../../utils/globalFunc.js'
+import {
+  submitLocalCar,
+  computed
+} from '../../utils/globalFunc.js'
 let app = getApp();
 Page({
 
@@ -36,14 +39,14 @@ Page({
    */
   onReady: function() {
     this.getMenuList();
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    
+
     /**回调成功后立即加载购物车否则延迟1s加载*/
     //每一秒实时监听是否回调成功,回调成功才加载购物车列表
     let listenSuc = setInterval(() => {
@@ -217,12 +220,12 @@ Page({
   add(e) {
     // debugger
     let goosId = e.currentTarget.id;
-    let price =e.currentTarget.dataset.price
+    let price = e.currentTarget.dataset.price
     if (!app.globalData.globalCar.length) {
       let json = {};
       json.product_id = goosId;
       json.quantity = 1;
-      json.price=price;
+      json.price = price;
       app.globalData.globalCar.push(json)
     } else {
       //购物车有商品
@@ -296,7 +299,7 @@ Page({
       productList: productList,
       total: comTotal
     })
-    
+
   },
   //清空购物车
   clearList() {
@@ -314,7 +317,8 @@ Page({
         }
       }
       this.setData({
-        productList: productList
+        productList: productList,
+        clickIcon: false
       })
     })
 
@@ -362,7 +366,7 @@ Page({
       dyadicArr.push(reshowList);
       let originalArr = this.data.productList; //复制
       let newArr = originalArr.concat(dyadicArr); //合并数组
-      
+
       this.setData({
         productList: newArr
       })

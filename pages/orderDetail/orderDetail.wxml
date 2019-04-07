@@ -1,4 +1,4 @@
-<scroll-view scroll-y="true" style="height:{{list.products.length>=3?720:480}}rpx">
+<scroll-view scroll-y="true" style="height:{{vscrollHeig}}rpx">
   <!-- 已提交商品列表 -->
   <view class='goodsList' wx:for="{{list.products}}" wx:key="{{index}}">
     <view class='goodsDetail'>

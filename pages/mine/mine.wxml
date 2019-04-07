@@ -50,6 +50,19 @@
   </view>
 
   <!-- 菜单选项 -->
+  <view class='row' bindtap=''>
+    <view class='icon'>
+      <image class="" src="../../assets/alibaba/dizhi3.png" mode="scaleToFill"></image>
+    </view>
+    <view class='text'>
+      <view>切换店铺</view>
+      <view class='text-icon showIcon'>
+        <image class="" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜单选项 -->
   <view class='row' bindtap='enterContact'>
     <view class='icon'>
       <image class="" src="../../assets/alibaba/kefu3.png" mode="scaleToFill"></image>

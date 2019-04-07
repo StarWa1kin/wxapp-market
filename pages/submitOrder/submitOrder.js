@@ -266,7 +266,8 @@ Page({
       data: {
         consignee: this.data.addressInfo.consignee,
         consignee_mobile: this.data.addressInfo.consignee_mobile,
-        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail
+        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail,
+        arrive_time:this.data.date
       },
       isShowProgress: true,
     }).then(res => {

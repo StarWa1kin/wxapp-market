@@ -148,6 +148,14 @@ swiper image{
   height: 100%
 }
 
+.end{
+  text-align: center;
+  font-size: 24rpx;
+  color: #888888;
+}
+
+
+
 
 /* 底部固定栏 */
 
