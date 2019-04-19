@@ -76,6 +76,12 @@ Page({
       url: '../newAddress/newAddress',
     })
   },
+  //切换店铺
+  chooseStore(){
+    wx.navigateTo({
+      url: '../chooseStore/chooseStore',
+    })
+  },
   //联系客服
   enterContact(){
     // let tel ='1776195425';

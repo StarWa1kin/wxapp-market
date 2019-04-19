@@ -50,9 +50,9 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row' bindtap=''>
+  <view class='row' bindtap='chooseStore'>
     <view class='icon'>
-      <image class="" src="../../assets/alibaba/dizhi3.png" mode="scaleToFill"></image>
+      <image class="" src="../../assets/alibaba/store.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
       <view>切换店铺</view>
