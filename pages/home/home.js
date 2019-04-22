@@ -120,7 +120,7 @@ Page({
       apiName: '/banners',
       method: 'GET',
     }).then((res) => {
-      debugger
+      // debugger
       this.setData({
         bannerList: res
       })

@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.3.0",
+	"libVersion": "2.6.6",
 	"appid": "wxb2971f82d8160e53",
 	"projectname": "jz_wxapp",
 	"debugOptions": {
