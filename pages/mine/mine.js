@@ -76,9 +76,15 @@ Page({
       url: '../newAddress/newAddress',
     })
   },
+  //切换店铺
+  enterStore(){
+    wx.navigateTo({
+      url: '../changeStore/changeStore',
+    })
+
+  },
   //联系客服
   enterContact(){
-    // let tel ='1776195425';
     let tel=http.interface.tel;
     wx.makePhoneCall({
       phoneNumber:tel,
@@ -103,6 +109,10 @@ Page({
       method:'GET',
       isShowProgress: true,
     }).then((res)=>{
+      wx.setStorage({
+        key: 'userInfo',
+        data: res,
+      })
       this.setData({
         userInfo:res
       })

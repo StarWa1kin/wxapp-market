@@ -50,7 +50,7 @@
   </view>
 
   <!-- 菜单选项 -->
-  <view class='row' bindtap=''>
+  <view class='row' bindtap='enterStore'>
     <view class='icon'>
       <image class="" src="../../assets/alibaba/dizhi3.png" mode="scaleToFill"></image>
     </view>

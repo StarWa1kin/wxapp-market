@@ -205,7 +205,7 @@ Page({
 
       } else {
         for (let value of res) {
-          var price = value.product.price;
+          var price = value.product.extend[0].price;
           var quantity = value.quantity;
           sum += (price * quantity)
         }

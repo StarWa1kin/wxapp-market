@@ -117,6 +117,7 @@ Page({
       apiName: '/banners',
       method: 'GET',
     }).then((res) => {
+      debugger
       this.setData({
         bannerList: res
       })
@@ -134,6 +135,7 @@ Page({
       isShowProgress: true,
     }).then(res => {
       //默认先回显为0
+      // debugger
       res.forEach(function(item, index) {
         item.reshowNum = 0
       })

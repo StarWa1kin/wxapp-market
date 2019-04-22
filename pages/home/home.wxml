@@ -33,7 +33,7 @@
         </view>
         <view class='description'>{{item.describe}}</view>
         <view class='detail'>
-          <view class='price'>￥{{item.price}}</view>
+          <view class='price'>￥{{item.extend[0].price}}</view>
           <view class='operate'>
             <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract" id='{{item.id}}' data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}" data-index='{{index}}'>
               <image src='../../assets/page/-.png'></image>

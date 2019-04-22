@@ -1,0 +1,33 @@
+/* pages/changeStore/changeStore.wxss */
+
+.section{
+  width: 100%;
+}
+/* .storeList{
+  width: 100%;
+  height: 120rpx;
+  border-bottom: 1rpx solid #c0c0c0;
+} */
+
+/* .radio-group{
+  width: 100%;
+}
+.radio{
+  width: 100%;
+  height: 120rpx;
+  background: red;
+} */
+.title{
+  padding-left: 20rpx;
+}
+.storeList{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 120rpx;
+  line-height: 120rpx;
+  border-bottom: #c0c0c0;
+}
+.storeList>view{
+  margin: 20rpx;
+}

@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    region: [],
+    region: ["四川省"],
     consignee:'',//收货人
     consignee_mobile:'',//联系方式
     detail:'',//详细地址
@@ -150,7 +150,7 @@ Page({
       method: 'GET',
       isShowProgress: false,
     }).then((res) => {
-      if(JSON.stringify(res)!='{}'){
+      if(JSON.stringify(res)!='[]'){
         //保存地址后就有回显示
         this.setData({
           consignee: res.consignee,

@@ -167,7 +167,7 @@ Page({
 
       } else {
         for (let index in res) {
-          var price = res[index].product.price;
+          var price = res[index].product.extend[0].price;
           var quantity = res[index].quantity;
           sum += (price * quantity)
           res[index]["littleSum"] = (price * quantity).toFixed(2)
