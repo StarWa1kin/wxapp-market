@@ -7,6 +7,8 @@
     </view>
   </view>
 </view>
+
+<view class='blank'></view>
 <!-- 轮播组件 -->
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
   <block wx:for="{{bannerList}}" wx:key="{{index}}">
@@ -16,7 +18,7 @@
   </block>
 </swiper>
 <!-- 促销信息 -->
-<scroll-view scroll-y="ture" style="height:{{show?winHeight:winHeight+100}}rpx" bindscrolltolower="slideBottom">
+<!-- <scroll-view scroll-y="ture" style="height:{{show?winHeight:winHeight+100}}rpx" bindscrolltolower="slideBottom"> -->
   <view class='saleArea'>
     <view class='title'>促销信息</view>
     <!-- 商品信息 -->
@@ -53,7 +55,7 @@
   </view>
   <view wx:if="{{isEnd}}" class='end'>已经到底了</view>
 
-</scroll-view>
+<!-- </scroll-view> -->
 
 
 <!-- 底部 -->

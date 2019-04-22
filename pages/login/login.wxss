@@ -1,7 +1,6 @@
 .logo{
   width: 100%;
   height: 440rpx;
-  /* background: red; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,7 +16,6 @@
 .input{
   width: 600rpx;
   height: 100rpx;
-  /* background: pink; */
   border-bottom: 1px solid #cacaca;
   display: flex;
   align-items: center;
@@ -32,7 +30,6 @@
 .code{
   padding: 0;
   width: 200rpx;
-  /* height: 70rpx; */
   line-height: 70rpx;
   border-radius: 16rpx;
   text-align: center;
@@ -46,7 +43,6 @@
 }
 /* icon共有属性 */
 .icon{
-  /* background: orange; */
   width: 70rpx;
   height: 70rpx;
   margin:0 20rpx;

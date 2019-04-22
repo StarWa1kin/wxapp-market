@@ -55,6 +55,14 @@ const sendRequest = (config) => {
           resolve(res.data.data)
         }else if(res.data.code==1){
           reject(res.data.message)
+        } else if (res.data.code == "-1" && res.data.message=="Unauthenticated."){
+          wx.showToast({
+            title: '该账号授权失败',
+            icon:'none'
+          })
+          wx.navigateTo({
+            url: '../login/login',
+          })
         }else{
           reject(res.data.message)
         }
