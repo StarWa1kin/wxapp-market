@@ -229,15 +229,24 @@ Page({
                         iv
                       },
                       success:res=> {
-                        wx.setStorage({
-                          key: 'token',
-                          data: JSON.stringify(res.data.data),
-                        })
-                        wx.hideLoading()
-                        // 存储token跳转首页
-                        wx.switchTab({
-                          url: '../home/home',
-                        })
+                        //解密失败
+                        if(res.data.code=="-1"){
+                          wx.hideLoading();
+                          wx.showToast({
+                            title: res.data.message,
+                            icon:"none"
+                          })
+                        }else{
+                          wx.setStorage({
+                            key: 'token',
+                            data: JSON.stringify(res.data.data),
+                          })
+                          wx.hideLoading()
+                          // 存储token跳转首页
+                          wx.switchTab({
+                            url: '../home/home',
+                          })
+                        }
                       }
                     })
 
