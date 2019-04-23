@@ -3,7 +3,7 @@
 <radio-group bindchange="radioChange">
   <block wx:for="{{storeList}}" wx:key="{{index}}">
     <view class='storeList'>
-      <view >{{item.name}}（{{item.address}}）</view>
+      <view >{{item.name}}</view>
       <view>
         <radio class="radio" value="{{item.id}}" checked="{{item.id==checked}}" color="#d3b65c"  />
       </view>

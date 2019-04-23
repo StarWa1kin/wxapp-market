@@ -22,7 +22,7 @@ page {
   align-items: center;
   width: 100%;
   height: 100rpx;
-  border-bottom: #c0c0c0;
+  border-bottom: 1px solid #cacaca;
   background: white;
 }
 

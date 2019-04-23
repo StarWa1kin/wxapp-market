@@ -10,7 +10,7 @@
   </view>
 </view>
 
-<view class='money'>
+<!-- <view class='money'>
   <view class='left'>
     <view class="smaller">账户余额</view>
     <view class="bigger">￥{{userInfo.balance}}</view>
@@ -19,7 +19,7 @@
     <view class="smaller">积分</view>
     <view class="bigger">{{userInfo.integral}}</view>
   </view>
-</view>
+</view> -->
 
 <view class='menu'>
   <!-- 菜单选项 -->
