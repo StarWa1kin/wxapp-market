@@ -1,5 +1,4 @@
 const http = require('../../utils/request.js')
-// const func = require('../../utils/globalFunc.js')
 import {
   submitLocalCar,
   computed
@@ -205,7 +204,7 @@ Page({
 
       } else {
         for (let value of res) {
-          var price = value.product.extend[0].price;
+          var price = value.product.extend.price;
           var quantity = value.quantity;
           sum += (price * quantity)
         }
@@ -218,7 +217,6 @@ Page({
   },
   //商品+1
   add(e) {
-    // debugger
     let goosId = e.currentTarget.id;
     let price = e.currentTarget.dataset.price
     if (!app.globalData.globalCar.length) {

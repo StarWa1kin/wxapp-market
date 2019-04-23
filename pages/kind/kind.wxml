@@ -31,13 +31,13 @@
           <view class='itemText'>{{good.describe}}</view>
         </view>
         <view class='operate'>
-          <view class='price'>￥{{good.extend[0].price}}</view>
-          <view class='subtract' id='{{good.id}}' data-price='{{good.extend[0].price}}' bindtap='subtract' wx:if="{{good.reshowNum>0}}">
+          <view class='price'>￥{{good.extend.price}}</view>
+          <view class='subtract' id='{{good.id}}' data-price='{{good.extend.price}}' bindtap='subtract' wx:if="{{good.reshowNum>0}}">
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='subtract' wx:else></view>
           <view class='reshowNum'><input type='number' maxlength="4" value='{{good.reshowNum?good.reshowNum:0}}' bindblur='inputChange' id='{{good.id}}'></input></view>
-          <view class='add' id='{{good.id}}' data-price='{{good.extend[0].price}}' bindtap='add'>
+          <view class='add' id='{{good.id}}' data-price='{{good.extend.price}}' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>
         </view>
@@ -79,7 +79,7 @@
           </view>
         </view>
         <view class='modal-detail'>
-          <view class="modal-price">￥{{item.product.extend[0].price}}</view>
+          <view class="modal-price">￥{{item.product.extend.price}}</view>
           <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
             <image src='../../assets/page/-.png'></image>
           </view>

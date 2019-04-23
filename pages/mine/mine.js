@@ -5,14 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo:[],//用户所有信息
+    userInfo: [],//用户所有信息
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getUserInfo()
+
   },
 
   /**
@@ -26,7 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.getUserInfo();
   },
 
   /**
@@ -65,56 +65,56 @@ Page({
   },
   /*自定义函数*/
   //我的订单
-  enterOrder(){
+  enterOrder() {
     wx.switchTab({
       url: '../order/order',
     })
   },
   //跳转地址管理页面
-  enterAddress(){
+  enterAddress() {
     wx.navigateTo({
       url: '../newAddress/newAddress',
     })
   },
   //切换店铺
-  enterStore(){
+  enterStore() {
     wx.navigateTo({
       url: '../changeStore/changeStore',
     })
 
   },
   //联系客服
-  enterContact(){
-    let tel=http.interface.tel;
+  enterContact() {
+    let tel = http.interface.tel;
     wx.makePhoneCall({
-      phoneNumber:tel,
+      phoneNumber: tel,
     })
   },
   //意见反馈
-  enterFeedback(){
+  enterFeedback() {
     wx.navigateTo({
       url: '../feedback/feedback',
     })
   },
-  exitLogin(){
+  exitLogin() {
     //清除token,返回登陆页面
     wx.navigateTo({
       url: '../login/login',
     })
   },
   //初始化取用户信息
-  getUserInfo(){
+  getUserInfo() {
     http.request({
-      apiName:'/users',
-      method:'GET',
+      apiName: '/users',
+      method: 'GET',
       isShowProgress: true,
-    }).then((res)=>{
+    }).then((res) => {
       wx.setStorage({
         key: 'userInfo',
         data: res,
       })
       this.setData({
-        userInfo:res
+        userInfo: res
       })
     })
   }

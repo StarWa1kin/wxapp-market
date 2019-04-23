@@ -81,7 +81,7 @@ const computed = () => {
   let sum = 0;
   for (let val of localCar) {
     if (val.hasOwnProperty("product")){
-      sum += (val.quantity) * (val.product.extend[0].price)
+      sum += (val.quantity) * (val.product.extend.price)
     }else{
       sum += (val.quantity) * (val.price)
     }

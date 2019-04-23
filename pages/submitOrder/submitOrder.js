@@ -6,10 +6,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-    hasAddress: false,
+    // hasAddress: false,
     shoppingList: [], //购物车列表
     total: 0, //购物车商品合计
-    addressInfo: {},
+    userInfo: {},
     date:''
   },
 
@@ -47,7 +47,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    this.getAddress()
+    // this.getAddress()
+    this.getUserInfo()
   },
 
   /**
@@ -84,6 +85,17 @@ Page({
   onShareAppMessage: function() {
 
   },
+  getUserInfo(){
+    http.request({
+      apiName: '/users',
+      method: 'GET',
+      isShowProgress: true,
+    }).then((res) => {
+      this.setData({
+        userInfo: res
+      })
+    })
+  },
   //跳转地址页面
   enterAddress() {
     wx.navigateTo({
@@ -93,20 +105,19 @@ Page({
   //获取今日时间
   getNowTime() {
     var date = new Date();
+    //收货日期从明日开始
+    var nextDate = new Date(date.getTime() + 24 * 60 * 60 * 1000); //后一天
     var seperator1 = "-";
     var seperator2 = ":";
-    var month = date.getMonth() + 1;
-    var strDate = date.getDate();
+    var month = nextDate.getMonth() + 1;
+    var strDate = nextDate.getDate();
     if (month >= 1 && month <= 9) {
       month = "0" + month;
     }
     if (strDate >= 0 && strDate <= 9) {
       strDate = "0" + strDate;
     }
-    // var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate +
-    //   " " + date.getHours() + seperator2 + date.getMinutes() +
-    //   seperator2 + date.getSeconds();
-    let currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+    let currentdate = nextDate.getFullYear() + seperator1 + month + seperator1 + strDate
     this.setData({
       date: currentdate
     })
@@ -160,7 +171,7 @@ Page({
 
       } else {
         for (let index in res) {
-          var price = res[index].product.extend[0].price;
+          var price = res[index].product.extend.price;
           var quantity = res[index].quantity;
           sum += (price * quantity)
           res[index]["littleSum"] = (price * quantity).toFixed(2)
@@ -244,22 +255,21 @@ Page({
       date: e.detail.value
     })
   },
-  //提交订单只判断是否携带地址
   submitOrder() {
-    if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
-      wx.showToast({
-        title: '请先填写地址',
-        image: '../../assets/page/err.png'
-      })
-      return
-    }
+    // if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
+    //   wx.showToast({
+    //     title: '请先填写地址',
+    //     image: '../../assets/page/err.png'
+    //   })
+    //   return
+    // }
     http.request({
       apiName: '/orders',
       method: 'POST',
       data: {
-        consignee: this.data.addressInfo.consignee,
-        consignee_mobile: this.data.addressInfo.consignee_mobile,
-        address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail,
+        // consignee: this.data.addressInfo.consignee,
+        // consignee_mobile: this.data.addressInfo.consignee_mobile,
+        // address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail,
         arrive_time:this.data.date
       },
       isShowProgress: true,

@@ -100,7 +100,12 @@ Page({
       apiName:'/users/store/change/'+param,
       method:'post',
     }).then(res=>{
-      debugger
+      wx.showToast({
+        title: '切换成功',
+      })
+      wx.navigateBack({
+        
+      })
     })
   }
   
