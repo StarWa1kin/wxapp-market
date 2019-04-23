@@ -17,6 +17,7 @@ const submitLocalCar = () => {
   app.globalData.bubble = carList.length - actNum;
   let httpRequest = 0; //发了几次请i去
   for (let index in carList) {
+    //1-如果有购物车id 并且数量为0 -->调用删除
     if (carList[index].hasOwnProperty("id") && carList[index].quantity == 0) {
       http.request({
         apiName: '/carts/' + carList[index].id,
@@ -28,7 +29,9 @@ const submitLocalCar = () => {
           app.globalData.globalCar = []
         }
       })
-    } else if (carList[index].hasOwnProperty("id") && carList[index].quantity > 0) {
+    }
+    //2- 如果有购物车id 并且最终数量大于0 -->修改接口 
+    else if (carList[index].hasOwnProperty("id") && carList[index].quantity > 0) {
       http.request({
         apiName: '/carts/' + carList[index].id,
         method: 'PUT',
@@ -43,6 +46,12 @@ const submitLocalCar = () => {
         }
       })
     } else {
+
+      //!!加0的情况
+      if (carList[index].quantity==0){
+        return
+      }
+
       // console.log("添加")
       http.request({
         apiName: '/carts',
@@ -57,6 +66,8 @@ const submitLocalCar = () => {
           app.globalData.ajaxOk = true;
           app.globalData.globalCar = []
         }
+      },err=>{
+        debugger
       })
     }
   }

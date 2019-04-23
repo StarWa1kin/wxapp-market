@@ -17,13 +17,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    // if (app.globalData.ajaxOk) {
-    //   this.getShoppingList();
-    // } else {
-    //   setTimeout(() => {
-    //     this.getShoppingList();
-    //   }, 1300)
-    // }
     let listenSuc = setInterval(() => {
       if (app.globalData.ajaxOk) {
         console.log("回调成功")
