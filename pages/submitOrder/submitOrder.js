@@ -10,13 +10,14 @@ Page({
     shoppingList: [], //购物车列表
     total: 0, //购物车商品合计
     userInfo: {},
-    date:''
+    date: '',
+    payMethod: '',//支付方式
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
     let listenSuc = setInterval(() => {
       if (app.globalData.ajaxOk) {
         console.log("回调成功")
@@ -30,7 +31,7 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
     wx.getSystemInfo({
       success: res => {
         let realHeight = (res.windowHeight * (750 / res.windowWidth)) - 280;
@@ -46,7 +47,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
     // this.getAddress()
     this.getUserInfo()
   },
@@ -54,45 +55,46 @@ Page({
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   },
-  getUserInfo(){
+  getUserInfo() {
     http.request({
       apiName: '/users',
       method: 'GET',
       isShowProgress: true,
     }).then((res) => {
       this.setData({
-        userInfo: res
+        userInfo: res,
+        payMethod: res.current_store.type
       })
     })
   },
@@ -256,13 +258,17 @@ Page({
     })
   },
   submitOrder() {
-    // if (JSON.stringify(this.data.addressInfo) == "" || JSON.stringify(this.data.addressInfo) == "{}") {
-    //   wx.showToast({
-    //     title: '请先填写地址',
-    //     image: '../../assets/page/err.png'
-    //   })
-    //   return
-    // }
+    //无商品不能 提交
+    if (this.data.shoppingList.length == 0) {
+      wx.showToast({
+        title: '购物车无商品',
+        icon: 'none'
+      })
+      setTimeout(() => {
+        wx.navigateBack({})
+      }, 1000)
+      return;
+    }
     http.request({
       apiName: '/orders',
       method: 'POST',
@@ -270,10 +276,11 @@ Page({
         // consignee: this.data.addressInfo.consignee,
         // consignee_mobile: this.data.addressInfo.consignee_mobile,
         // address: this.data.addressInfo.province + this.data.addressInfo.city + this.data.addressInfo.county + this.data.addressInfo.detail,
-        arrive_time:this.data.date
+        arrive_time: this.data.date
       },
       isShowProgress: true,
     }).then(res => {
+      // debugger
       if (JSON.stringify(res) != "{}") {
         wx.navigateTo({
           url: '../orderDetail/orderDetail?order=' + JSON.stringify(res),

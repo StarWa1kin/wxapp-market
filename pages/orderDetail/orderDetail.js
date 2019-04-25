@@ -6,19 +6,18 @@ Page({
    */
   data: {
     payMethosList: [], //支付方式列表
-    userInfo: {}, //用户信息
+    // userInfo: {}, //用户信息
     methodID: '', //支付方式id
-    checked: '', //控制默认选择什么支付！余额够->余额付
-    disabled: '', //控制radio的禁用
+    // checked: '', //控制默认选择什么支付！余额够->余额付
+    // disabled: '', //控制radio的禁用
     buyNow: false, //从buyNow页面进入的
     vscrollHeig: '240',
-    // date: '2016-09-01',
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     if (options.hasOwnProperty("param")) {
       //从订单列表也跳转过来收到options参数
       this.setData({
@@ -30,11 +29,22 @@ Page({
       //获取从提交传来的订单信息
       this.setData({
         orderInfo: JSON.parse(options.order),
-        orderId: JSON.parse(options.order).id
+        orderId: JSON.parse(options.order).id,
+        methodID: JSON.parse(options.order).pay_method
+      })
+      //先款后货
+      let json = {
+        methodID: this.data.orderInfo.pay_method,
+        name: this.data.orderInfo.pay_method==0 ? "微信支付" : "信用支付"
+      }
+      let arr = [];
+      arr.push(json)
+      this.setData({
+        payMethosList: arr,
       })
     }
-    this.getUserInfo();
-    this.getPayMethod();
+    // this.getUserInfo();
+    // this.getPayMethod();
     this.renderOrder()
     // this.getNowTime();
 
@@ -43,49 +53,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
   /**自定义函数 */
@@ -117,14 +127,12 @@ Page({
     })
   },
   //支付方式选择框
-  radioChange: function (e) {
-    //取得methodID
-    // console.log(e.detail.value)
-    this.setData({
-      methodID: e.detail.value
-    })
+  // radioChange: function (e) {
+  //   this.setData({
+  //     methodID: e.detail.value
+  //   })
 
-  },
+  // },
   //判断是否能用余额支付
   estimate() {
     /**
@@ -164,7 +172,6 @@ Page({
     }).then(res => {
       //根据订单量列表绘制 viewScroll高度
       let height;
-      debugger
       if (res.products.length == 1) {
         height = 240
       } else if (res.products.length == 2) {
@@ -180,13 +187,6 @@ Page({
   },
   //立即支付按钮
   pay() {
-    if (this.data.methodID == "") {
-      wx.showToast({
-        title: '请选择支付方式',
-        image: '../../assets/page/err.png'
-      })
-      return
-    }
     http.request({
       apiName: '/pay',
       method: 'POST',
@@ -196,9 +196,9 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      //methodID=1 余额支付
-      //methodID=2 微信
-      //methodID=3 先货后款
+      //methodID=0 微信
+      //methodID=1 先货后款
+      debugger
       if (res.hasOwnProperty("nonceStr") && res.hasOwnProperty("package")) {
         // console.log("调用微信支付")
         wx.requestPayment({

@@ -21,10 +21,12 @@
 <radio-group bindchange="radioChange">
   <block wx:for="{{payMethosList}}" wx:key="{{index}}">
     <view class='payMethodList'>
-      <view wx:if="{{item.describe=='余额支付'}}">{{item.describe}}(￥{{userInfo.balance}})</view>
-      <view wx:else>{{item.describe}}</view>
+      <!-- <view wx:if="{{item.describe=='余额支付'}}">{{item.describe}}(￥{{userInfo.balance}})</view> -->
+      <!-- <view wx:else>{{item.describe}}</view> -->
+      <view>{{item.name}}</view>
       <view>
-        <radio class="radio" value="{{item.id}}" checked="{{item.id==checked}}" color="#d3b65c" disabled='{{item.id==disabled}}' />
+        <!-- <radio class="radio" value="{{item.id}}" checked="{{true}}" color="#d3b65c" disabled='{{item.id==disabled}}' /> -->
+        <radio class='radio' color="#d3b65c" checked='true'></radio>
       </view>
     </view>
   </block>
