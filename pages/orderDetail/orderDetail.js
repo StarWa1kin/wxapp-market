@@ -25,6 +25,15 @@ Page({
         buyNow: true,
         amount: options.amount
       })
+      // let json={
+      //   methodID: wx.getStorageSync("userInfo").current_store.type,
+      //   name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
+      // }
+      // let arr = [];
+      // arr.push(json)
+      // this.setData({
+      //   payMethosList: arr,
+      // })
     } else {
       //获取从提交传来的订单信息
       this.setData({
@@ -33,16 +42,25 @@ Page({
         methodID: JSON.parse(options.order).pay_method
       })
       //先款后货
-      let json = {
-        methodID: this.data.orderInfo.pay_method,
-        name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
-      }
-      let arr = [];
-      arr.push(json)
-      this.setData({
-        payMethosList: arr,
-      })
+      // let json = {
+      //   methodID: this.data.orderInfo.pay_method,
+      //   name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
+      // }
+      // let arr = [];
+      // arr.push(json)
+      // this.setData({
+      //   payMethosList: arr,
+      // })
     }
+    let json = {
+      methodID: wx.getStorageSync("userInfo").current_store.type,
+      name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
+    }
+    let arr = [];
+    arr.push(json)
+    this.setData({
+      payMethosList: arr,
+    })
     // this.getUserInfo();
     // this.getPayMethod();
     this.renderOrder()
