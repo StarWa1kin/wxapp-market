@@ -48,14 +48,13 @@ Page({
    */
   onShow: function() {
     //切换店铺后需要重新加载首页
-    if (getApp().globalData.hasOwnProperty("changeStore")) {
+    if (getApp().globalData.hasOwnProperty("changeStoreHome")) {
       //指控原来的所有的goodList并重新请求列表
       this.setData({
         goodsList:[],
       })
       this.getList();
-      delete getApp().globalData.changeStore
-      debugger
+      delete getApp().globalData.changeStoreHome
     }
     //请求购物车 
     this.loadCar()
@@ -148,7 +147,7 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      debugger
+      // debugger
       //默认先回显为0
       res.forEach(function(item, index) {
         item.reshowNum = 0

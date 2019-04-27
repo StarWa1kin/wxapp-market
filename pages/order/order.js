@@ -18,11 +18,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    
+
     wx.getSystemInfo({
       success: res => {
         this.setData({
-          winHeight: (res.windowHeight * (750 / res.windowWidth)) 
+          winHeight: (res.windowHeight * (750 / res.windowWidth))
         });
       }
     })
@@ -42,12 +42,12 @@ Page({
   onShow: function() {
     //收到tabIndex说明付款成功-->进入待收货列表
     let tabIndex = getApp().globalData.tabIndex;
-    if (tabIndex){
+    if (tabIndex) {
       this.setData({
         currentTab: tabIndex
       })
     }
-    getApp().globalData.tabIndex=undefined;
+    getApp().globalData.tabIndex = undefined;
     this.getOrderList(this.data.currentTab)
   },
 
@@ -125,6 +125,30 @@ Page({
           title: "无订单信息",
           icon: "none",
         })
+        //全部订单
+        if (current == 0) {
+          this.setData({
+            allOrder: res
+          })
+        }
+        //待付款订单
+        else if (current == 1) {
+          this.setData({
+            waitPay: res
+          })
+        }
+        //代收货订单
+        else if (current == 2) {
+          this.setData({
+            waitReceive: res
+          })
+        }
+        //已完成订单
+        else if (current == 3) {
+          this.setData({
+            already: res
+          })
+        }
       }
     })
   },
@@ -155,7 +179,7 @@ Page({
     })
   },
   //再来一单子
-  buyAgain(e){
+  buyAgain(e) {
     http.request({
       apiName: '/orders/again',
       method: 'POST',
@@ -163,29 +187,29 @@ Page({
         order_id: e.currentTarget.dataset.orderid
       },
       isShowProgress: true,
-    }).then(res=>{
+    }).then(res => {
       wx.navigateTo({
         url: '../submitOrder/submitOrder',
       })
     })
   },
   //取消订单
-  cancelOrder(e){
+  cancelOrder(e) {
     http.request({
-      apiName: '/orders/cancel',
-      method: 'POST',
-      data: {
-        order_id: e.currentTarget.dataset.orderid
-      },
-    }).then(res => {
-      this.getOrderList(this.data.currentTab)
-    })
-    .catch(err=>{
-      wx.showToast({
-        title: err,
-        icon:"none"
+        apiName: '/orders/cancel',
+        method: 'POST',
+        data: {
+          order_id: e.currentTarget.dataset.orderid
+        },
+      }).then(res => {
+        this.getOrderList(this.data.currentTab)
       })
-    })
+      .catch(err => {
+        wx.showToast({
+          title: err,
+          icon: "none"
+        })
+      })
   }
 
 })

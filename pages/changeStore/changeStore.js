@@ -72,7 +72,6 @@ Page({
     wx.getStorage({
       key: 'userInfo',
       success(res) {
-        // debugger
         console.log(res.data)
         _this.setData({
           storeList: res.data.stores,
@@ -82,7 +81,7 @@ Page({
     })
   },
   radioChange(e) {
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
 
     wx.showModal({
       title: '提示',
@@ -102,7 +101,8 @@ Page({
       method: 'post',
     }).then(res => {
       //切换店铺后续重新加载首页数据
-      app.globalData.changeStore = true;
+      app.globalData.changeStoreHome = true;
+      app.globalData.changeStoreKind = true;
       // console.log(app.globalData)
       wx.showToast({
         title: '切换成功',
