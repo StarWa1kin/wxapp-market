@@ -1,92 +1,93 @@
 // pages/changeStore/changeStore.js
-let http=require("../../utils/request.js")
+let http = require("../../utils/request.js");
+let app = getApp();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    storeList:[],
-    checked:'',
+    storeList: [],
+    checked: '',
 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     this.renderStore()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   },
-  renderStore(){
-    let _this=this
+  renderStore() {
+    let _this = this
     wx.getStorage({
       key: 'userInfo',
       success(res) {
         // debugger
         console.log(res.data)
         _this.setData({
-          storeList:res.data.stores,
+          storeList: res.data.stores,
           checked: res.data.current_store.id
         })
       },
     })
   },
-  radioChange(e){
+  radioChange(e) {
     console.log(e.detail.value)
-  
+
     wx.showModal({
       title: '提示',
       content: '请问是否确认要切换店铺',
-      success:res=> {
+      success: res => {
         if (res.confirm) {
           this.changeStore(e.detail.value)
         } else if (res.cancel) {
@@ -95,20 +96,23 @@ Page({
       }
     })
   },
-  changeStore(param){
+  changeStore(param) {
     http.request({
-      apiName:'/users/store/change/'+param,
-      method:'post',
-    }).then(res=>{
+      apiName: '/users/store/change/' + param,
+      method: 'post',
+    }).then(res => {
+      //切换店铺后续重新加载首页数据
+      app.globalData.changeStore = true;
+      // console.log(app.globalData)
       wx.showToast({
         title: '切换成功',
       })
       wx.navigateBack({
-        
+
       })
     })
   }
-  
-  
-  
+
+
+
 })

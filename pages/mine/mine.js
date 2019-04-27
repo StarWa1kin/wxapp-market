@@ -98,6 +98,7 @@ Page({
   },
   exitLogin() {
     //清除token,返回登陆页面
+    wx.clearStorage()
     wx.navigateTo({
       url: '../login/login',
     })

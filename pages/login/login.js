@@ -117,7 +117,7 @@ Page({
     }, 1000)
 
     wx.request({
-      url: http.interface.apiHost+'/auth/sms',
+      url: http.interface.apiHost + '/auth/sms',
       method: 'POST',
       data: {
         mobile: this.data.phone
@@ -148,36 +148,44 @@ Page({
   //手机登陆
   login() {
     if (this.data.phone && this.data.verificationC) {
-      wx.request({
-        url: http.interface.apiHost+'/auth/sms/login',
-        method: 'POST',
-        data: {
-          mobile: this.data.phone,
-          code: this.data.verificationC
-        },
-        dataType: 'json',
-        success(res) {
-          if (res.data.code == 0) {
-            wx.setStorage({
-              key: 'token',
-              data: JSON.stringify(res.data.data),
-            })
-            wx.switchTab({
-              url: '../home/home',
-            })
-          } else if (res.data.code == 1) {
-            wx.showToast({
-              title: res.data.message,
-              image: '../../assets/page/err.png'
-            })
-          } else {
-            wx.showToast({
-              title: res.data.message,
-              icon:"none"
-            })
-          }
-        },
+      // 微信登录取回code
+      wx.login({
+        success: result => {
+          // 发送 res.code 到后台换取 openId, sessionKey, unionId
+          wx.request({
+            url: http.interface.apiHost + '/auth/sms/login',
+            method: 'POST',
+            data: {
+              mobile: this.data.phone,
+              code: this.data.verificationC,
+              js_code: result.code
+            },
+            dataType: 'json',
+            success(res) {
+              if (res.data.code == 0) {
+                wx.setStorage({
+                  key: 'token',
+                  data: JSON.stringify(res.data.data),
+                })
+                wx.switchTab({
+                  url: '../home/home',
+                })
+              } else if (res.data.code == 1) {
+                wx.showToast({
+                  title: res.data.message,
+                  image: '../../assets/page/err.png'
+                })
+              } else {
+                wx.showToast({
+                  title: res.data.message,
+                  icon: "none"
+                })
+              }
+            },
+          })
+        }
       })
+
 
     } else {
       wx.showToast({
@@ -194,7 +202,7 @@ Page({
       title: '正在登陆',
       mask: true
     })
-    setTimeout(function () {
+    setTimeout(function() {
       wx.hideLoading()
     }, 2000)
     //调用wxApi获取code
@@ -228,15 +236,15 @@ Page({
                         encrypted_data,
                         iv
                       },
-                      success:res=> {
+                      success: res => {
                         //解密失败
-                        if(res.data.code=="-1"){
+                        if (res.data.code == "-1") {
                           wx.hideLoading();
                           wx.showToast({
                             title: res.data.message,
-                            icon:"none"
+                            icon: "none"
                           })
-                        }else{
+                        } else {
                           wx.setStorage({
                             key: 'token',
                             data: JSON.stringify(res.data.data),

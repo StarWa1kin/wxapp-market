@@ -30,8 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getBanner();
     this.getList();
+
+    this.getBanner();
 
   },
 
@@ -39,13 +40,23 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.setScrollHeight()
+    this.setScrollHeight();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    //切换店铺后需要重新加载首页
+    if (getApp().globalData.hasOwnProperty("changeStore")) {
+      //指控原来的所有的goodList并重新请求列表
+      this.setData({
+        goodsList:[],
+      })
+      this.getList();
+      delete getApp().globalData.changeStore
+      debugger
+    }
     //请求购物车 
     this.loadCar()
     // this.getList(); //请求商品列表
@@ -137,8 +148,8 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
+      debugger
       //默认先回显为0
-      // debugger
       res.forEach(function(item, index) {
         item.reshowNum = 0
       })
