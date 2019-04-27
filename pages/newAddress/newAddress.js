@@ -6,15 +6,25 @@ Page({
    */
   data: {
     region: ["四川省"],
-    consignee:'',//收货人
-    consignee_mobile:'',//联系方式
-    detail:'',//详细地址
+    consignee: '', //收货人
+    consignee_mobile: '', //联系方式
+    detail: '', //详细地址
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    let userInfo = wx.getStorageSync("userInfo");
+    // let address = userInfo.current_store.address;
+    // let user = userInfo.name;
+    // let phone = userInfo.mobile;
+    this.setData({
+      consignee: userInfo.name,
+      consignee_mobile: userInfo.mobile,
+      detail: userInfo.current_store.address
+    })
+
 
   },
 
@@ -22,7 +32,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.reshowAddress()
+    // this.reshowAddress()
   },
 
   /**
@@ -74,51 +84,51 @@ Page({
     this.setData({
       region: e.detail.value
     });
-    
+
   },
   //表单验证函数
-  formValidation(param){
+  formValidation(param) {
     // console.log(param)
-    if(param.region.length==0){
+    if (param.region.length == 0) {
       this.showMsg("地区不能为空");
       return false;
     }
-    if(param.address==""){
+    if (param.address == "") {
       this.showMsg("地址不能为空");
       return false;
     }
-    if(param.name==""){
+    if (param.name == "") {
       this.showMsg("收货人不能为空");
       return false;
     }
-    if(param.telphone==""){
+    if (param.telphone == "") {
       this.showMsg("电话不能为空");
       return false;
     }
-    if(param.telphone.length!="11"){
+    if (param.telphone.length != "11") {
       this.showMsg("手机号长度错误");
       return false;
     }
     if (!(/^1[34578]\d{9}$/.test(param.telphone))) {
       this.showMsg("手机号格式错误");
       return false;
-    } 
+    }
     return true;
   },
   //表单输入状态弹框
-  showMsg(err){
+  showMsg(err) {
     wx.showToast({
       title: err,
-      image:'../../assets/page/err.png'
+      image: '../../assets/page/err.png'
     })
-  } ,
+  },
   //提交表单
   formSubmit(e) {
     //组装数据
     var json = e.detail.value;
     json.region = this.data.region
     //表单验证
-    if (!this.formValidation(json)){
+    if (!this.formValidation(json)) {
       return false;
     }
     //最终提交
@@ -127,16 +137,17 @@ Page({
       apiName: '/users/address',
       method: 'POST',
       data: {
-        consignee: json.name,
-        consignee_mobile:json.telphone,
-        province:json.region[0],
-        city: json.region[1],
-        county: json.region[2],
-        detail:json.address,
+        // consignee: json.name,
+        // consignee_mobile: json.telphone,
+        // province: json.region[0],
+        // city: json.region[1],
+        // county: json.region[2],
+        // detail: json.address,
+        address: e.detail.value.address
       },
       isShowProgress: true,
     }).then((res) => {
-      this.reshowAddress();
+      // this.reshowAddress();
       wx.showToast({
         title: '保存成功',
       })
@@ -144,13 +155,13 @@ Page({
     })
   },
   //回显地址
-  reshowAddress(){
+  reshowAddress() {
     http.request({
       apiName: '/users/address',
       method: 'GET',
       isShowProgress: false,
     }).then((res) => {
-      if(JSON.stringify(res)!='[]'){
+      if (JSON.stringify(res) != '[]') {
         //保存地址后就有回显示
         this.setData({
           consignee: res.consignee,
@@ -158,7 +169,7 @@ Page({
           detail: res.detail,
           region: [res.province, res.city, res.county],
         })
-      }else{
+      } else {
         //
       }
     })

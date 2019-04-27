@@ -47,5 +47,6 @@
         "selectedIconPath": "./assets/tabar/mine1.png"
       }
     ]
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

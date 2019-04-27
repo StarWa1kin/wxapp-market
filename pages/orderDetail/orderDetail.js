@@ -35,7 +35,7 @@ Page({
       //先款后货
       let json = {
         methodID: this.data.orderInfo.pay_method,
-        name: this.data.orderInfo.pay_method==0 ? "微信支付" : "信用支付"
+        name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
       }
       let arr = [];
       arr.push(json)
@@ -199,7 +199,7 @@ Page({
       //methodID=0 微信
       //methodID=1 先货后款
       debugger
-      if (res.hasOwnProperty("nonceStr") && res.hasOwnProperty("package")) {
+      if (this.data.methodID == 0) {
         // console.log("调用微信支付")
         wx.requestPayment({
           timeStamp: res.timeStamp,
