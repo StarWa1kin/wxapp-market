@@ -25,15 +25,15 @@ Page({
         buyNow: true,
         amount: options.amount
       })
-      // let json={
-      //   methodID: wx.getStorageSync("userInfo").current_store.type,
-      //   name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
-      // }
-      // let arr = [];
-      // arr.push(json)
-      // this.setData({
-      //   payMethosList: arr,
-      // })
+      let json={
+        methodID: wx.getStorageSync("userInfo").current_store.type,
+        name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
+      }
+      let arr = [];
+      arr.push(json)
+      this.setData({
+        payMethosList: arr,
+      })
     } else {
       //获取从提交传来的订单信息
       this.setData({
@@ -42,25 +42,25 @@ Page({
         methodID: JSON.parse(options.order).pay_method
       })
       //先款后货
-      // let json = {
-      //   methodID: this.data.orderInfo.pay_method,
-      //   name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
-      // }
-      // let arr = [];
-      // arr.push(json)
-      // this.setData({
-      //   payMethosList: arr,
-      // })
+      let json = {
+        methodID: this.data.orderInfo.pay_method,
+        name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
+      }
+      let arr = [];
+      arr.push(json)
+      this.setData({
+        payMethosList: arr,
+      })
     }
-    let json = {
-      methodID: wx.getStorageSync("userInfo").current_store.type,
-      name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
-    }
-    let arr = [];
-    arr.push(json)
-    this.setData({
-      payMethosList: arr,
-    })
+    // let json = {
+    //   methodID: wx.getStorageSync("userInfo").current_store.type,
+    //   name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
+    // }
+    // let arr = [];
+    // arr.push(json)
+    // this.setData({
+    //   payMethosList: arr,
+    // })
     // this.getUserInfo();
     // this.getPayMethod();
     this.renderOrder()
@@ -119,31 +119,19 @@ Page({
   /**自定义函数 */
 
   //初始化取用户信息
-  getUserInfo() {
-    http.request({
-      apiName: '/users',
-      method: 'GET',
-      isShowProgress: true,
-    }).then((res) => {
-      // console.log(res)
-      this.setData({
-        userInfo: res
-      })
-      // 判断余额是否能支付该订单
-      this.estimate()
-    })
-  },
-  //获取支付方式列表
-  getPayMethod() {
-    http.request({
-      apiName: '/pay/methods',
-      method: 'GET',
-    }).then(res => {
-      this.setData({
-        payMethosList: res
-      })
-    })
-  },
+  // getUserInfo() {
+  //   http.request({
+  //     apiName: '/users',
+  //     method: 'GET',
+  //     isShowProgress: true,
+  //   }).then((res) => {
+  //     // console.log(res)
+  //     this.setData({
+  //       userInfo: res
+  //     })
+  //     this.estimate()
+  //   })
+  // },
   //支付方式选择框
   // radioChange: function (e) {
   //   this.setData({
@@ -152,34 +140,29 @@ Page({
 
   // },
   //判断是否能用余额支付
-  estimate() {
-    /**
-     * {{param}}
-     * checked  1->默认选余额支付 2->默认微信支付
-     * disbaled 1->余额不足禁用余额支付方式
-     */
-    let balance = Number(this.data.userInfo.balance)
-    let amount;
-    if (this.data.buyNow) {
-      amount = Number(this.data.amount)
-    } else {
-      amount = Number(this.data.orderInfo.amount)
-    }
+  // estimate() {
+  //   let balance = Number(this.data.userInfo.balance)
+  //   let amount;
+  //   if (this.data.buyNow) {
+  //     amount = Number(this.data.amount)
+  //   } else {
+  //     amount = Number(this.data.orderInfo.amount)
+  //   }
 
 
-    if (balance >= amount) {
-      this.setData({
-        checked: "1",
-        methodID: '1'
-      })
-    } else {
-      this.setData({
-        disabled: "1",
-        checked: "2",
-        methodID: '2'
-      })
-    }
-  },
+  //   if (balance >= amount) {
+  //     this.setData({
+  //       checked: "1",
+  //       methodID: '1'
+  //     })
+  //   } else {
+  //     this.setData({
+  //       disabled: "1",
+  //       checked: "2",
+  //       methodID: '2'
+  //     })
+  //   }
+  // },
 
   //渲染该订单列表
   renderOrder() {
@@ -197,6 +180,7 @@ Page({
       } else {
         height = 720
       }
+      debugger
       this.setData({
         list: res,
         vscrollHeig: height
@@ -216,7 +200,6 @@ Page({
     }).then(res => {
       //methodID=0 微信
       //methodID=1 先货后款
-      debugger
       if (this.data.methodID == 0) {
         // console.log("调用微信支付")
         wx.requestPayment({
