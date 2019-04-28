@@ -27,7 +27,7 @@
         <image src='{{item.img}}'></image>
       </view>
       <view class='content'>
-        <view class='name'>{{item.name}}xx {{item.extend.unit}}</view>
+        <view class='name'>{{item.name}} {{item.extend.unit}}</view>
         <view class='star'>
           <block wx:for="{{item.star}}" wx:key="{{index}}">
             <image src='../../assets/page/star.png'></image>

@@ -23,7 +23,7 @@ page{
 }
 .color{
   color: #888888;
-  font-size: 32rpx;
+  font-size: 28rpx;
   height: 60rpx;
   line-height: 60rpx;
 }
@@ -215,13 +215,19 @@ page{
   height: 100rpx;
   background: white;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(231, 231, 231);
 
 }
 
 .picker {
+  /* margin-right: 20rpx; */
+  margin-left: 20rpx;
+  display: inline-block;
+}
+.pickerR{
+  margin-left: 290rpx;
   margin-right: 20rpx;
 }
 /* 支付类型 */

@@ -240,7 +240,9 @@ Page({
       let swiCh = false;
       for (let index in app.globalData.globalCar) {
         if (app.globalData.globalCar[index].product_id == goosId) {
-          app.globalData.globalCar[index].quantity += 1;
+          // app.globalData.globalCar[index].quantity += 1;
+          app.globalData.globalCar[index].quantity = parseInt(app.globalData.globalCar[index].quantity)+1
+          debugger
           swiCh = true;
           break;
         } else {
@@ -487,6 +489,10 @@ Page({
   modalSubtract(e) {
     let cartsId = e.currentTarget.dataset.cartsid;
     let quantity = e.currentTarget.dataset.quantity - 1;
+    if(quantity==0){
+      this.deleteIt(e);
+      return;
+    }
     http.request({
       apiName: '/carts/' + cartsId,
       method: 'PUT',

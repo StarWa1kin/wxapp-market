@@ -21,7 +21,7 @@
         </view>
         <view class='itemBox'>
           <view class='itemText'>
-            <text>{{good.name}}{{good.weight}}/{{good.unit}}</text>
+            <text>{{good.name}}{{good.weight}}{{good.unit}}</text>
           </view>
           <view class='star'>
             <block wx:for="{{good.star}}" wx:key="{{index}}">
@@ -73,14 +73,14 @@
       </view>
       <view class='contentBox'>
         <view class='first-row'>
-          <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-          <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}' data-goodsid='{{item.product_id}}'>
+          <view>{{item.product.name}}{{item.product.unit}}</view>
+          <!-- <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}' data-goodsid='{{item.product_id}}'>
             <image src='../../assets/alibaba/del.png'></image>
-          </view>
+          </view> -->
         </view>
         <view class='modal-detail'>
           <view class="modal-price">￥{{item.product.extend.price}}</view>
-          <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}'>
+          <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}' data-goodsid='{{item.product_id}}'>
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='modal-quantity'><input type='number' maxlength='4' value='{{item.quantity}}' bindblur='modalInput' data-cartsId='{{item.id}}'/></view>

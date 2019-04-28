@@ -180,7 +180,6 @@ Page({
       } else {
         height = 720
       }
-      debugger
       this.setData({
         list: res,
         vscrollHeig: height

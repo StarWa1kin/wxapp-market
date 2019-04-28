@@ -216,7 +216,11 @@ Page({
   //商品-1
   subtract(e) {
     let id = e.currentTarget.dataset.id;
-    let nowQuantity = e.currentTarget.dataset.quantity - 1
+    let nowQuantity = e.currentTarget.dataset.quantity - 1;
+    if(nowQuantity==0){
+      this.deleteIt(e)
+      return
+    }
     http.request({
       apiName: '/carts/' + id,
       method: 'PUT',
@@ -280,7 +284,6 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      // debugger
       if (JSON.stringify(res) != "{}") {
         wx.navigateTo({
           url: '../orderDetail/orderDetail?order=' + JSON.stringify(res),

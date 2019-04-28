@@ -6,7 +6,7 @@
         <image src='{{item.img}}'></image>
       </view>
       <view class='content'>
-        <view class='goodsName'>{{item.name}} 小计:{{item.weight}}g</view>
+        <view class='goodsName'>{{item.name}} {{item.weight}}</view>
         <view class='desc'>{{item.describe}}</view>
         <view class='money'>
           <view>￥{{item.price}}x{{item.quantity}}</view>

@@ -23,10 +23,10 @@
     </view>
     <view class='contentBox'>
       <view class='first-row'>
-        <view>{{item.product.name}}{{item.product.weight}}g/{{item.product.unit}}</view>
-        <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>
-          <image src='../../assets/alibaba/del.png '></image>
-        </view>
+        <view>{{item.product.name}}{{item.product.unit}}</view>
+        <!-- <view class='delete' bindtap='deleteIt' data-id='{{item.id}}'>
+          <image src='../../assets/alibaba/del.png'></image>
+        </view> -->
       </view>
       <view class='modal-detail '>
         <view class="price">￥{{item.product.extend.price}}</view>
@@ -45,7 +45,8 @@
   <!-- 选择收货日期 -->
   <!-- <view class='date'>请选择收货日期</view> -->
   <picker class='datePicker' mode="date" value="{{date}}" start="{{date}}" bindchange="bindDateChange">
-    <view class="picker">请选择收货日期: {{date}}</view>
+    <view class="picker">请选择收货日期:</view>
+    <view class='picker pickerR'>{{date}}</view>
   </picker>
   <!-- 合计区域 -->
   <view class='total '>
