@@ -214,7 +214,9 @@ Page({
 
       } else {
         for (let value of res) {
-          var price = value.product.extend.price;
+          if (value.product.extend){
+            var price = value.product.extend.price;
+          }
           var quantity = value.quantity;
           sum += (price * quantity)
         }
