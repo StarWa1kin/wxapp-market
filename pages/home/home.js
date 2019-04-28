@@ -31,7 +31,6 @@ Page({
    */
   onLoad: function(options) {
     this.getList();
-
     this.getBanner();
 
   },
@@ -41,6 +40,8 @@ Page({
    */
   onReady: function() {
     this.setScrollHeight();
+  
+    
   },
 
   /**
@@ -57,7 +58,8 @@ Page({
       delete getApp().globalData.changeStoreHome
     }
     //请求购物车 
-    this.loadCar()
+    this.loadCar();
+    this.getStoreName();
     // this.getList(); //请求商品列表
   },
 
@@ -199,6 +201,16 @@ Page({
         })
       }
       this.reshow();
+    })
+  },
+  getStoreName(){
+    http.request({
+      apiName: '/users',
+      method: 'GET',
+    }).then((res) => {
+      wx.setNavigationBarTitle({
+        title:`金忠食品(${res.current_store.name})`
+      })
     })
   },
   //商品+1
