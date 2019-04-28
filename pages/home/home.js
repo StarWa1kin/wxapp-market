@@ -88,7 +88,6 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-    // debugger
     this.slideBottom()
   },
 
@@ -132,7 +131,6 @@ Page({
       apiName: '/banners',
       method: 'GET',
     }).then((res) => {
-      // debugger
       this.setData({
         bannerList: res
       })
@@ -149,7 +147,6 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
-      // debugger
       //默认先回显为0
       res.forEach(function(item, index) {
         item.reshowNum = 0

@@ -54,7 +54,6 @@ Page({
       })
       this.getMenuList();
       delete getApp().globalData.changeStoreKind
-      // debugger
     }
     /**回调成功后立即加载购物车否则延迟1s加载*/
     //每一秒实时监听是否回调成功,回调成功才加载购物车列表
@@ -244,7 +243,6 @@ Page({
         if (app.globalData.globalCar[index].product_id == goosId) {
           // app.globalData.globalCar[index].quantity += 1;
           app.globalData.globalCar[index].quantity = parseInt(app.globalData.globalCar[index].quantity)+1
-          debugger
           swiCh = true;
           break;
         } else {
