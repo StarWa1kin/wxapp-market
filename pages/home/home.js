@@ -148,7 +148,6 @@ Page({
       isShowProgress: true,
     }).then(res => {
       //默认先回显为0
-      // debugger
       res.forEach(function(item, index) {
         item.reshowNum = 0
       })
@@ -206,9 +205,10 @@ Page({
       apiName: '/users',
       method: 'GET',
     }).then((res) => {
-      getApp().globalData.current_store = res.current_store.name;
+      // debugger
+      getApp().globalData.current_store = res.store.name;
       wx.setNavigationBarTitle({
-        title:`金忠食品(${res.current_store.name})`
+        title:`金忠食品(${res.store.name})`
       })
     })
   },

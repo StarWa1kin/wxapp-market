@@ -94,7 +94,7 @@ Page({
     }).then((res) => {
       this.setData({
         userInfo: res,
-        payMethod: res.current_store.type
+        payMethod: res.store.type
       })
     })
   },

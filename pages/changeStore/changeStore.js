@@ -75,7 +75,7 @@ Page({
         console.log(res.data)
         _this.setData({
           storeList: res.data.stores,
-          checked: res.data.current_store.id
+          checked: res.data.store.id
         })
       },
     })

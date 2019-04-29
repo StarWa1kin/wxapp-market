@@ -25,9 +25,9 @@ Page({
         buyNow: true,
         amount: options.amount
       })
-      let json={
-        methodID: wx.getStorageSync("userInfo").current_store.type,
-        name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
+      let json = {
+        methodID: wx.getStorageSync("userInfo").store.type,
+        name: wx.getStorageSync("userInfo").store.type == 0 ? "微信支付" : "信用支付"
       }
       let arr = [];
       arr.push(json)
@@ -41,11 +41,11 @@ Page({
         orderId: JSON.parse(options.order).id,
         methodID: JSON.parse(options.order).pay_method
       })
-      //先款后货
       let json = {
         methodID: this.data.orderInfo.pay_method,
-        name: this.data.orderInfo.pay_method == 0 ? "微信支付" : "信用支付"
+        name: wx.getStorageSync("userInfo").store.type == 0 ? "微信支付" : "信用支付"
       }
+      debugger
       let arr = [];
       arr.push(json)
       this.setData({

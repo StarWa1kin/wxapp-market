@@ -22,7 +22,7 @@ Page({
     this.setData({
       consignee: userInfo.name,
       consignee_mobile: userInfo.mobile,
-      detail: userInfo.current_store.address
+      detail: userInfo.store.address
     })
 
 
