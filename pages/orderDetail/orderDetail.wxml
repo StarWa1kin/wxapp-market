@@ -3,11 +3,11 @@
   <view class='goodsList' wx:for="{{list.products}}" wx:key="{{index}}">
     <view class='goodsDetail'>
       <view class='img'>
-        <image src='{{item.img}}'></image>
+        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
       </view>
       <view class='content'>
-        <view class='goodsName'>{{item.name}} {{item.weight}}</view>
-        <view class='desc'>{{item.describe}}</view>
+        <view class='goodsName'>{{item.name}}</view>
+        <view class='desc'>(单位:KG)</view>
         <view class='money'>
           <view>￥{{item.price}}x{{item.quantity}}</view>
           <view class='littleSum'>￥{{item.amount}}</view>

@@ -1,4 +1,5 @@
-const http = require('../../utils/request.js')
+const http = require('../../utils/request.js');
+const app=getApp();
 Page({
 
   /**
@@ -27,6 +28,9 @@ Page({
    */
   onShow: function () {
     this.getUserInfo();
+    wx.setNavigationBarTitle({
+      title: `我的(${app.globalData.current_store})`
+    })
   },
 
   /**

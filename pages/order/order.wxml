@@ -18,10 +18,10 @@
         </view>
         <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
           <view class='img'>
-            <image src='{{item.img}}'></image>
+            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>{{item.name}} 1kg/份</view>
+            <view class='goodsName'>{{item.name}}</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
@@ -51,10 +51,10 @@
         </view>
         <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
           <view class='img'>
-            <image src='{{item.img}}'></image>
+            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>{{item.name}}1kg/份</view>
+            <view class='goodsName'>{{item.name}}</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
@@ -62,7 +62,7 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}}g 实付:
+          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}} 实付:
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
@@ -83,10 +83,10 @@
         </view>
         <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
           <view class='img'>
-            <image src='{{item.img}}'></image>
+            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>{{item.name}}1kg/份</view>
+            <view class='goodsName'>{{item.name}}</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
@@ -115,10 +115,10 @@
         </view>
         <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
           <view class='img'>
-            <image src='{{item.img}}'></image>
+            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
           </view>
           <view class='content'>
-            <view class='goodsName'>{{item.name}}1kg/份</view>
+            <view class='goodsName'>{{item.name}}</view>
             <view class='desc'>{{item.describe}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>

@@ -19,41 +19,42 @@
 </swiper>
 <!-- 促销信息 -->
 <!-- <scroll-view scroll-y="ture" style="height:{{show?winHeight:winHeight+100}}rpx" bindscrolltolower="slideBottom"> -->
-  <view class='saleArea'>
-    <view class='title'>促销信息</view>
-    <!-- 商品信息 -->
-    <view class='productInfo' wx:for="{{goodsList}}" wx:key="{{index}}">
-      <view class='img'>
-        <image src='{{item.img}}'></image>
+<view class='saleArea'>
+  <view class='title'>促销信息</view>
+  <!-- 商品信息 -->
+  <view class='productInfo' wx:for="{{goodsList}}" wx:key="{{index}}">
+    <view class='img'>
+      <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+    </view>
+    <view class='content'>
+      <view class='name'>{{item.name}} </view>
+      <view class='star'>
+        <!-- <block wx:for="{{item.star}}" wx:key="{{index}}">
+          <image src='../../assets/page/star.png'></image>
+        </block> -->
+        (单位:{{item.extend.unit}})
       </view>
-      <view class='content'>
-        <view class='name'>{{item.name}} {{item.extend.unit}}</view>
-        <view class='star'>
-          <block wx:for="{{item.star}}" wx:key="{{index}}">
-            <image src='../../assets/page/star.png'></image>
-          </block>
-        </view>
-        <view class='description'>{{item.describe}}</view>
-        <view class='detail'>
-          <view class='price'>￥{{item.extend.price}}</view>
-          <view class='operate'>
-            <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract" id='{{item.id}}' data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}" data-index='{{index}}'>
-              <image src='../../assets/page/-.png'></image>
-            </view>
-            <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
-            <!-- <view class='quantity'>{{item.reshowNum}}</view> -->
-            <view class='quantity'>
-              <input type='number' value='{{item.reshowNum}}' maxlength='4' bindblur="changeNum" data-index='{{index}}' data-id="{{item.id}}"></input>
-            </view>
-            <view class='add' id='{{item.id}}' bindtap='add'>
-              <image src='../../assets/page/+.png'></image>
-            </view>
+      <view class='description'>{{item.describe}}</view>
+      <view class='detail'>
+        <view class='price'>￥{{item.extend.price}}</view>
+        <view class='operate'>
+          <view wx:if="{{item.reshowNum>0}}" class='subtract' bindtap="subtract" id='{{item.id}}' data-id="{{item.shoppingCarId}}" data-quantity="{{item.reshowNum}}" data-index='{{index}}'>
+            <image src='../../assets/page/-.png'></image>
+          </view>
+          <view wx:if="{{item.reshowNum==0}}" class='blankView'></view>
+          <!-- <view class='quantity'>{{item.reshowNum}}</view> -->
+          <view class='quantity'>
+            <input type='number' value='{{item.reshowNum}}' maxlength='4' bindblur="changeNum" data-index='{{index}}' data-id="{{item.id}}"></input>
+          </view>
+          <view class='add' id='{{item.id}}' bindtap='add'>
+            <image src='../../assets/page/+.png'></image>
           </view>
         </view>
       </view>
     </view>
   </view>
-  <view wx:if="{{isEnd}}" class='end'>已经到底了</view>
+</view>
+<view wx:if="{{isEnd}}" class='end'>已经到底了</view>
 
 <!-- </scroll-view> -->
 

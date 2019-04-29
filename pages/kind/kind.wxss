@@ -41,7 +41,6 @@ text {
 .kind {
   height: 60rpx;
   line-height: 60rpx;
-  /* background: red; */
 }
 
 .kindList {
@@ -77,9 +76,7 @@ text {
   height: 250rpx;
   display: flex;
   justify-content: space-between;
-  /* align-items: center; */
   flex-wrap: wrap;
-  /* background: pink; */
 }
 
 .imgBox {
@@ -125,12 +122,13 @@ text {
 .price {
   margin-left: 200rpx;
   color: #ee0f1f;
+  width: 180rpx;
 }
 
 .subtract {
-  width: 60rpx;
-  height: 60rpx;
-  margin-left: 20rpx;
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 10rpx;
 }
 
 .subtract>image {
@@ -139,15 +137,15 @@ text {
 }
 
 .add {
-  width: 60rpx;
-  height: 60rpx;
+  width: 50rpx;
+  height: 50rpx;
   margin-left: 10rpx;
 }
 
 .reshowNum {
   width: 60rpx;
   height: 60rpx;
-  margin-left: 10rpx;
+  margin-right: 10rpx;
    /* border-bottom: 1px solid #cacaca; */
 }
 
@@ -277,6 +275,8 @@ text {
 
 .modal-price {
   color: #ee0f1f;
+  /* background: black; */
+  width: 180rpx;
 }
 
 .clearAll {
@@ -317,13 +317,13 @@ text {
 .modal-detail {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-between; */
 }
 
 .modal-subtract {
   width: 60rpx !important;
   height: 60rpx;
-  margin-left: 220rpx;
+  margin-left: 200rpx;
 }
 
 .modal-subtract>image {

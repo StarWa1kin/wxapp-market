@@ -124,12 +124,14 @@ page{
 .img{
   width: 190rpx;
   height:190rpx;
-  /* background-color: silver; */
   margin-left:20rpx; 
 }
 .img>image{
   width: 100%;
   height: 100%;
+}
+.price{
+  width: 180rpx;
 }
 .contentBox {
   width: calc(100% - 210rpx);
@@ -140,7 +142,7 @@ page{
 }
 
 .contentBox>view{
-  margin: 20rpx 0;
+  margin: 10rpx 0;
 }
 .buyingDetail{
   width: 100%;
@@ -150,12 +152,11 @@ page{
 .modal-detail{
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 .modal-subtract{
   width: 60rpx !important;
   height: 60rpx;
-  margin-left: 220rpx;
+  margin-left: 200rpx;
 }
 .modal-subtract>image{
   width: 60rpx;

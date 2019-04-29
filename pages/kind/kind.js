@@ -64,7 +64,9 @@ Page({
       }
     }, 1000)
 
-
+    wx.setNavigationBarTitle({
+      title: `商品(${app.globalData.current_store})`
+    })
 
   },
 

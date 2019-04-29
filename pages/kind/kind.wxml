@@ -17,16 +17,17 @@
 
       <view class='productInfo' wx:for="{{item}}" wx:key="{{index}}" wx:for-item="good">
         <view class='imgBox'>
-          <image src="{{good.img}}"></image>
+          <image src="{{good.img==''?'../../assets/page/default.png':good.img}}"></image>
         </view>
         <view class='itemBox'>
           <view class='itemText'>
             <text>{{good.name}}{{good.weight}}{{good.unit}}</text>
           </view>
           <view class='star'>
-            <block wx:for="{{good.star}}" wx:key="{{index}}">
+            <!-- <block wx:for="{{good.star}}" wx:key="{{index}}">
               <image src='../../assets/page/star.png'></image>
-            </block>
+            </block> -->
+            (单位:{{good.extend.unit}})
           </view>
           <view class='itemText'>{{good.describe}}</view>
         </view>
@@ -69,15 +70,16 @@
     <!-- 商品列表 -->
     <view class='buyingList' wx:for="{{shoppingList}}" wx:key="{{index}}">
       <view class='img'>
-        <image src='{{item.product.img}}'></image>
+        <image src='{{item.product.img==""?"../../assets/page/default.png":item.product.img}}'></image>
       </view>
       <view class='contentBox'>
         <view class='first-row'>
-          <view>{{item.product.name}}{{item.product.unit}}</view>
+          <view>{{item.product.name}}</view>
           <!-- <view class='delete' bindtap='deleteIt' data-cartsid='{{item.id}}' data-goodsid='{{item.product_id}}'>
             <image src='../../assets/alibaba/del.png'></image>
           </view> -->
         </view>
+        <view style='margin:0'>(单位:KG)</view>
         <view class='modal-detail'>
           <view class="modal-price">￥{{item.product.extend.price}}</view>
           <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}' data-goodsid='{{item.product_id}}'>
