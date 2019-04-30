@@ -18,6 +18,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    var userInfo = wx.getStorageSync("userInfo");
+    var submitName = '立即支付';
+    if (userInfo && userInfo.store){
+      if (userInfo.store.type==1){
+        submitName = '提交订单';
+      }
+    }
     if (options.hasOwnProperty("param")) {
       //从订单列表也跳转过来收到options参数
       this.setData({
@@ -33,6 +40,8 @@ Page({
       arr.push(json)
       this.setData({
         payMethosList: arr,
+        submitName: submitName,
+        methodID: userInfo.store.type
       })
     } else {
       //获取从提交传来的订单信息
@@ -45,11 +54,13 @@ Page({
         methodID: this.data.orderInfo.pay_method,
         name: wx.getStorageSync("userInfo").store.type == 0 ? "微信支付" : "信用支付"
       }
-      debugger
+      // debugger
       let arr = [];
       arr.push(json)
       this.setData({
         payMethosList: arr,
+        submitName: submitName,
+        methodID: userInfo.store.type
       })
     }
     // let json = {

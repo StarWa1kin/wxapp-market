@@ -284,6 +284,14 @@ Page({
       },
       isShowProgress: true,
     }).then(res => {
+      if (res && res.pay_status){
+        if (res.pay_status==1){
+          wx.switchTab({
+            url: '../order/order'
+          })
+          return;
+        }
+      }
       if (JSON.stringify(res) != "{}") {
         wx.navigateTo({
           url: '../orderDetail/orderDetail?order=' + JSON.stringify(res),

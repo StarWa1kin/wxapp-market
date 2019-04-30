@@ -29,7 +29,7 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}}g 实付:
+          <view class='total'>共{{item.products.length}}件商品 实付:
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button' wx:if="{{item.status_name!='已取消'}}">
@@ -62,7 +62,7 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}} 实付:
+          <view class='total'>共{{item.products.length}}件商品 实付:
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
@@ -94,7 +94,7 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}}g 实付:
+          <view class='total'>共{{item.products.length}}件商品 实付:
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>
@@ -126,7 +126,7 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 {{item.amount_weight}}g 实付:
+          <view class='total'>共{{item.products.length}}件商品 实付:
             <text class='big'> ￥{{item.actual_payment}}</text>
           </view>
           <view class='button'>

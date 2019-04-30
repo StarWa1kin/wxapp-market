@@ -57,5 +57,5 @@
 <!-- 固定支付栏 -->
 <view class='payFixed'>
   <view class='payMoney'>￥{{list.amount}}</view>
-  <view class='submit' bindtap='pay'>立即付款</view>
+  <view class='submit' bindtap='pay'>{{submitName}}</view>
 </view>
