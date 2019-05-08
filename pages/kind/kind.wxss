@@ -37,6 +37,10 @@ text {
   font-size: 32rpx;
   color: #777;
 }
+.desc {
+  font-size: 32rpx;
+  color: #888;
+}
 
 .kind {
   height: 60rpx;

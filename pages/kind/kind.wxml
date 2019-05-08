@@ -23,11 +23,11 @@
           <view class='itemText'>
             <text>{{good.name}}{{good.weight}}{{good.unit}}</text>
           </view>
-          <view class='star'>
+          <view class='desc'>
             <!-- <block wx:for="{{good.star}}" wx:key="{{index}}">
               <image src='../../assets/page/star.png'></image>
             </block> -->
-            (单位:{{good.extend.unit}})
+            单位:{{good.extend.unit}}
           </view>
           <view class='itemText'>{{good.describe}}</view>
         </view>
@@ -79,7 +79,8 @@
             <image src='../../assets/alibaba/del.png'></image>
           </view> -->
         </view>
-        <view style='margin:0'>(单位:KG)</view>
+        <view class="desc" style='margin:0'>单位:{{item.product.extend.unit}}</view>
+
         <view class='modal-detail'>
           <view class="modal-price">￥{{item.product.extend.price}}</view>
           <view class='modal-subtract' bindtap="modalSubtract" data-cartsId='{{item.id}}' data-quantity='{{item.quantity}}' data-goodsid='{{item.product_id}}'>

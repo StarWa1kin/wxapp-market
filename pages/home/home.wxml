@@ -28,11 +28,11 @@
     </view>
     <view class='content'>
       <view class='name'>{{item.name}} </view>
-      <view class='star'>
+      <view class='desc'>
         <!-- <block wx:for="{{item.star}}" wx:key="{{index}}">
           <image src='../../assets/page/star.png'></image>
         </block> -->
-        (单位:{{item.extend.unit}})
+        单位:{{item.extend.unit}}
       </view>
       <view class='description'>{{item.describe}}</view>
       <view class='detail'>

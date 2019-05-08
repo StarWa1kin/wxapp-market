@@ -110,6 +110,11 @@ swiper image{
   font-size: 30rpx;
   color: #888888;
 }
+.desc {
+  font-size: 32rpx;
+  color: #888;
+}
+
 .detail{
   display: flex;
   font-size: 40rpx;

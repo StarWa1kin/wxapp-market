@@ -22,7 +22,7 @@
           </view>
           <view class='content'>
             <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>{{item.describe}}</view>
+            <view class='desc'>单位：{{item.unit}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
         </view>
@@ -55,7 +55,7 @@
           </view>
           <view class='content'>
             <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>{{item.describe}}</view>
+            <view class='desc'>单位：{{item.unit}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
         </view>
@@ -87,7 +87,7 @@
           </view>
           <view class='content'>
             <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>{{item.describe}}</view>
+            <view class='desc'>单位：{{item.unit}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
         </view>
@@ -119,7 +119,7 @@
           </view>
           <view class='content'>
             <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>{{item.describe}}</view>
+            <view class='desc'>单位：{{item.unit}}</view>
             <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
           </view>
         </view>
