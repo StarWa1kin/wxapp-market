@@ -28,9 +28,7 @@ Page({
    */
   onShow: function () {
     this.getUserInfo();
-    wx.setNavigationBarTitle({
-      title: `我的(${app.globalData.current_store})`
-    })
+    
   },
 
   /**
@@ -120,6 +118,9 @@ Page({
       })
       this.setData({
         userInfo: res
+      })
+      wx.setNavigationBarTitle({
+        title: `我的(${res.store.name})`
       })
     })
   }

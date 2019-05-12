@@ -1,7 +1,8 @@
 const http = require('../../utils/request.js')
 import {
   submitLocalCar,
-  computed
+  computed,
+  getStoreName
 } from '../../utils/globalFunc.js'
 let app = getApp();
 Page({
@@ -64,9 +65,9 @@ Page({
       }
     }, 1000)
 
-    wx.setNavigationBarTitle({
-      title: `商品(${app.globalData.current_store})`
-    })
+    getStoreName();
+   
+   
 
   },
 

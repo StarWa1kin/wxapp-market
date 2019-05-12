@@ -205,7 +205,8 @@ Page({
         }).then((res) => {
             // debugger
             wx.setStorageSync('userInfo', res);
-            getApp().globalData.current_store = res.store.name;
+            // getApp().globalData.current_store = res.store.name;
+            
             wx.setNavigationBarTitle({
                 title: `金忠食品(${res.store.name})`
             })

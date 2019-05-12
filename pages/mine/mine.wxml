@@ -5,7 +5,7 @@
     </view>
     <view class='nickname'>
       <view class='name'>{{userInfo.name}}</view>
-      <view class='moneyFirst'>{{userInfo.current_store.type==0?'非信用客户':'信用客户'}}</view>
+      <view class='moneyFirst'>{{userInfo.store.type==0?'非信用客户':'信用客户'}}</view>
     </view>
   </view>
 </view>

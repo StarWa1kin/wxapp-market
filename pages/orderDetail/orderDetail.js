@@ -6,10 +6,7 @@ Page({
    */
   data: {
     payMethosList: [], //支付方式列表
-    // userInfo: {}, //用户信息
     methodID: '', //支付方式id
-    // checked: '', //控制默认选择什么支付！余额够->余额付
-    // disabled: '', //控制radio的禁用
     buyNow: false, //从buyNow页面进入的
     vscrollHeig: '240',
   },
@@ -19,6 +16,7 @@ Page({
    */
   onLoad: function(options) {
     var userInfo = wx.getStorageSync("userInfo");
+    console.log("ye"+userInfo)
     var submitName = '立即支付';
     if (userInfo && userInfo.store){
       if (userInfo.store.type==1){
@@ -54,7 +52,6 @@ Page({
         methodID: this.data.orderInfo.pay_method,
         name: wx.getStorageSync("userInfo").store.type == 0 ? "微信支付" : "信用支付"
       }
-      // debugger
       let arr = [];
       arr.push(json)
       this.setData({
@@ -63,19 +60,7 @@ Page({
         methodID: userInfo.store.type
       })
     }
-    // let json = {
-    //   methodID: wx.getStorageSync("userInfo").current_store.type,
-    //   name: wx.getStorageSync("userInfo").current_store.type == 0 ? "微信支付" : "信用支付"
-    // }
-    // let arr = [];
-    // arr.push(json)
-    // this.setData({
-    //   payMethosList: arr,
-    // })
-    // this.getUserInfo();
-    // this.getPayMethod();
     this.renderOrder()
-    // this.getNowTime();
 
   },
 

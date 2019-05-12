@@ -1,5 +1,10 @@
 const http = require('../../utils/request.js');
-const app = getApp()
+const app = getApp();
+import {
+  submitLocalCar,
+  computed,
+  getStoreName
+} from '../../utils/globalFunc.js'
 Page({
   /**
    * 页面的初始数据
@@ -51,10 +56,10 @@ Page({
     getApp().globalData.tabIndex = undefined;
     this.getOrderList(this.data.currentTab);
 
-
-    wx.setNavigationBarTitle({
-      title: `订单(${app.globalData.current_store})`
-    })
+    getStoreName()
+    // wx.setNavigationBarTitle({
+    //   title: `订单(${app.globalData.current_store})`
+    // })
   },
 
   /**

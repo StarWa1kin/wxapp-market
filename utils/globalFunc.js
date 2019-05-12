@@ -90,7 +90,20 @@ const computed = () => {
   return sum
 }
 
+
+const getStoreName=()=>{
+  wx.getStorage({
+    key: 'userInfo',
+    success: function (res) {
+      wx.setNavigationBarTitle({
+        title: `商品(${res.data.store.name})`
+      })
+    },
+  })
+}
+
 export {
   submitLocalCar,
-  computed
+  computed,
+  getStoreName
 };
