@@ -29,8 +29,8 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 实付:
-            <text class='big'> ￥{{item.actual_payment}}</text>
+          <view class='total'>共{{item.products.length}}件商品 合计:
+            <text class='big'> ￥{{item.amount}}</text>
           </view>
           <view class='button' wx:if="{{item.status_name!='已取消'}}">
             <view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow' wx:if="{{item.status_name=='待付款'}}">立即支付</view>
@@ -62,13 +62,13 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 实付:
-            <text class='big'> ￥{{item.actual_payment}}</text>
+          <view class='total'>共{{item.products.length}}件商品 合计:
+            <text class='big'> ￥{{item.amount}}</text>
           </view>
-          <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow'>立即支付</view>
+          <!--<view class='button'>-->
+            <!--<view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow'>立即支付</view>-->
             <!-- <view class='cancelOrder'>取消订单</view> -->
-          </view>
+          <!--</view>-->
         </view>
       </view>
     </scroll-view>
@@ -94,8 +94,8 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 实付:
-            <text class='big'> ￥{{item.actual_payment}}</text>
+          <view class='total'>共{{item.products.length}}件商品 合计:
+            <text class='big'> ￥{{item.amount}}</text>
           </view>
           <view class='button'>
             <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
@@ -126,8 +126,8 @@
 
         <!-- 操作区域 -->
         <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 实付:
-            <text class='big'> ￥{{item.actual_payment}}</text>
+          <view class='total'>共{{item.products.length}}件商品 合计:
+            <text class='big'> ￥{{item.amount}}</text>
           </view>
           <view class='button'>
             <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
