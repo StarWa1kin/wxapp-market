@@ -168,7 +168,7 @@ Page({
                   data: JSON.stringify(res.data.data),
                 })
                 wx.switchTab({
-                  url: '../home/home',
+                  url: '../kind/kind',
                 })
               } else if (res.data.code == 1) {
                 wx.showToast({
