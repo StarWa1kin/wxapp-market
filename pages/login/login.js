@@ -252,7 +252,7 @@ Page({
                           wx.hideLoading()
                           // 存储token跳转首页
                           wx.switchTab({
-                            url: '../home/home',
+                            url: '../kind/kind',
                           })
                         }
                       }
