@@ -16,6 +16,9 @@
           <view class='time'>{{item.created_at}}</view>
           <view class='status'>{{item.status_name}}</view>
         </view>
+        <view class='timeStatus' wx:if="{{item.BillNo!=''}}">
+          <view class='time'>订单编号：{{item.BillNo}}</view>
+        </view>
         <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
           <view class='img'>
             <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>

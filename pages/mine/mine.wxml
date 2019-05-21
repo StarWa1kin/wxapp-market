@@ -5,7 +5,7 @@
     </view>
     <view class='nickname'>
       <view class='name'>{{userInfo.name}}</view>
-      <view class='moneyFirst'>{{userInfo.store.type==0?'非信用客户':'信用客户'}}</view>
+      <!--<view class='moneyFirst'>{{userInfo.store.type==0?'非信用客户':'信用客户'}}</view>-->
     </view>
   </view>
 </view>
@@ -55,7 +55,7 @@
       <image class="" src="../../assets/alibaba/store.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
-      <view>切换店铺</view>
+      <view>切换客户</view>
       <view class='text-icon showIcon'>
         <image class="" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
       </view>

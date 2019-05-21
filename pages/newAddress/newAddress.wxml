@@ -9,7 +9,7 @@
   <view class='detailAddress row'>
     <view class='textColor'>详细地址:</view>
     <view>
-      <input name="address" placeholder='填写详细地址' value="{{detail}}"></input>
+      <input name="address" placeholder='填写详细地址' value="{{detail}}" disabled="true"></input>
     </view>
   </view>
   <view class='name row'>
@@ -25,5 +25,5 @@
     </view>
   </view>
 
-  <button class='submitForm' type="warn" form-type="submit">保 存</button>
+  <!--<button class='submitForm' type="warn" form-type="submit">保 存</button>-->
 </form>

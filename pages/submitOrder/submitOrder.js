@@ -100,6 +100,7 @@ Page({
   },
   //跳转地址页面
   enterAddress() {
+    return;
     wx.navigateTo({
       url: '../newAddress/newAddress',
     })

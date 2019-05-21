@@ -4,9 +4,9 @@
     <view class='blacktext'>收货人:{{userInfo.name}} {{userInfo.mobile}}</view>
     <view class='color'>{{userInfo.store.address}}</view>
   </view>
-  <view class='icon'>
-    <image src='../../assets/alibaba/sliverRight.png'></image>
-  </view>
+  <!--<view class='icon'>-->
+    <!--<image src='../../assets/alibaba/sliverRight.png'></image>-->
+  <!--</view>-->
 </view>
 
 <!-- <view class='emptyAddress' wx:if="{{hasAddress==false}}" bindtap='enterAddress'>

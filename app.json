@@ -1,9 +1,10 @@
 {
   "pages": [
+    "pages/kind/kind",
     "pages/home/home",
     
     "pages/login/login",
-    "pages/kind/kind",
+    
     "pages/newAddress/newAddress",
     "pages/submitOrder/submitOrder",
     "pages/order/order",
@@ -23,12 +24,6 @@
     "color": "#000",
     "selectedColor": "#ce0919",
     "list": [
-      {
-        "pagePath": "pages/home/home",
-        "text": "首页",
-        "iconPath": "./assets/tabar/home.png",
-        "selectedIconPath": "./assets/tabar/home1.png"
-      },
       {
         "pagePath": "pages/kind/kind",
         "text": "商品",

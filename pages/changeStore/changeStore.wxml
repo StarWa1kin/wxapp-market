@@ -1,5 +1,5 @@
 
-<view class='title'>可选店铺列表</view>
+<view class='title'>可选客户列表</view>
 <radio-group bindchange="radioChange">
   <block wx:for="{{storeList}}" wx:key="{{index}}">
     <view class='storeList'>

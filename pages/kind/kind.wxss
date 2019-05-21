@@ -201,8 +201,8 @@ text {
   font-size: 42rpx;
   color: #d3b65c;
   background: #d3b65c;
-  width: 90rpx;
-  height: 90rpx;
+  width: 70rpx;
+  height: 70rpx;
   border-radius: 80rpx;
   display: flex;
   justify-content: center;
