@@ -273,7 +273,7 @@ Page({
                 })
                 // 存储token跳转首页
                 wx.switchTab({
-                  url: '../home/home',
+                  url: '../kind/kind',
                 })
               } else {
                 wx.showToast({
