@@ -132,7 +132,7 @@ Page({
           })
         } else {
           wx.showToast({
-            title: '仅限会员登陆',
+            title: '短信发送失败，请稍后重试',
             image: '../../assets/page/err.png'
           })
         }
@@ -166,7 +166,7 @@ Page({
                 wx.setStorage({
                   key: 'token',
                   data: JSON.stringify(res.data.data),
-                })
+                });
                 wx.switchTab({
                   url: '../kind/kind',
                 })

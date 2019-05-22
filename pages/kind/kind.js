@@ -23,29 +23,36 @@ Page({
     bubble: 0,
     total: 0, //合计金额,
     submitLocalCar: false, //是否提交过本地购物车
+
+    isLoading:false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
     this.setArea();
-
+      // if (this.data.isLoading){
+      //     return;
+      // }
+      // this.getMenuList();
+      // this.setData({
+      //     isLoading:true
+      // })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function() {
-    this.getMenuList();
-
+    // this.getMenuList();
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
+    // console.log(getApp().globalData);
     //切换店铺后需要重新加载首页
     if (getApp().globalData.hasOwnProperty("changeStoreKind")) {
       //指控原来的所有的goodList并重新请求列表
@@ -54,7 +61,7 @@ Page({
         productList:[]
       })
       this.getMenuList();
-      delete getApp().globalData.changeStoreKind
+      // delete getApp().globalData.changeStoreKind
     }
     /**回调成功后立即加载购物车否则延迟1s加载*/
     //每一秒实时监听是否回调成功,回调成功才加载购物车列表
@@ -66,8 +73,8 @@ Page({
     }, 1000)
 
     getStoreName();
-   
-   
+
+
 
   },
 
