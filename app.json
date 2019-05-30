@@ -1,10 +1,8 @@
 {
   "pages": [
+    "pages/login/login",
     "pages/kind/kind",
     "pages/home/home",
-    
-    "pages/login/login",
-    
     "pages/newAddress/newAddress",
     "pages/submitOrder/submitOrder",
     "pages/order/order",

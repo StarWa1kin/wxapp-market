@@ -37,7 +37,7 @@
             <image src='../../assets/page/-.png'></image>
           </view>
           <view class='subtract' wx:else></view>
-          <view class='reshowNum'><input type='number' maxlength="4" value='{{good.reshowNum?good.reshowNum:0}}' bindblur='inputChange' id='{{good.id}}'></input></view>
+          <view class='reshowNum'><input type='number' data-price='{{good.extend.price}}' maxlength="5" value='{{good.reshowNum?good.reshowNum:0}}' bindblur='inputChange' id='{{good.id}}'></input></view>
           <view class='add' id='{{good.id}}' data-price='{{good.extend.price}}' bindtap='add'>
             <image src='../../assets/page/+.png'></image>
           </view>

@@ -13,7 +13,7 @@
 		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.6",
+	"libVersion": "2.7.0",
 	"appid": "wxb2971f82d8160e53",
 	"projectname": "jz_wxapp",
 	"debugOptions": {
