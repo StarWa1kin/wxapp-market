@@ -101,9 +101,9 @@
                         <view class='desc'>单位：{{item.unit}}</view>
                         <view class='money'>￥{{item.price}}x{{item.quantity}}
                             <view class='close-status' wx:if="{{item.CloseStatus=='B'}}">(已完成)</view>
-                            <view class='close-status' wx:elif="{{item.CloseStatus=='A'}}">
+                            <view class='close-status' wx:elif="{{item.vehicle!=''}}">
                                 <view class="button2">
-                                    <view class='cars'>车辆跟踪</view>
+                                    <view class='cars' data-vehicle="{{item.vehicle}}" bindtap="viewTrack">车辆跟踪</view>
                                 </view>
                             </view>
                         </view>

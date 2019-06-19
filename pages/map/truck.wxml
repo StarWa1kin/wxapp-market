@@ -1,0 +1,7 @@
+<map id="map"
+     longitude="{{lon}}"
+     latitude="{{lat}}"
+     scale="11"
+     markers="{{markers}}"
+     polyline="{{polyline}}"
+     show-location style="{{'width: 100%; height: '+height+'px;'}}"></map>

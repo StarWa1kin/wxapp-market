@@ -2,6 +2,7 @@
   "pages": [
     "pages/login/login",
     "pages/kind/kind",
+    "pages/map/truck",
     "pages/home/home",
     "pages/newAddress/newAddress",
     "pages/submitOrder/submitOrder",

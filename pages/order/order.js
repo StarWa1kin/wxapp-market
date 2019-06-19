@@ -221,6 +221,13 @@ Page({
                     icon: "none"
                 })
             })
+    },
+    //车辆跟踪
+    viewTrack(e){
+        var v = e.target.dataset.vehicle;
+        wx.navigateTo({
+            url: '../map/truck?vehicle=' + v,
+        })
     }
 
 })
