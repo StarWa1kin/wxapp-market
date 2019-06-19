@@ -42,9 +42,9 @@ page{
   border-bottom: 1px solid rgb(231, 231, 231);
 }
 .timeStatus>view{
-  margin: 0 20rpx;  
+  margin: 0 20rpx;
   font-size: 30rpx;
-  
+
 }
 .time{
   color: #777;
@@ -65,7 +65,7 @@ page{
   width: 190rpx;
   height:190rpx;
   background-color: silver;
-  margin-left:20rpx; 
+  margin-left:20rpx;
 }
 .img>image{
   width: 100%;
@@ -88,7 +88,18 @@ page{
   color: #777
 }
 .money{
+    display: flex;
   font-size: 34rpx;
+}
+.close-status{
+    /*position: relative;*/
+    /*left: 180px;*/
+    /*top:-22px;*/
+    display: flex;
+    justify-content: flex-end;
+    margin-top:2px;
+  font-size: 30rpx;
+  color: #777
 }
 
 /* 操作区域 */
@@ -98,7 +109,7 @@ page{
   text-align: right
 }
 .total{
-  padding-top:20rpx; 
+  padding-top:20rpx;
   padding-right: 20rpx;
   font-size: 30rpx;
 }
@@ -118,11 +129,31 @@ page{
   text-align: center;
   font-size: 32rpx;
   line-height: 60rpx;
-  
+
 }
 .buyAgain{
   border: 3rpx solid #777;
   color: #777;
+}
+.button2{
+    display: flex;
+    justify-content: flex-end;
+}
+.button2 view{
+    width: 180rpx;
+    height: 60rpx;
+    border-radius: 6rpx;
+    text-align: center;
+    font-size: 32rpx;
+    line-height: 60rpx;
+
+}
+.cars{
+    border: 3rpx solid #777;
+    color:#fff;
+    background:green;
+    margin-top:-6px;
+    margin-left:50px;
 }
 .cancelOrder{
   border: 3rpx solid #d3b65c;

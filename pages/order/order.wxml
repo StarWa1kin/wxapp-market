@@ -1,144 +1,161 @@
 <!--index.wxml-->
 <view class="swiper-tab">
-  <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
-  <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已提交</view>
-  <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">配送中</view>
-  <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">已提交</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">配送中</view>
+    <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">已完成</view>
 </view>
 
 <view style='height:108rpx'></view>
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 108}}rpx" bindchange="bindChange">
-  <!-- currentTab1全部订单 -->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
-      <view class='orderGroup' wx:for="{{allOrder}}" wx:key="{{index}}">
-        <view class='timeStatus'>
-          <view class='time'>{{item.created_at}}</view>
-          <view class='status'>{{item.status_name}}</view>
-        </view>
-        <view class='timeStatus' wx:if="{{item.BillNo!=''}}">
-          <view class='time'>订单编号：{{item.BillNo}}</view>
-        </view>
-        <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
-          <view class='img'>
-            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
-          </view>
-          <view class='content'>
-            <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>单位：{{item.unit}}</view>
-            <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
-          </view>
-        </view>
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight - 108}}rpx"
+        bindchange="bindChange">
+    <!-- currentTab1全部订单 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
+            <view class='orderGroup' wx:for="{{allOrder}}" wx:key="{{index}}">
+                <view class='timeStatus'>
+                    <view class='time'>{{item.created_at}}</view>
+                    <view class='status'>{{item.status_name}}</view>
+                </view>
+                <view class='timeStatus' wx:if="{{item.BillNo!=''}}">
+                    <view class='time'>订单编号：{{item.BillNo}}</view>
+                </view>
+                <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
+                    <view class='img'>
+                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                    </view>
+                    <view class='content'>
+                        <view class='goodsName'>{{item.name}}</view>
+                        <view class='desc'>单位：{{item.unit}}</view>
+                        <view class='money'>￥{{item.price}}x{{item.quantity}}
+                            <view class='close-status' wx:if="{{item.CloseStatus=='B'}}">(已完成)</view>
+                        </view>
 
-        <!-- 操作区域 -->
-        <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 合计:
-            <text class='big'> ￥{{item.amount}}</text>
-          </view>
-          <view class='button' wx:if="{{item.status_name!='已取消'}}">
-            <view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow' wx:if="{{item.status_name=='待付款'}}">立即支付</view>
-            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain' wx:else>再来一单</view>
-            <!-- <view class='cancelOrder' data-orderId='{{item.id}}' bindtap='cancelOrder'>取消订单</view> -->
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-  <!-- currentTab2待付款 -->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
-      <view class='orderGroup' wx:for="{{waitPay}}" wx:key="{{index}}">
-        <view class='timeStatus'>
-          <view class='time'>{{item.created_at}}</view>
-          <view class='status'>{{item.status_name}}</view>
-        </view>
-        <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
-          <view class='img'>
-            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
-          </view>
-          <view class='content'>
-            <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>单位：{{item.unit}}</view>
-            <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
-          </view>
-        </view>
+                    </view>
+                </view>
 
-        <!-- 操作区域 -->
-        <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 合计:
-            <text class='big'> ￥{{item.amount}}</text>
-          </view>
-          <!--<view class='button'>-->
-            <!--<view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow'>立即支付</view>-->
-            <!-- <view class='cancelOrder'>取消订单</view> -->
-          <!--</view>-->
-        </view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-  <!-- currentTab3 待收货-->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
-      <view class='orderGroup' wx:for="{{waitReceive}}" wx:key="{{index}}">
-        <view class='timeStatus'>
-          <view class='time'>{{item.created_at}}</view>
-          <view class='status'>{{item.status_name}}</view>
-        </view>
-        <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
-          <view class='img'>
-            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
-          </view>
-          <view class='content'>
-            <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>单位：{{item.unit}}</view>
-            <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
-          </view>
-        </view>
+                <!-- 操作区域 -->
+                <view class='operation'>
+                    <view class='total'>共{{item.products.length}}件商品 合计:
+                        <text class='big'> ￥{{item.amount}}</text>
+                    </view>
+                    <view class='button' wx:if="{{item.status_name!='已取消'}}">
+                        <view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow'
+                              wx:if="{{item.status_name=='待付款'}}">立即支付
+                        </view>
+                        <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain' wx:else>再来一单</view>
+                        <!-- <view class='cancelOrder' data-orderId='{{item.id}}' bindtap='cancelOrder'>取消订单</view> -->
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- currentTab2待付款 -->
+    <swiper-item>
+        <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
+            <view class='orderGroup' wx:for="{{waitPay}}" wx:key="{{index}}">
+                <view class='timeStatus'>
+                    <view class='time'>{{item.created_at}}</view>
+                    <view class='status'>{{item.status_name}}</view>
+                </view>
+                <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
+                    <view class='img'>
+                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                    </view>
+                    <view class='content'>
+                        <view class='goodsName'>{{item.name}}</view>
+                        <view class='desc'>单位：{{item.unit}}</view>
+                        <view class='money'>￥{{item.price}}x{{item.quantity}}
+                            <view class='close-status' wx:if="{{item.CloseStatus=='B'}}">(已完成)</view>
+                        </view>
+                    </view>
+                </view>
 
-        <!-- 操作区域 -->
-        <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 合计:
-            <text class='big'> ￥{{item.amount}}</text>
-          </view>
-          <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
-            <!-- <view class='cancelOrder'>取消订单</view> -->
-          </view>
-        </view>
-      </view>
-    </scroll-view>
-  </swiper-item>
-  <!-- currentTab4 已完成-->
-  <swiper-item>
-    <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
-      <view class='orderGroup' wx:for="{{already}}" wx:key="{{index}}">
-        <view class='timeStatus'>
-          <view class='time'>{{item.created_at}}</view>
-          <view class='status'>{{item.status_name}}</view>
-        </view>
-        <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
-          <view class='img'>
-            <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
-          </view>
-          <view class='content'>
-            <view class='goodsName'>{{item.name}}</view>
-            <view class='desc'>单位：{{item.unit}}</view>
-            <view class='money'>￥{{item.price}}x{{item.quantity}}</view>
-          </view>
-        </view>
+                <!-- 操作区域 -->
+                <view class='operation'>
+                    <view class='total'>共{{item.products.length}}件商品 合计:
+                        <text class='big'> ￥{{item.amount}}</text>
+                    </view>
+                    <!--<view class='button'>-->
+                    <!--<view class='buyAgain' data-orderId='{{item.id}}' data-amount="{{item.amount}}" bindtap='buyNow'>立即支付</view>-->
+                    <!-- <view class='cancelOrder'>取消订单</view> -->
+                    <!--</view>-->
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- currentTab3 待收货-->
+    <swiper-item>
+        <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
+            <view class='orderGroup' wx:for="{{waitReceive}}" wx:key="{{index}}">
+                <view class='timeStatus'>
+                    <view class='time'>{{item.created_at}}</view>
+                    <view class='status'>{{item.status_name}}</view>
+                </view>
+                <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
+                    <view class='img'>
+                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                    </view>
+                    <view class='content'>
+                        <view class='goodsName'>{{item.name}}</view>
+                        <view class='desc'>单位：{{item.unit}}</view>
+                        <view class='money'>￥{{item.price}}x{{item.quantity}}
+                            <view class='close-status' wx:if="{{item.CloseStatus=='B'}}">(已完成)</view>
+                            <view class='close-status' wx:elif="{{item.CloseStatus=='A'}}">
+                                <view class="button2">
+                                    <view class='cars'>车辆跟踪</view>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </view>
 
-        <!-- 操作区域 -->
-        <view class='operation'>
-          <view class='total'>共{{item.products.length}}件商品 合计:
-            <text class='big'> ￥{{item.amount}}</text>
-          </view>
-          <view class='button'>
-            <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
-            <!-- <view class='cancelOrder'>取消订单</view> -->
-          </view>
-        </view>
-      </view>
+                <!-- 操作区域 -->
+                <view class='operation'>
+                    <view class='total'>共{{item.products.length}}件商品 合计:
+                        <text class='big'> ￥{{item.amount}}</text>
+                    </view>
+                    <view class='button'>
+                        <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
+                        <!-- <view class='cancelOrder'>取消订单</view> -->
+                    </view>
+                </view>
+            </view>
+        </scroll-view>
+    </swiper-item>
+    <!-- currentTab4 已完成-->
+    <swiper-item>
+        <scroll-view scroll-y="true" style="height:{{winHeight - 108}}rpx">
+            <view class='orderGroup' wx:for="{{already}}" wx:key="{{index}}">
+                <view class='timeStatus'>
+                    <view class='time'>{{item.created_at}}</view>
+                    <view class='status'>{{item.status_name}}</view>
+                </view>
+                <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
+                    <view class='img'>
+                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                    </view>
+                    <view class='content'>
+                        <view class='goodsName'>{{item.name}}</view>
+                        <view class='desc'>单位：{{item.unit}}</view>
+                        <view class='money'>￥{{item.price}}x{{item.quantity}}
+                            <view class='close-status' wx:if="{{item.CloseStatus=='B'}}">(已完成)</view>
+                        </view>
+                    </view>
+                </view>
 
-    </scroll-view>
-  </swiper-item>
+                <!-- 操作区域 -->
+                <view class='operation'>
+                    <view class='total'>共{{item.products.length}}件商品 合计:
+                        <text class='big'> ￥{{item.amount}}</text>
+                    </view>
+                    <view class='button'>
+                        <view class='buyAgain' data-orderId='{{item.id}}' bindtap='buyAgain'>再来一单</view>
+                        <!-- <view class='cancelOrder'>取消订单</view> -->
+                    </view>
+                </view>
+            </view>
+
+        </scroll-view>
+    </swiper-item>
 </swiper>
