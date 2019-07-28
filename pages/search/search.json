@@ -1,1 +1,6 @@
-{}
+{
+  "usingComponents": {
+    "i-modal": "../../dist/modal/index",
+    "i-input-number": "../../dist/input-number/index"
+  }
+}

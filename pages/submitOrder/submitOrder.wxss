@@ -28,7 +28,7 @@ page{
   line-height: 60rpx;
 }
 .addressInfo{
-  width: 600rpx;
+  width: 700rpx;
   margin-left: 20rpx;
 }
 .icon{

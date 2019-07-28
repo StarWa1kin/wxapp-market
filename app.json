@@ -8,9 +8,9 @@
     "pages/submitOrder/submitOrder",
     "pages/order/order",
     "pages/mine/mine",
-    "pages/search/search",
     "pages/orderDetail/orderDetail",
     "pages/changeStore/changeStore",
+    "pages/search/search",
     "pages/feedback/feedback"
   ],
   "window": {

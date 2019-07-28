@@ -2,7 +2,12 @@
   <view>
     <input placeholder='搜索商品' focus="true" bindconfirm="search" bindinput="getKeyword"></input>
   </view>
-  <view class='cancel' bindtap='cancel'>取消</view>
+  <!-- <view class='cancel' bindtap='cancel'>取消</view> -->
+  <!-- 方便直接进购物车 -->
+  <view class="shoppingCar" bindtap='toPay'>
+    <image src='../../assets/page/shoppingCar.png'></image>
+    <view class='bubble' wx:if="{{bubble>0}}">{{bubble}}</view>
+  </view>
 </view>
 <view class='serachContent' wx:if="{{searchList.length>0}}">
   <scroll-view scroll-y="true">
@@ -37,3 +42,12 @@
     </view>
   </scroll-view>
 </view>
+
+
+<i-modal title="购买数量" visible="{{maskVisible}}" bind:ok="handleSubmit" bind:cancel="handleClose">
+  <i-panel title="">
+    <view style="padding: 16px">
+      <i-input-number value="{{num}}" min="1" max="999" bindchange="handleChange" />
+    </view>
+  </i-panel>
+</i-modal>
