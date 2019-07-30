@@ -19,7 +19,7 @@
   <!-- 商品列表 -->
   <view class=' buyingList' wx:for="{{shoppingList}}" wx:key="{{index}}">
     <view class='img '>
-      <image src='{{item.product.img==""?"../../assets/page/default.png":item.product.img}}'></image>
+      <image src='{{item.product.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.product.img}}'></image>
     </view>
     <view class='contentBox'>
       <view class='first-row'>

@@ -14,7 +14,7 @@
     <!-- 商品信息 -->
     <view class='productInfo' wx:for="{{searchList}}" wx:key="{{index}}">
       <view class='img'>
-        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+        <image src='{{item.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.img}}'></image>
       </view>
       <view class='content'>
         <view class='name'>{{item.name}}</view>

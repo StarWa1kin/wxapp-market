@@ -22,7 +22,7 @@
                 </view>
                 <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
                     <view class='img'>
-                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                        <image src='{{item.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.img}}'></image>
                     </view>
                     <view class='content'>
                         <view class='goodsName'>{{item.name}}</view>
@@ -60,7 +60,7 @@
                 </view>
                 <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
                     <view class='img'>
-                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                        <image src='{{item.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.img}}'></image>
                     </view>
                     <view class='content'>
                         <view class='goodsName'>{{item.name}}</view>
@@ -94,7 +94,7 @@
                 </view>
                 <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
                     <view class='img'>
-                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                        <image src='{{item.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.img}}'></image>
                     </view>
                     <view class='content'>
                         <view class='goodsName'>{{item.name}}</view>
@@ -133,7 +133,7 @@
                 </view>
                 <view class='goodsList' wx:for="{{item.products}}" wx:key="{{index}}">
                     <view class='img'>
-                        <image src='{{item.img==""?"../../assets/page/default.png":item.img}}'></image>
+                        <image src='{{item.img==""?"../../assets/page/default.png":"https://oms.jzfoods.cn:4438"+item.img}}'></image>
                     </view>
                     <view class='content'>
                         <view class='goodsName'>{{item.name}}</view>
