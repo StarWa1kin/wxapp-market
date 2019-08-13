@@ -29,7 +29,7 @@
     </view>
     <view class='text'>
       <view>我的订单</view>
-      <text class="littleSize">全部订单</text>
+      <!--<text class="littleSize">全部订单</text>-->
       <view class='text-icon'>
         <image class="teshu" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
       </view>
@@ -42,10 +42,11 @@
       <image class="" src="../../assets/alibaba/dizhi3.png" mode="scaleToFill"></image>
     </view>
     <view class='text'>
-      <view>送货地址</view>
-      <view class='text-icon showIcon'>
-        <image class="" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>
-      </view>
+      <view style="width: 220rpx;">送货地址</view>
+      <view class="littleSize" style="margin-left: 50px;">{{userInfo.store.address}}</view>
+      <!--<view class='text-icon showIcon'>-->
+        <!--<image class="" src="../../assets/alibaba/sliverRight.png" mode="scaleToFill"></image>-->
+      <!--</view>-->
     </view>
   </view>
 
